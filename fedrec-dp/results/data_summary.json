@@ -1,0 +1,104 @@
+{
+  "dataset": "movielens_100k",
+  "config": {
+    "dataset": "movielens_100k",
+    "positive_rating_threshold": 4,
+    "split": {
+      "type": "leave_two_out_chronological",
+      "validation_items": 1,
+      "test_items": 1,
+      "min_positive_interactions": 3,
+      "tie_break": "sha256_user_item_split_seed",
+      "split_seed": 2026
+    },
+    "evaluation": {
+      "k": 10,
+      "full_ranking": true,
+      "candidates": "exclude_all_items_rated_before_target",
+      "tie_policy": "pessimistic"
+    },
+    "seed": 42,
+    "paths": {
+      "raw_dir": "data/raw",
+      "processed_dir": "data/processed",
+      "results_dir": "results"
+    }
+  },
+  "raw_ratings_sha256": "06416e597f82b7342361e41163890c81036900f418ad91315590814211dca490",
+  "original_users": 943,
+  "original_items": 1682,
+  "original_ratings": 100000,
+  "positive_rating_threshold": 4,
+  "positive_interactions": 55375,
+  "min_positive_interactions": 3,
+  "split_seed": 2026,
+  "split_fingerprint_sha256": "6faed6fc3d47b5b6fa638adfeea83cd7409d50c39fa01f85c10379d0daef6989",
+  "users_removed": 1,
+  "users_removed_with_zero_positives": 1,
+  "removed_user_positive_counts": {
+    "685": 0
+  },
+  "retained_users": 942,
+  "retained_users_total_ratings": 99980,
+  "retained_items_with_any_positive": 1447,
+  "items_with_train_positive": 1427,
+  "catalog_items_ranked": 1682,
+  "train_interactions": 53491,
+  "validation_interactions": 942,
+  "test_interactions": 942,
+  "validation_items_without_train_positive": 6,
+  "test_items_without_train_positive": 14,
+  "train_positives_per_user": {
+    "mean": 56.7845,
+    "median": 37.5,
+    "min": 1,
+    "max": 376
+  },
+  "users_with_one_train_positive": 2,
+  "timestamp_ties": {
+    "users_with_train_val_timestamp_tie": 316,
+    "users_with_val_test_timestamp_tie": 305
+  },
+  "candidates_per_user": {
+    "validation": {
+      "mean": 1581.5658,
+      "median": 1621.0,
+      "min": 1001,
+      "max": 1676
+    },
+    "test": {
+      "mean": 1579.0658,
+      "median": 1619.0,
+      "min": 1000,
+      "max": 1671
+    }
+  },
+  "excluded_previously_rated_per_user": {
+    "validation": {
+      "mean": 100.4342,
+      "median": 61.0,
+      "min": 6,
+      "max": 681
+    },
+    "test": {
+      "mean": 102.9342,
+      "median": 63.0,
+      "min": 11,
+      "max": 682
+    }
+  },
+  "excluded_non_positive_ratings_per_user": {
+    "validation": {
+      "mean": 43.6497,
+      "median": 23.0,
+      "min": 0,
+      "max": 569
+    },
+    "test": {
+      "mean": 45.1497,
+      "median": 23.0,
+      "min": 0,
+      "max": 569
+    }
+  }
+}

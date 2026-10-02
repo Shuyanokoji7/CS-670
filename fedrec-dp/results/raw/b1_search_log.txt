@@ -1,0 +1,33 @@
+stage1  q=0.05  lr=5.0   E=1  best round  2120/ 2620 (early_stopping)  val ndcg 0.0921
+stage1  q=0.05  lr=10.0  E=1  best round  1590/ 2090 (early_stopping)  val ndcg 0.0932
+stage1  q=0.05  lr=20.0  E=1  best round  1040/ 1540 (early_stopping)  val ndcg 0.0928
+stage1  q=0.1   lr=5.0   E=1  best round  1940/ 2440 (early_stopping)  val ndcg 0.0948
+stage1  q=0.1   lr=10.0  E=1  best round  1110/ 1610 (early_stopping)  val ndcg 0.0958
+stage1  q=0.1   lr=20.0  E=1  best round   790/ 1290 (early_stopping)  val ndcg 0.0918
+stage1  q=0.2   lr=5.0   E=1  best round  1910/ 2410 (early_stopping)  val ndcg 0.0943
+stage1  q=0.2   lr=10.0  E=1  best round  1110/ 1610 (early_stopping)  val ndcg 0.0942
+stage1  q=0.2   lr=20.0  E=1  best round   400/  900 (early_stopping)  val ndcg 0.0913
+stage2  q=0.1   lr=10.0  E=2  best round   920/ 1420 (early_stopping)  val ndcg 0.0918
+stage2  q=0.1   lr=5.0   E=2  best round  1040/ 1540 (early_stopping)  val ndcg 0.0959
+stage2  q=0.1   lr=10.0  E=5  best round   630/ 1130 (early_stopping)  val ndcg 0.0909
+stage2  q=0.1   lr=5.0   E=5  best round   710/ 1210 (early_stopping)  val ndcg 0.0917
+stage3  q=0.1   lr=2.5   E=2  best round  1770/ 2270 (early_stopping)  val ndcg 0.0951
+
+ rank_by_val_ndcg  selected  stage  client_sampling_q  local_lr  local_epochs  best_round  rounds_run     stopped_by  val_ndcg@10  val_hr@10  val_recall@10  val_mrr@10  mean_clients_per_round  total_comm_bytes
+                1      True stage2               0.10       5.0             2        1040        1540 early_stopping     0.095939   0.184713       0.184713    0.069135               93.825974      124434198528
+                2     False stage1               0.10      10.0             1        1110        1610 early_stopping     0.095793   0.183652       0.183652    0.069258               93.868944      130149876736
+                3     False stage3               0.10       2.5             2        1770        2270 early_stopping     0.095098   0.197452       0.197452    0.064482               93.957269      183675907072
+                4     False stage1               0.10       5.0             1        1940        2440 early_stopping     0.094753   0.183652       0.183652    0.068182               93.901639      197314478080
+                5     False stage1               0.20       5.0             1        1910        2410 early_stopping     0.094350   0.188960       0.188960    0.066250              188.311618      390831995904
+                6     False stage1               0.20      10.0             1        1110        1610 early_stopping     0.094245   0.183652       0.183652    0.067648              188.350932      261149742080
+                7     False stage1               0.05      10.0             1        1590        2090 early_stopping     0.093240   0.175159       0.175159    0.068430               46.937321       84481289216
+                8     False stage1               0.05      20.0             1        1040        1540 early_stopping     0.092757   0.165605       0.165605    0.070798               46.873377       62164567040
+                9     False stage1               0.05       5.0             1        2120        2620 early_stopping     0.092111   0.181529       0.181529    0.065378               46.888550      105794732032
+               10     False stage2               0.10      10.0             2         920        1420 early_stopping     0.091847   0.185775       0.185775    0.063774               93.820423      114731238400
+               11     False stage1               0.10      20.0             1         790        1290 early_stopping     0.091808   0.176221       0.176221    0.066521               93.844961      104254935040
+               12     False stage2               0.10       5.0             5         710        1210 early_stopping     0.091670   0.180467       0.180467    0.065060               93.917355       97864949760
+               13     False stage1               0.20      20.0             1         400         900 early_stopping     0.091310   0.175159       0.175159    0.066228              188.500000      146099865600
+               14     False stage2               0.10      10.0             5         630        1130 early_stopping     0.090921   0.171975       0.171975    0.066544               93.923009       91400041472
+
+Selected (highest validation NDCG@10): q=0.1 lr=5.0 E=2
+exit 0

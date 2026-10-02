@@ -1,0 +1,8 @@
+<stdin>:16: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+checkpoint: seed 42 | best_epoch 267 | fingerprint verified 6faed6fc3d47 | torch 2.14.0+cpu
+reloaded test ndcg@10 0.088752 | saved 0.088752
+embedding change from init (rel. Frobenius): users 41.6x, items 29.5x
+test ndcg@10 | own user vector 0.0888 | shuffled user vectors 0.0218 | mean user vector 0.0492
+paired test ndcg@10 B0(seed 42) - popularity: 0.0445  95% bootstrap CI [0.0292, 0.0599]  users better/worse/equal 145/60/737
+paired test ndcg@10 B0(3-seed mean) - popularity: 0.0414  95% bootstrap CI [0.0271, 0.0557]  users better/worse/equal 173/62/707

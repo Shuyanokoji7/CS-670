@@ -1,0 +1,37 @@
+seed 2026: best round 970 of 1970
+     split  ndcg@10  hr@10  recall@10  mrr@10
+validation   0.0923 0.1794     0.1794  0.0664
+      test   0.0885 0.1656     0.1656  0.0656
+seed 42: best round 1040 of 2040
+     split  ndcg@10  hr@10  recall@10  mrr@10
+validation   0.0959 0.1847     0.1847  0.0691
+      test   0.0890 0.1688     0.1688  0.0648
+seed 123: best round 1020 of 2020
+     split  ndcg@10  hr@10  recall@10  mrr@10
+validation   0.0937 0.1847     0.1847  0.0666
+      test   0.0852 0.1582     0.1582  0.0632
+
+           model      split  n_seeds       seeds  ndcg@10_mean  ndcg@10_std  hr@10_mean  hr@10_std  recall@10_mean  recall@10_std  mrr@10_mean  mrr@10_std  best_round_mean  best_round_std  mean_clients_per_round_mean  mean_clients_per_round_std  comm_bytes_to_best_round_mean  comm_bytes_to_best_round_std
+b1_federated_bpr validation        3 42 123 2026        0.0940       0.0018      0.1829     0.0031          0.1829         0.0031       0.0674      0.0015        1010.0000         36.0555                      94.1090                      0.1591               81911803221.3333               2775485854.5513
+b1_federated_bpr       test        3 42 123 2026        0.0875       0.0021      0.1642     0.0054          0.1642         0.0054       0.0645      0.0012        1010.0000         36.0555                      94.1090                      0.1591               81911803221.3333               2775485854.5513
+
+           model      split  n_seeds  ndcg@10  hr@10  recall@10  mrr@10  ndcg@10_std  hr@10_std  recall@10_std  mrr@10_std  ndcg_retention_vs_b0  federation_induced_gap
+          random validation        1   0.0023 0.0064     0.0064  0.0011          NaN        NaN            NaN         NaN                   NaN                     NaN
+          random       test        1   0.0038 0.0085     0.0085  0.0024          NaN        NaN            NaN         NaN                   NaN                     NaN
+      popularity validation        1   0.0464 0.0839     0.0839  0.0351          NaN        NaN            NaN         NaN                   NaN                     NaN
+      popularity       test        1   0.0443 0.0870     0.0870  0.0314          NaN        NaN            NaN         NaN                   NaN                     NaN
+          b0_bpr validation        3   0.0981 0.1868     0.1868  0.0715       0.0010     0.0105         0.0105      0.0032                   NaN                     NaN
+          b0_bpr       test        3   0.0860 0.1720     0.1720  0.0601       0.0005     0.0021         0.0021      0.0008                   NaN                     NaN
+b1_federated_bpr validation        3   0.0940 0.1829     0.1829  0.0674       0.0018     0.0031         0.0031      0.0015                0.9585                  0.0415
+b1_federated_bpr       test        3   0.0875 0.1642     0.1642  0.0645       0.0021     0.0054         0.0054      0.0012                1.0182                 -0.0182
+
+                                    comparison  mean_diff  ci_low  ci_high  frac_improved  frac_degraded  frac_tied
+B1 - B0 (test NDCG@10, seed-averaged per user)     0.0016 -0.0054   0.0087         0.1412         0.1178     0.7410
+
+ group  n_users  train_pos_min  train_pos_max  b0_ndcg@10  b1_ndcg@10  mean_diff  ci_low  ci_high  frac_improved  frac_degraded  frac_tied
+   low      319              1             22      0.1258      0.1314     0.0055 -0.0103   0.0209         0.1975         0.1630     0.6395
+medium      310             23             61      0.0705      0.0618    -0.0087 -0.0190   0.0018         0.1032         0.1290     0.7677
+  high      313             62            376      0.0607      0.0684     0.0077 -0.0009   0.0162         0.1214         0.0607     0.8179
+
+personalisation check (seed of b1_best.pt): {'own_p_u': 0.089, 'random_other_p_v': 0.0202, 'mean_user_vector': 0.0502}
+exit 0

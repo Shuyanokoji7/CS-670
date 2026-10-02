@@ -1,0 +1,1 @@
+b0uw seed 2026 patience 100: best epoch 218, epochs run 318, stopped by early_stopping, best val ndcg@10 0.096492

@@ -1,0 +1,3 @@
+aggregation,best_round,rounds_run,stopped_by,val_ndcg@10
+fedavg,1040,1540,early_stopping,0.095939
+item_mean,820,1320,early_stopping,0.091102

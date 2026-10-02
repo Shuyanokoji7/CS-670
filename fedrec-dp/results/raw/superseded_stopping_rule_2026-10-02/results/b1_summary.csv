@@ -1,0 +1,3 @@
+model,split,n_seeds,seeds,ndcg@10_mean,ndcg@10_std,hr@10_mean,hr@10_std,recall@10_mean,recall@10_std,mrr@10_mean,mrr@10_std,best_round_mean,best_round_std,mean_clients_per_round_mean,mean_clients_per_round_std,comm_bytes_to_best_round_mean,comm_bytes_to_best_round_std
+b1_federated_bpr,validation,3,42 123 2026,0.093997,0.001819,0.182944,0.003064,0.182944,0.003064,0.067368,0.001536,1010.000000,36.055513,94.057775,0.203641,81911803221.333328,2775485854.551279
+b1_federated_bpr,test,3,42 123 2026,0.087539,0.002074,0.164190,0.005448,0.164190,0.005448,0.064527,0.001218,1010.000000,36.055513,94.057775,0.203641,81911803221.333328,2775485854.551279

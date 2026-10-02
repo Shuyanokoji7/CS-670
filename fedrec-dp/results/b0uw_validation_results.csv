@@ -1,0 +1,2 @@
+model,seed,best_epoch,epochs_run,learning_rate,l2_reg,dim,split_fingerprint,split,n_users,ndcg@10,ndcg@10_se,hr@10,hr@10_se,recall@10,recall@10_se,mrr@10,mrr@10_se,mean_rank,median_rank
+b0_uw_bpr,42,272,372,0.001000,0.010000,64,6faed6fc3d47b5b6fa638adfeea83cd7409d50c39fa01f85c10379d0daef6989,validation,942,0.095020,0.007281,0.186837,0.012706,0.186837,0.012706,0.067393,0.006276,137.020170,55.000000

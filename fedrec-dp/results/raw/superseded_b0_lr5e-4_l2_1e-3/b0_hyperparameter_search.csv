@@ -1,0 +1,15 @@
+rank_by_val_ndcg,eligible,selected,stage,learning_rate,l2_reg,batch_size,dim,seed,best_epoch,epochs_run,stopped_by,val_ndcg@10,val_hr@10,val_recall@10,val_mrr@10,train_bpr_loss_at_best
+2,True,True,stage2_l2_scale_and_lr_edge,0.000500,0.001000,1024,64,42,267,297,early_stopping,0.095138,0.185775,0.185775,0.068112,0.063568
+3,True,False,stage1_initial_grid,0.001000,0.000100,1024,64,42,148,178,early_stopping,0.094105,0.174098,0.174098,0.069983,0.048897
+4,True,False,stage2_l2_scale_and_lr_edge,0.001000,0.001000,1024,64,42,153,183,early_stopping,0.093858,0.169851,0.169851,0.070855,0.053970
+5,True,False,stage1_initial_grid,0.001000,0.000010,1024,64,42,150,180,early_stopping,0.093821,0.174098,0.174098,0.069746,0.046309
+6,True,False,stage1_initial_grid,0.001000,0.000000,1024,64,42,150,180,early_stopping,0.093808,0.174098,0.174098,0.069735,0.046223
+7,True,False,stage1_initial_grid,0.005000,0.000100,1024,64,42,71,101,early_stopping,0.090582,0.164544,0.164544,0.068547,0.021008
+8,True,False,stage1_initial_grid,0.005000,0.000010,1024,64,42,71,101,early_stopping,0.090485,0.166667,0.166667,0.067957,0.020354
+9,True,False,stage1_initial_grid,0.005000,0.000000,1024,64,42,71,101,early_stopping,0.090061,0.166667,0.166667,0.067391,0.020287
+10,True,False,stage2_l2_scale_and_lr_edge,0.001000,0.010000,1024,64,42,152,182,early_stopping,0.089530,0.165605,0.165605,0.066827,0.138414
+11,True,False,stage2_l2_scale_and_lr_edge,0.000500,0.010000,1024,64,42,155,185,early_stopping,0.082455,0.160297,0.160297,0.059034,0.157539
+12,True,False,stage1_initial_grid,0.010000,0.000010,1024,64,42,6,36,early_stopping,0.079321,0.157113,0.157113,0.056404,0.122560
+13,True,False,stage1_initial_grid,0.010000,0.000000,1024,64,42,6,36,early_stopping,0.079321,0.157113,0.157113,0.056404,0.122519
+14,True,False,stage1_initial_grid,0.010000,0.000100,1024,64,42,6,36,early_stopping,0.079225,0.156051,0.156051,0.056548,0.122922
+1,False,False,stage2_l2_scale_and_lr_edge,0.000500,0.000010,1024,64,42,296,300,max_epochs,0.096255,0.178344,0.178344,0.071669,0.046999

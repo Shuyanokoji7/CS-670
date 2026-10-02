@@ -1,0 +1,2 @@
+comparison,mean_diff,ci_low,ci_high,frac_improved,frac_degraded,frac_tied
+"B1 - B0 (test NDCG@10, seed-averaged per user)",0.003097,-0.004196,0.010456,0.150743,0.121019,0.728238

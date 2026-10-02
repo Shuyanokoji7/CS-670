@@ -1,0 +1,7 @@
+search rows changed by cap 300->600: [(0.0005, 1e-05)]
+checkpoint: lr 0.0005 l2 1e-05 seed 42 best_epoch 296 fingerprint ok
+reloaded test ndcg@10 0.084091 saved 0.084091
+embedding change from init: users 48.0x, items 38.8x
+test ndcg@10 | own 0.0841 | shuffled users 0.0200 | mean user vector 0.0514
+paired test ndcg@10 B0(3-seed mean) - popularity: +0.0402  95% CI [+0.0264, +0.0543]  better/worse/equal 179/63/700
+paired test ndcg@10 revised B0 - superseded B0 (3-seed means): -0.0012  95% CI [-0.0040, +0.0016]  better/worse/equal 76/103/763

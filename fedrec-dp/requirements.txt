@@ -1,0 +1,12 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+numpy==2.2.6
+pandas==2.3.3
+PyYAML==6.0.3
+pytest==9.1.1
+torch==2.14.0+cpu
+matplotlib==3.10.9
+# B2 privacy accounting only (Opacus accountants; PrivacyEngine is NOT used). Install opacus with
+# `pip install --no-deps opacus==1.6.0` so it cannot replace the pinned torch build.
+opacus==1.6.0
+scipy==1.15.3
+opt_einsum==3.4.0

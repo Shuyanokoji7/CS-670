@@ -1,0 +1,7 @@
+b0: lr 0.001 l2 0.01 sampling interaction seed 42 best_epoch 417 | reload test 0.086497 saved 0.086497 | own 0.0865 shuffled 0.0248 mean-vector 0.0483
+b0uw: lr 0.001 l2 0.01 sampling user_uniform seed 42 best_epoch 272 | reload test 0.093208 saved 0.093208 | own 0.0932 shuffled 0.0220 mean-vector 0.0507
+b1 reload test 0.088983 saved 0.088983 round 1040 rounds_run 2040
+b1 42 best 1040 run 2040 to-best GB 84.15 whole-run GB 165.06
+b1 123 best 1020 run 2020 to-best GB 82.78 whole-run GB 164.00
+b1 2026 best 970 run 1970 to-best GB 78.81 whole-run GB 159.64
+B1 seed-42 per-user test identical to pre-revision: True

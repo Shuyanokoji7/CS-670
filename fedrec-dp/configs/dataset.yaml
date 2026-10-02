@@ -1,0 +1,37 @@
+# Central dataset + evaluation configuration. Preprocessing is a pure function of
+# this file and the raw GroupLens archive, so re-running `python -m src.data`
+# reproduces data/processed/ and results/ exactly.
+#
+# FROZEN for B0-B4 (2026-09-28). Do not change without a dated RESEARCH_LOG.md entry.
+
+dataset: movielens_100k        # movielens_1m is registered in src/data.py but not used yet
+
+positive_rating_threshold: 4   # rating >= 4 -> positive implicit interaction
+
+split:
+  type: leave_two_out_chronological
+  validation_items: 1
+  test_items: 1
+  min_positive_interactions: 3  # 1 train + 1 validation + 1 test
+  # Each user's ratings are ordered by timestamp; equal timestamps have no reliable
+  # internal chronology, so they are ordered by SHA-256(user_id, item_id, split_seed).
+  # Immutable. Independent of the model-training `seed` below.
+  tie_break: sha256_user_item_split_seed
+  split_seed: 2026
+
+evaluation:
+  k: 10
+  full_ranking: true
+  # Candidates for a held-out event = all catalog items - every item the user rated
+  # (any rating) strictly before that event. The target itself is always kept.
+  candidates: exclude_all_items_rated_before_target
+  # Items scoring exactly the same as the target are ranked ABOVE it (worst case).
+  tie_policy: pessimistic
+
+# Model-training / random-baseline seed. Never read by preprocessing; cannot change the split.
+seed: 42
+
+paths:
+  raw_dir: data/raw
+  processed_dir: data/processed
+  results_dir: results

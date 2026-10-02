@@ -1,0 +1,4 @@
+rank_by_val_ndcg,selected,stage,learning_rate,l2_reg,batch_size,dim,seed,best_epoch,epochs_run,stopped_by,val_ndcg@10,val_hr@10,val_recall@10,val_mrr@10,train_bpr_loss_at_best
+1,True,lr_sensitivity,0.001000,0.010000,1024,64,42,272,372,early_stopping,0.095020,0.186837,0.186837,0.067393,0.101710
+2,False,lr_sensitivity,0.000500,0.010000,1024,64,42,335,435,early_stopping,0.091829,0.178344,0.178344,0.065970,0.107224
+3,False,lr_sensitivity,0.000250,0.010000,1024,64,42,35,135,early_stopping,0.063628,0.126327,0.126327,0.045059,0.223895

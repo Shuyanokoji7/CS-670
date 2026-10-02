@@ -1,0 +1,42 @@
+# B0-UW — DIAGNOSTIC CONTROL: centralised BPR-MF with a USER-weighted objective.
+# Identical to configs/b0.yaml (frozen B0 hyperparameters, NOT retuned) except for one factor:
+# training examples are drawn user-uniformly, then positive-uniformly within the user, so the
+# expected loss is (1/N) sum_u (1/n_u) sum_k L_uk — the equal-user objective that B1's aggregation
+# optimises — instead of B0's interaction-weighted mean. Used only to separate the weighting
+# change from the federation change in B0 -> B1.
+# Data split / candidates / metrics come from configs/dataset.yaml (frozen) and are not set here.
+
+name: b0_uw_centralized_user_weighted_bpr
+output_prefix: b0uw
+model_name: b0_uw_bpr
+dataset_config: configs/dataset.yaml
+
+model:
+  dim: 64             # full-rank reference dimension for B1-B4; do not change
+  init_std: 0.01      # N(0, 0.01^2) initialisation of user and item embeddings
+
+training:
+  optimizer: adam
+  learning_rate: 0.001   # FROZEN 2026-10-02: revised-protocol validation search (results/b0_hyperparameter_search.csv)
+  l2_reg: 0.01           # FROZEN 2026-10-02: revised-protocol validation search
+  batch_size: 1024
+  max_epochs: 1000       # revised stopping protocol 2026-10-02 (was 600)
+  patience: 100          # validation checks (epochs) without improvement; revised protocol 2026-10-02 (was 30)
+  negatives_per_positive: 1
+  example_sampling: user_uniform   # the ONLY difference from B0 (B0: interaction)
+  num_threads: 4         # fixed for bit-reproducibility on CPU
+
+evaluation:
+  k: 10
+  selection_metric: ndcg@10   # validation only
+
+seed: 42                  # model-training seed; cannot change the data split
+
+search:
+  # Validation-only learning-rate SENSITIVITY check, not used to choose the main B0-UW configuration
+  # (which keeps the revised B0 lr 1e-3 / L2 1e-2 so that weighting is the only change). Pre-declared 2026-10-02.
+  seed: 42
+  stages:
+    - name: lr_sensitivity
+      learning_rate: [0.001, 0.0005, 0.00025]
+      l2_reg: [0.01]                       # = selected revised-B0 L2

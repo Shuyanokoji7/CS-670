@@ -1,0 +1,1 @@
+b0 seed 123 patience 100: best epoch 309, epochs run 409, stopped by early_stopping, best val ndcg@10 0.094725

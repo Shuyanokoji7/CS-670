@@ -1,0 +1,41 @@
+# B1 — federated BPR-MF without differential privacy.
+# Split / candidates / metrics come from configs/dataset.yaml (frozen). Model and loss match B0.
+
+name: b1_federated_bpr
+dataset_config: configs/dataset.yaml
+
+model:
+  dim: 64             # same full-rank dimension as B0; do not change
+  init_std: 0.01      # same N(0, 0.01^2) init as B0 (identical P, Q to B0 for the same seed)
+
+federated:
+  client_sampling_q: 0.1    # FROZEN (validation search); Poisson sampling, empty rounds skipped
+  local_optimizer: sgd      # full-batch SGD over the client's positives, one step per local epoch
+  local_lr: 5.0             # FROZEN (validation search, results/b1_hyperparameter_search.csv)
+  local_epochs: 2           # FROZEN (validation search)
+  l2_reg: 0.00001           # B0's L2 form and value, applied only to rows used in the loss
+  server_lr: 1.0
+  aggregation: fedavg       # equal-user FedAvg of dense ΔQ_u; item_mean is diagnostic only
+  max_rounds: 8000
+  eval_every: 10            # validation every 10 rounds
+  patience_evals: 50        # = 500 rounds without validation NDCG@10 improvement (plateaus of ~150 rounds seen in pilot)
+
+evaluation:
+  k: 10
+  selection_metric: ndcg@10   # validation only
+
+seed: 42                  # model-training seed; cannot change the data split
+
+search:
+  seed: 42
+  # Selection: highest validation NDCG@10 (ties -> fewer local epochs); diverged runs are ineligible.
+  # If the winner does not end by early stopping, the search fails (raise max_rounds / --check).
+  # Test is never evaluated during the search. Stages 2 and 3 are derived automatically:
+  stage1:                           # local_epochs = 1
+    client_sampling_q: [0.05, 0.1, 0.2]
+    local_lr: [5.0, 10.0, 20.0]     # SGD scale set by a pilot (lr 0.1 / 1 barely moved in 200 rounds; 100 diverged)
+  stage2:                           # at the stage-1 best q: local_epochs x (best lr * factor)
+    local_epochs: [2, 5]
+    lr_factors: [1.0, 0.5]
+  stage3:                           # only if the best lr sits at the edge of the lrs tried for its (q, E)
+    edge_lr_factor: 2.0

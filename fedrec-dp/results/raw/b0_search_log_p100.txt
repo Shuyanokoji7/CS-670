@@ -1,0 +1,33 @@
+stage1_initial_grid  lr=0.01    l2=1e-05    best epoch   6/106  val ndcg@10 0.079321
+stage1_initial_grid  lr=0.01    l2=0.0001   best epoch   6/106  val ndcg@10 0.079225
+stage1_initial_grid  lr=0.01    l2=0.0      best epoch   6/106  val ndcg@10 0.079321
+stage1_initial_grid  lr=0.005   l2=0.0001   best epoch  71/171  val ndcg@10 0.090582
+stage1_initial_grid  lr=0.005   l2=0.0      best epoch  71/171  val ndcg@10 0.090061
+stage1_initial_grid  lr=0.005   l2=1e-05    best epoch  71/171  val ndcg@10 0.090485
+stage1_initial_grid  lr=0.001   l2=0.0001   best epoch 253/353  val ndcg@10 0.096292
+stage1_initial_grid  lr=0.001   l2=1e-05    best epoch 250/350  val ndcg@10 0.095837
+stage1_initial_grid  lr=0.001   l2=0.0      best epoch 253/353  val ndcg@10 0.096076
+stage2_l2_scale_and_lr_edge  lr=0.001   l2=0.01     best epoch 417/517  val ndcg@10 0.097676
+stage2_l2_scale_and_lr_edge  lr=0.001   l2=0.001    best epoch 288/388  val ndcg@10 0.097063
+stage2_l2_scale_and_lr_edge  lr=0.0005  l2=0.01     best epoch 383/483  val ndcg@10 0.092847
+stage2_l2_scale_and_lr_edge  lr=0.0005  l2=0.001    best epoch 267/367  val ndcg@10 0.095138
+stage2_l2_scale_and_lr_edge  lr=0.0005  l2=1e-05    best epoch 296/396  val ndcg@10 0.096255
+
+ rank_by_val_ndcg  selected                       stage  learning_rate  l2_reg  batch_size  dim  seed  best_epoch  epochs_run     stopped_by  val_ndcg@10  val_hr@10  val_recall@10  val_mrr@10  train_bpr_loss_at_best
+                1      True stage2_l2_scale_and_lr_edge         0.0010 0.01000        1024   64    42         417         517 early_stopping     0.097676   0.175159       0.175159    0.074445                0.119649
+                2     False stage2_l2_scale_and_lr_edge         0.0010 0.00100        1024   64    42         288         388 early_stopping     0.097063   0.182590       0.182590    0.071639                0.030819
+                3     False         stage1_initial_grid         0.0010 0.00010        1024   64    42         253         353 early_stopping     0.096292   0.176221       0.176221    0.072424                0.024296
+                4     False stage2_l2_scale_and_lr_edge         0.0005 0.00001        1024   64    42         296         396 early_stopping     0.096255   0.178344       0.178344    0.071669                0.046999
+                5     False         stage1_initial_grid         0.0010 0.00000        1024   64    42         253         353 early_stopping     0.096076   0.174098       0.174098    0.072764                0.023364
+                6     False         stage1_initial_grid         0.0010 0.00001        1024   64    42         250         350 early_stopping     0.095837   0.175159       0.175159    0.072178                0.023014
+                7     False stage2_l2_scale_and_lr_edge         0.0005 0.00100        1024   64    42         267         367 early_stopping     0.095138   0.185775       0.185775    0.068112                0.063568
+                8     False stage2_l2_scale_and_lr_edge         0.0005 0.01000        1024   64    42         383         483 early_stopping     0.092847   0.177282       0.177282    0.067780                0.130847
+                9     False         stage1_initial_grid         0.0050 0.00010        1024   64    42          71         171 early_stopping     0.090582   0.164544       0.164544    0.068547                0.021008
+               10     False         stage1_initial_grid         0.0050 0.00001        1024   64    42          71         171 early_stopping     0.090485   0.166667       0.166667    0.067957                0.020354
+               11     False         stage1_initial_grid         0.0050 0.00000        1024   64    42          71         171 early_stopping     0.090061   0.166667       0.166667    0.067391                0.020287
+               12     False         stage1_initial_grid         0.0100 0.00001        1024   64    42           6         106 early_stopping     0.079321   0.157113       0.157113    0.056404                0.122560
+               13     False         stage1_initial_grid         0.0100 0.00000        1024   64    42           6         106 early_stopping     0.079321   0.157113       0.157113    0.056404                0.122519
+               14     False         stage1_initial_grid         0.0100 0.00010        1024   64    42           6         106 early_stopping     0.079225   0.156051       0.156051    0.056548                0.122922
+
+Selected (highest validation NDCG@10): lr=0.001 l2_reg=0.01
+exit 0

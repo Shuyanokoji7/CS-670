@@ -1,0 +1,4 @@
+check,test_ndcg@10
+own_p_u,0.088983
+random_other_p_v,0.020213
+mean_user_vector,0.050169
