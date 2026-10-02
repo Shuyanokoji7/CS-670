@@ -1908,3 +1908,14 @@ expansions and no second fallback:
     items were removed. The audit wording now reads 876 of 877 identical plus one append-only log, and the test wording
     was corrected.
 - 2026-10-02T19:26:47+05:30 **COMPLETION:** the popularity wording was corrected to a point reference: every five-seed DP mean at ε ≤ 2 is below it, B4 r32 at ε 4 is numerically close (0.0445 vs 0.0443), and no significance claim is made. The doc figure links were verified. **B3 and B4 are finalized, and no further runs will be made.** Nothing is committed or pushed.
+
+## 2026-10-02 — Published to GitHub
+
+- **Commit:** `f9c0a2b257f0ba1669719fce5dd969d5a50d1c2b`, "Finalize B2 protocol and five-seed B3/B4 research results",
+  https://github.com/Shuyanokoji7/CS-670/commit/f9c0a2b257f0ba1669719fce5dd969d5a50d1c2b. It was a fast-forward push to
+  `main` with no force.
+- **Scope:** `fedrec-dp/` only, 2946 files (97.9 MB), respecting `.gitignore`. Every staged blob equals its working
+  file, and nothing outside the project was touched.
+- **Audit references:** `results/raw/audit_final_2026-10-02/` holds byte-identical copies, a README and a manifest.
+- **Validation:** 181 tests passed.
+- **Not published:** `checkpoints/`, `data/raw/` and `data/processed/` are ignored and retained locally only.

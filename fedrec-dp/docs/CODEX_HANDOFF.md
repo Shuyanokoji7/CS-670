@@ -265,7 +265,7 @@ md5sum results/b1_test_results.csv   # 8d3cfcee6f29c7c9dba6338497988cbd (others 
   these training runs. No isolated-dimensionality causal claim is made. A smaller per-round payload does not imply
   smaller total traffic: B3 r32 needs 1.92× B1's volume to reach its best round.
 - **Tests:** 181 passing. The new B3/B4 experimental tests use synthetic fixtures; the existing suite also includes
-  pinned-fingerprint and integrity checks. Nothing is committed or pushed.
+  pinned-fingerprint and integrity checks. Published to GitHub (see Completion status).
 - **Supervisor-reviewed reading:**
   - Only four of the 16 adjusted cells are reliably positive: r8/r16/r32 at ε 2, and r8 at ε 1.
   - Every rank is worse than B2 at ε 8, and none shows a reliable gain at ε 4.
@@ -277,5 +277,11 @@ md5sum results/b1_test_results.csv   # 8d3cfcee6f29c7c9dba6338497988cbd (others 
 
 ## Completion status (2026-10-02)
 
-B3 and B4 are **finalized**. No further runs are authorised or pending, all frozen and core outputs are unchanged, and
-nothing is committed or pushed.
+B3 and B4 are **finalized**. No further runs are authorised or pending, and all frozen and core outputs are unchanged.
+
+**Published** to GitHub `main` (https://github.com/Shuyanokoji7/CS-670) as commit
+`f9c0a2b257f0ba1669719fce5dd969d5a50d1c2b`. The commit includes source, configs, tests, docs, result CSVs, plots, raw
+run outputs, freeze snapshots, superseded stages and the audit references in `results/raw/audit_final_2026-10-02/`.
+
+**Local only, ignored by git:** `checkpoints/` (about 184 MB), `data/raw/`, `data/processed/` and `.venv`. Checks that
+need them require the files to be supplied or regenerated locally.
