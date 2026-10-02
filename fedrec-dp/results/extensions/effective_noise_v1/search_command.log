@@ -1,0 +1,83 @@
+completed 36/648; failures 0
+completed 72/648; failures 0
+completed 108/648; failures 0
+completed 144/648; failures 6
+completed 180/648; failures 6
+completed 216/648; failures 9
+completed 252/648; failures 9
+completed 288/648; failures 11
+completed 324/648; failures 11
+completed 360/648; failures 11
+completed 396/648; failures 11
+completed 432/648; failures 11
+completed 468/648; failures 11
+completed 504/648; failures 11
+completed 540/648; failures 11
+completed 576/648; failures 11
+completed 612/648; failures 11
+completed 648/648; failures 11
+{
+  "full": {
+    "method": "full",
+    "rank": 64,
+    "local_lr": 5.0,
+    "server_lr": 1.0,
+    "eps4_val_mean": 0.039552279735081346
+  },
+  "two_r4": {
+    "method": "two",
+    "rank": 4,
+    "local_lr": 5.0,
+    "server_lr": 0.5,
+    "eps4_val_mean": 0.03980188807680022
+  },
+  "two_r8": {
+    "method": "two",
+    "rank": 8,
+    "local_lr": 5.0,
+    "server_lr": 0.5,
+    "eps4_val_mean": 0.04727130182523446
+  },
+  "two_r16": {
+    "method": "two",
+    "rank": 16,
+    "local_lr": 5.0,
+    "server_lr": 0.5,
+    "eps4_val_mean": 0.041282069176385695
+  },
+  "two_r32": {
+    "method": "two",
+    "rank": 32,
+    "local_lr": 5.0,
+    "server_lr": 1.0,
+    "eps4_val_mean": 0.04754070302462318
+  },
+  "fixed_r4": {
+    "method": "fixed",
+    "rank": 4,
+    "local_lr": 5.0,
+    "server_lr": 1.0,
+    "eps4_val_mean": 0.03179180881235736
+  },
+  "fixed_r8": {
+    "method": "fixed",
+    "rank": 8,
+    "local_lr": 5.0,
+    "server_lr": 1.0,
+    "eps4_val_mean": 0.03666479029513162
+  },
+  "fixed_r16": {
+    "method": "fixed",
+    "rank": 16,
+    "local_lr": 5.0,
+    "server_lr": 1.0,
+    "eps4_val_mean": 0.03581250067747079
+  },
+  "fixed_r32": {
+    "method": "fixed",
+    "rank": 32,
+    "local_lr": 5.0,
+    "server_lr": 1.0,
+    "eps4_val_mean": 0.03842263048394939
+  }
+}

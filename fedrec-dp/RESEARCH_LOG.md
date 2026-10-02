@@ -1919,3 +1919,106 @@ expansions and no second fallback:
 - **Audit references:** `results/raw/audit_final_2026-10-02/` holds byte-identical copies, a README and a manifest.
 - **Validation:** 181 tests passed.
 - **Not published:** `checkpoints/`, `data/raw/` and `data/processed/` are ignored and retained locally only.
+
+## 2026-10-02 — New-agent handoff and execution-mode update
+
+- The user requested a continuation handoff and explicitly changed execution mode:
+  the next agent works independently; Claude is no longer the executor.
+- Added `handoff.md` with final frozen B0–B4 state, five-seed results, audit history,
+  publishing state, stale-documentation notes, and proposed paper directions.
+- Proposed follow-up studies remain proposals, not a declared experiment protocol.
+- Documentation-only work: rechecked all 23 raw-file hashes, the frozen split
+  fingerprint/counts, the initial clean git state at `81680fd`, and collection of
+  181 tests. No training, model test scoring or frozen-result changes were made.
+- This handoff was created locally after the published commits; it was not pushed.
+
+## 2026-10-02 — E1 effective-noise direction authorized; bounded protocol declared before implementation
+
+- The user selected direction 2 and authorized independent implementation,
+  experiments and documentation without further permission gates. This supersedes
+  older instructions to wait for a supervisor or to use Claude. No sub-agents used.
+- Read the handoffs, complete research log, current configs and B2–B4 reports/results.
+  Verified 181 tests (26 warnings), all 23 raw hashes and the frozen split fingerprint.
+  Initial git state has only the existing handoff and its append-only log update.
+- Recorded SHA-256 hashes for 3932 existing code/config/test/result/checkpoint/data
+  artifacts in `results/extensions/effective_noise_v1/audit/protected_initial.json`.
+  Existing artifacts are protected; no B0–B4 reruns or evaluator changes.
+- Declared `docs/extensions/EFFECTIVE_NOISE_PROTOCOL.md` and
+  `configs/extensions/effective_noise_v1.yaml` before implementation/experiments.
+  E1-Full, E1-Two and E1-FixedB use a bounded equal four-candidate budget per model
+  unit, three selection seeds, all six privacy/control levels for eligibility,
+  five final seeds, T50, q.1, C1, exact B2 sigma checks, and no grid expansion.
+- Added the predeclared one-release user-level DP popularity baseline with a
+  fixed sqrt(20) L2 contribution bound and analytic Gaussian calibration.
+- Test scoring is blocked until five-seed inventory, rank selection and a
+  dated immutable snapshot freeze. Known ML-100K test exposure remains disclosed.
+- Verified primary prior-art pages for FFA-LoRA, FedASK, public item features,
+  personalized joint DP and the recent linear parameterization paper. Fixed-factor
+  learning is a baseline; proposed novelty is the recommendation-specific analysis.
+
+## 2026-10-02 — E1 implementation and verification before real-data search
+
+- Added separate E1 simulator, staged runner, analytic-Gaussian DP popularity, conditional moment derivations, synthetic gauge/Monte Carlo script and analysis script. Frozen source modules are unchanged.
+- Full suite: 203 passed, 26 existing warnings. New mechanism tests use synthetic fixtures only. Tests verify gradients, rank-r score equivalence, decomposition/moments, user sensitivity, empty rounds, local-state locality, full-rank arithmetic identity, cache integrity and freeze gating.
+- Noise diagnostics compare the noisy step with its own same-state/noiseless-signal counterfactual; public random margin probes use no held-out labels. Float32 arithmetic/balancing residual is reported separately.
+- Commands executed: `.venv/bin/python experiments/run_effective_noise.py accounting`, `.venv/bin/python experiments/effective_noise_geometry.py`, and `.venv/bin/python experiments/run_effective_noise.py profile` (prefixed with PYTHONDONTWRITEBYTECODE=1). All are validation/synthetic-only. Search/final/test remain pending.
+
+### E1 real-data profile and search launch (validation only)
+
+- Profile at lr5/slr.5/eps4/seed42: Full 3.67 s, Two r16 2.01 s,
+  FixedB r16 1.85 s; all finite. Validation numbers are retained as three declared
+  search cells, not a separate selection exercise. Twelve one-thread workers used.
+- Exact stored B2 sigmas independently recomputed to PRV/RDP guarantees.
+  One-release popularity sigma at epsilon 8/4/2/1 is
+  .600229/1.081162/1.993812/3.730632 (analytic Gaussian; separate q1/T1 record).
+- Synthetic Monte Carlo uses 2000 draws per method/noise scale; empirical/theory
+  matrix and score energy ratios range about .997–1.003, supporting implementation.
+- Launched the declared 648-job search, validation only, no expansions:
+  `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python experiments/run_effective_noise.py search --workers 12`.
+  Full output is retained in the E1 `search_command.log`. Failures remain in the table.
+- Before extension test scoring, declared an additional **secondary** historical
+  comparison of FixedB against frozen B4 from saved per-user CSVs, with initialization
+  and historical tuning confounds disclosed. No baseline is rescored or retrained.
+- Recommendation geometry note: fixing B saves only 3.67% of coordinates versus
+  Two at equal rank because A is much larger than B. The main payload reduction
+  versus full rank is shared by both low-rank methods.
+
+### E1 search outcome and five-seed confirmation launch (validation only)
+
+- Search completed all 648 declared jobs; 11 failed trajectories retained. Each of nine model units has an eligible candidate.
+- Full and FixedB (every rank) select local lr5/server lr1. Two ranks4/8/16 select lr5/slr.5, rank32 selects lr5/slr1. All use C1, T50. No grid expansion; every FixedB rate is at the upper declared edge, a limitation to report.
+- FixedB three-seed eps4 validation is lower than Two at every rank. This is not grounds to expand its grid or change the selection rule.
+- Launched `.venv/bin/python experiments/run_effective_noise.py final-train --workers 12` with PYTHONDONTWRITEBYTECODE=1; selected three-seed jobs reused only after hash/config/code/split checks. Test remains blocked pending complete five-seed stability.
+
+## 20261002T153741Z — E1 FINAL FREEZE before extension test scoring
+
+- Complete finite five-seed inventory: 270 training checkpoints and 21 popularity score arrays.
+- Equal-budget selections and validation rank selection retained in the E1 output directory.
+- No extension test scoring has occurred; known historical ML-100K test exposure remains.
+- Immutable snapshot: `results/extensions/effective_noise_v1/snapshots/freeze_20261002T153741Z`; manifest verified.
+- Existing 3932 protected artifacts verified unchanged. Test scoring now authorized by the declared protocol.
+
+### E1 final scoring and diagnostic correction (no retraining or rescore)
+
+- Five-seed inventory passed: 270/270 training states finite at exactly T50; all 21 popularity score arrays retained. Protocol/config/checkpoint freeze at 20261002T153741Z preceded first extension test output at 2026-10-02T15:38:44.686919Z. Additional analysis/theory/tests snapshot manifest created at 15:38:42.296203Z, before first test output.
+- Scored each of 291 retained models once, with the frozen evaluator. No historical checkpoint was rescored. All 3932 protected artifacts remain unchanged.
+- Numerical stability caveat: finiteness is only the declared eligibility criterion, not proof of well-conditioned training. Two r32/eps1 contains very large finite local P on several seeds, and Two r4/eps1 has score-shock outliers. They remain in all results; no post-test exclusions.
+- Found an E1 **diagnostic-only** bug: the frozen runner computes mean user norm in float32, so it reports infinity on finite large P for r32/eps1/seed123. The conditional expected-energy diagnostics already use float64 and are unaffected; checkpoints/ranking scores are finite. Raw logs and frozen code are preserved. The live analysis now recomputes final mean/median/max user norms in float64 from retained checkpoints and reports the overflow count. No training/settings/test output changed. The original analysis remains in the pre-test snapshot.
+- Selected-setting eps1 expected bilinear energy shares are about .0021–.0030. This is not evidence that the bilinear term dominates the observed failures; linear factor amplification and local-state dynamics are central candidates.
+
+### E1 final findings and documentation
+
+- Primary family: zero positive, eight negative, eight zero-containing Bonferroni intervals (16 contrasts). Every rank is worse at eps2; r8/r16 lose at eps4, r4/r8 lose at eps1. No test-based reselection.
+- User-level DP popularity eps1 test NDCG .048389 (seed SD .001125), bounded no-noise .049885. This exceeds every collaborative eps1 mean; every collaborative mean at eps<=4 is below the DP-popularity point estimate. Secondary intervals are explicitly exploratory.
+- Effective noise: eps1 expected bilinear shares .207%/.232%/.251%/.301% across Two ranks; much larger effects arise from linear factor scales and private local P. FixedB score-equivalence to rank-r BPR and only 3.67% incremental payload savings limit the novelty narrative.
+- Added results report, theory, contribution audit, artifact index, plots and E1 continuation handoff. No second dataset, metadata model or communication-budget experiment is claimed as completed.
+- Final-test harness correction: live pytest stdout was initially redirected inside the guarded results tree, causing four artifact-guard teardown errors although all 203 assertions passed. That log is retained. Rerun captures stdout in /tmp and copies it only after completion; no mechanism or experiment changed.
+
+## 2026-10-02 — E1 COMPLETE: final audit passed
+
+- Final full suite: 203 passed, 26 warnings (exit 0). The first redirected-output guard errors are archived; the successful log is `results/extensions/effective_noise_v1/final_pytest.log`.
+- All 3932 protected baseline files and all 23 raw hashes verify; frozen split fingerprint unchanged. Reloaded/checksummed all 270 final training states, with no test rescoring.
+- All 291 saved per-user test files have the same 942 unique users; every NDCG/HR/MRR value and summary recomputed directly from saved ranks agrees. No model was evaluated again.
+- Every retained training record reports one numpy OpenBLAS and one torch thread. All frozen snapshot manifests and local documentation links verify.
+- Final machine-readable audit: `results/extensions/effective_noise_v1/audit/final_audit.json`. E1 root manifest has 2148 entries, excluding MANIFEST files themselves, and verifies.
+- E1 is finalized locally. Original B0–B4 remain frozen; no commit or push made. Follow-up priorities are documented in `docs/extensions/E1_HANDOFF.md`, with independent replication and controlled update-scale/communication studies still pending.

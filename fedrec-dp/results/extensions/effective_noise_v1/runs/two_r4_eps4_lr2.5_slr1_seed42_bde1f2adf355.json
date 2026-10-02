@@ -1,0 +1,75 @@
+{
+  "D": 6984,
+  "artifact_hashes": {
+    "checkpoints/extensions/effective_noise_v1/two_r4_eps4_lr2.5_slr1_seed42_bde1f2adf355.npz": "9dea7a955c245dc994ba38051b0447bb7495935a6d4db036e9f6d1e1cdc3b913",
+    "results/extensions/effective_noise_v1/runs/two_r4_eps4_lr2.5_slr1_seed42_bde1f2adf355_rounds.csv": "15b2c3285bd7277061683bc01a20990995a74089b636b8d79eb82b2c489f2b44"
+  },
+  "bytes_per_client_round": 55872,
+  "checkpoint": "checkpoints/extensions/effective_noise_v1/two_r4_eps4_lr2.5_slr1_seed42_bde1f2adf355.npz",
+  "code_sha256": "99a3b422c9c0a5526d5ce813945e378b322824a4042db111023b2f5f30c48c9d",
+  "failure": null,
+  "level": "eps4",
+  "local_lr": 2.5,
+  "method": "two",
+  "rank": 4,
+  "rounds_run": 50,
+  "seed": 42,
+  "server_lr": 1.0,
+  "settings": {
+    "T": 50,
+    "clip_norm": 1.0,
+    "delta": 1e-05,
+    "dim": 64,
+    "init_std": 0.01,
+    "k": 10,
+    "level": "eps4",
+    "local_epochs": 2,
+    "local_lr": 2.5,
+    "method": "two",
+    "pair_count": 256,
+    "public_basis_seed": 314159,
+    "q": 0.1,
+    "rank": 4,
+    "reg": 1e-05,
+    "score_rounds": [
+      1,
+      10,
+      25,
+      50
+    ],
+    "seed": 42,
+    "server_lr": 1.0,
+    "sigma": 1.15192871094
+  },
+  "split_fingerprint": "6faed6fc3d47b5b6fa638adfeea83cd7409d50c39fa01f85c10379d0daef6989",
+  "status": "ok",
+  "tag": "two_r4_eps4_lr2.5_slr1_seed42_bde1f2adf355",
+  "threads": {
+    "env": {
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "numpy_openblas_threads": 1,
+    "torch_threads": 1
+  },
+  "total_bytes": 259413696,
+  "unit": "two_r4",
+  "validation": {
+    "hr@10": 0.06794055201698514,
+    "hr@10_se": 0.008203355460834541,
+    "mean_rank": 598.9766454352441,
+    "median_rank": 507.0,
+    "mrr@10": 0.024713544299531563,
+    "mrr@10_se": 0.004124483678316085,
+    "n_users": 942,
+    "ndcg@10": 0.03455302173379292,
+    "ndcg@10_se": 0.004726771323857751,
+    "recall@10": 0.06794055201698514,
+    "recall@10_se": 0.008203355460834541,
+    "split": "validation"
+  },
+  "wall_time_s": 1.9965966641902924
+}

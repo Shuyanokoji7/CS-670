@@ -1,0 +1,21 @@
+{
+  "checkpoint_sha256": "cda77a2e8e0a320f4555785c05d4ebf8a3cf79b015db89743187968d1f2c8c74",
+  "created_utc": "2026-10-02T15:38:53.755991+00:00",
+  "summary": {
+    "hr@10": 0.01910828025477707,
+    "hr@10_se": 0.004462996267750311,
+    "mean_rank": 577.5488322717622,
+    "median_rank": 493.0,
+    "mrr@10": 0.009350251069996292,
+    "mrr@10_se": 0.002771934187379484,
+    "n_users": 942,
+    "ndcg@10": 0.011591208251492588,
+    "ndcg@10_se": 0.0030154203268249725,
+    "recall@10": 0.01910828025477707,
+    "recall@10_se": 0.004462996267750311,
+    "split": "test"
+  },
+  "tag": "two_r16_eps1_lr5_slr0.5_seed99_a2e6001df687",
+  "users_path": "results/extensions/effective_noise_v1/test/two_r16_eps1_lr5_slr0.5_seed99_a2e6001df687_users.csv",
+  "users_sha256": "3cba00411ce52ffe649268c197111dd06e32b31028b99936a3a5f702205b6e9e"
+}

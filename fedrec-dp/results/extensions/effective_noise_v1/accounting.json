@@ -1,0 +1,123 @@
+{
+  "key": {
+    "popularity": {
+      "accountant": "analytic_gaussian",
+      "l2_bound": 4.47213595499958,
+      "releases": 1,
+      "sampling_q": 1.0,
+      "sensitivity_squared": 20
+    },
+    "privacy": {
+      "T": 50,
+      "accountant": "prv",
+      "clip_norm": 1.0,
+      "cross_check_accountant": "rdp",
+      "delta": 1e-05,
+      "denominator": "expected",
+      "sigmas": {
+        "1": 2.97749023438,
+        "2": 1.76044921875,
+        "4": 1.15192871094,
+        "8": 0.805072021484
+      },
+      "target_epsilons": [
+        8,
+        4,
+        2,
+        1
+      ],
+      "unit": "user"
+    },
+    "q": 0.1
+  },
+  "records": [
+    {
+      "T": 50,
+      "accountant": "prv",
+      "delta": 1e-05,
+      "epsilon": 7.967513282057004,
+      "epsilon_cross_check": 9.119817608572266,
+      "mechanism": "training",
+      "q": 0.1,
+      "sigma": 0.805072021484,
+      "target_epsilon": 8
+    },
+    {
+      "T": 1,
+      "accountant": "analytic_gaussian",
+      "delta": 9.999999999973497e-06,
+      "epsilon": 8,
+      "epsilon_cross_check": 8.599364923857573,
+      "mechanism": "popularity",
+      "q": 1.0,
+      "sigma": 0.6002290721990143,
+      "target_epsilon": 8
+    },
+    {
+      "T": 50,
+      "accountant": "prv",
+      "delta": 1e-05,
+      "epsilon": 3.963885356647058,
+      "epsilon_cross_check": 4.49728317210592,
+      "mechanism": "training",
+      "q": 0.1,
+      "sigma": 1.15192871094,
+      "target_epsilon": 4
+    },
+    {
+      "T": 1,
+      "accountant": "analytic_gaussian",
+      "delta": 9.999999999999986e-06,
+      "epsilon": 4,
+      "epsilon_cross_check": 4.324005519237855,
+      "mechanism": "popularity",
+      "q": 1.0,
+      "sigma": 1.0811618495202393,
+      "target_epsilon": 4
+    },
+    {
+      "T": 50,
+      "accountant": "prv",
+      "delta": 1e-05,
+      "epsilon": 1.9932775313073312,
+      "epsilon_cross_check": 2.220644680668417,
+      "mechanism": "training",
+      "q": 0.1,
+      "sigma": 1.76044921875,
+      "target_epsilon": 2
+    },
+    {
+      "T": 1,
+      "accountant": "analytic_gaussian",
+      "delta": 9.999999999999647e-06,
+      "epsilon": 2,
+      "epsilon_cross_check": 2.1731753241923335,
+      "mechanism": "popularity",
+      "q": 1.0,
+      "sigma": 1.9938124456435382,
+      "target_epsilon": 2
+    },
+    {
+      "T": 50,
+      "accountant": "prv",
+      "delta": 1e-05,
+      "epsilon": 0.9900622925396283,
+      "epsilon_cross_check": 1.0871961102262087,
+      "mechanism": "training",
+      "q": 0.1,
+      "sigma": 2.97749023438,
+      "target_epsilon": 1
+    },
+    {
+      "T": 1,
+      "accountant": "analytic_gaussian",
+      "delta": 9.999999999999159e-06,
+      "epsilon": 1,
+      "epsilon_cross_check": 1.0925943253067911,
+      "mechanism": "popularity",
+      "q": 1.0,
+      "sigma": 3.7306316348159707,
+      "target_epsilon": 1
+    }
+  ]
+}

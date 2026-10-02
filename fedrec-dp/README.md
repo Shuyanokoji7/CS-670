@@ -327,3 +327,26 @@ data/processed/           generated split, full rating history (for candidate fi
 
 Adding MovieLens-1M later requires only `dataset: movielens_1m` in a config (loader
 already registered in `src/data.py`; pin its SHA-256 after the first download).
+
+## E1 extension: effective item-matrix noise (2026-10-02)
+
+The separately named follow-up study is complete. B0–B4 remain frozen historical
+results. E1 compares full rank, jointly trained factors, and a fixed public
+orthonormal latent factor with equal bounded tuning budgets, clipping-only controls,
+effective-Q/score diagnostics, and a user-level DP popularity baseline.
+
+FixedB has no positive multiplicity-adjusted contrast against Two, and eight
+of sixteen contrasts are negative. The new DP popularity baseline scores .048389
+test NDCG@10 at epsilon 1, above every collaborative mean at that privacy level.
+The bilinear term is only about .2–.3% of expected matrix-shock energy in the
+selected epsilon-1 Two runs, so the mechanism interpretation focuses on linear
+factor scale, clipping and local personalization as well.
+
+Read the [E1 results](docs/extensions/EFFECTIVE_NOISE_RESULTS.md),
+[protocol](docs/extensions/EFFECTIVE_NOISE_PROTOCOL.md),
+[theory](docs/extensions/EFFECTIVE_NOISE_THEORY.md), and
+[continuation handoff](docs/extensions/E1_HANDOFF.md).
+The [artifact index](results/extensions/effective_noise_v1/README.md) records
+executed commands and output locations. Five-seed final settings were frozen
+before scoring 291 retained models once. All 3932 protected baseline artifacts
+are unchanged; the suite has 203 tests. MovieLens-1M replication is still pending.

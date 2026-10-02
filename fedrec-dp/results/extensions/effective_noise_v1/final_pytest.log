@@ -1,0 +1,52 @@
+........................................................................ [ 35%]
+........................................................................ [ 70%]
+...........................................................              [100%]
+=============================== warnings summary ===============================
+tests/test_b2_protocol.py: 11 warnings
+tests/test_privacy.py: 1 warning
+  /home/ag/Amazon ML/fedrec-dp/.venv/lib/python3.10/site-packages/opacus/accountants/analysis/rdp.py:332: UserWarning: Optimal order is the largest alpha. Please consider expanding the range of alphas to get a tighter privacy bound.
+    warnings.warn(
+
+tests/test_b2_protocol.py::test_required_sigma_increases_with_T_at_fixed_epsilon
+  /home/ag/Amazon ML/fedrec-dp/.venv/lib/python3.10/site-packages/opacus/accountants/analysis/rdp.py:332: UserWarning: Optimal order is the smallest alpha. Please consider expanding the range of alphas to get a tighter privacy bound.
+    warnings.warn(
+
+tests/test_b2_protocol.py::test_exactly_T_steps_executed_and_accounted_including_empty_rounds
+tests/test_privacy.py::test_empty_round_is_defined_noised_and_counted
+  /home/ag/Amazon ML/fedrec-dp/src/privacy.py:174: RuntimeWarning: Mean of empty slice
+    "pre_clip_norm_mean": float(np.nanmean(norms_a)), "pre_clip_norm_median": float(np.nanmedian(norms_a)),
+
+tests/test_b2_protocol.py::test_exactly_T_steps_executed_and_accounted_including_empty_rounds
+tests/test_privacy.py::test_empty_round_is_defined_noised_and_counted
+  /home/ag/Amazon ML/fedrec-dp/src/privacy.py:174: RuntimeWarning: All-NaN slice encountered
+    "pre_clip_norm_mean": float(np.nanmean(norms_a)), "pre_clip_norm_median": float(np.nanmedian(norms_a)),
+
+tests/test_b2_protocol.py::test_exactly_T_steps_executed_and_accounted_including_empty_rounds
+tests/test_lowrank.py::test_empty_round_is_noised_and_counted
+tests/test_privacy.py::test_empty_round_is_defined_noised_and_counted
+  /home/ag/Amazon ML/fedrec-dp/.venv/lib/python3.10/site-packages/numpy/lib/_nanfunctions_impl.py:1409: RuntimeWarning: All-NaN slice encountered
+    return _nanquantile_unchecked(
+
+tests/test_b2_protocol.py::test_exactly_T_steps_executed_and_accounted_including_empty_rounds
+tests/test_privacy.py::test_empty_round_is_defined_noised_and_counted
+  /home/ag/Amazon ML/fedrec-dp/src/privacy.py:177: RuntimeWarning: All-NaN slice encountered
+    "pre_clip_norm_max": float(np.nanmax(norms_a)),
+
+tests/test_lowrank.py::test_empty_round_is_noised_and_counted
+  /home/ag/Amazon ML/fedrec-dp/src/lowrank.py:185: RuntimeWarning: Mean of empty slice
+    "pre_clip_norm_mean": float(np.nanmean(na)), "pre_clip_norm_median": float(np.nanmedian(na)),
+
+tests/test_lowrank.py::test_empty_round_is_noised_and_counted
+  /home/ag/Amazon ML/fedrec-dp/src/lowrank.py:185: RuntimeWarning: All-NaN slice encountered
+    "pre_clip_norm_mean": float(np.nanmean(na)), "pre_clip_norm_median": float(np.nanmedian(na)),
+
+tests/test_lowrank.py::test_empty_round_is_noised_and_counted
+  /home/ag/Amazon ML/fedrec-dp/src/lowrank.py:187: RuntimeWarning: All-NaN slice encountered
+    "pre_clip_norm_max": float(np.nanmax(na)),
+
+tests/test_lowrank.py::test_confirmed_nonfinite_scores_are_recorded_as_divergence
+  /home/ag/Amazon ML/fedrec-dp/src/lowrank.py:202: RuntimeWarning: overflow encountered in matmul
+    return (self.P[users] @ self.Q.T).astype(np.float64)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+203 passed, 26 warnings in 75.01s (0:01:15)

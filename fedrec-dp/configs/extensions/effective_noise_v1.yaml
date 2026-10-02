@@ -1,0 +1,74 @@
+name: effective_noise_v1
+dataset_config: configs/dataset.yaml
+model:
+  dim: 64
+  init_std: 0.01
+  ranks:
+  - 4
+  - 8
+  - 16
+  - 32
+  public_basis_seed: 314159
+federated:
+  client_sampling_q: 0.1
+  local_epochs: 2
+  l2_reg: 1.0e-05
+privacy:
+  unit: user
+  T: 50
+  clip_norm: 1.0
+  delta: 1.0e-05
+  accountant: prv
+  cross_check_accountant: rdp
+  denominator: expected
+  target_epsilons:
+  - 8
+  - 4
+  - 2
+  - 1
+  sigmas:
+    8: 0.805072021484
+    4: 1.15192871094
+    2: 1.76044921875
+    1: 2.97749023438
+search:
+  seeds:
+  - 42
+  - 123
+  - 2026
+  candidates:
+  - local_lr: 1.25
+    server_lr: 1.0
+  - local_lr: 2.5
+    server_lr: 1.0
+  - local_lr: 5.0
+    server_lr: 0.5
+  - local_lr: 5.0
+    server_lr: 1.0
+  reference_level: eps4
+seeds:
+- 42
+- 123
+- 2026
+- 7
+- 99
+evaluation:
+  k: 10
+diagnostics:
+  score_rounds:
+  - 1
+  - 10
+  - 25
+  - 50
+  pair_count: 256
+popularity:
+  l2_bound: 4.47213595499958
+  sensitivity_squared: 20
+  sampling_q: 1.0
+  releases: 1
+  accountant: analytic_gaussian
+statistics:
+  bootstrap_resamples: 100000
+  bootstrap_seed: 2026
+  primary_contrasts: 16
+protocol_frozen: true

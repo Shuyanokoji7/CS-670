@@ -1,0 +1,181 @@
+.....................E......E........................................... [ 34%]
+E....................................................................... [ 69%]
+..............................E................................          [100%]
+==================================== ERRORS ====================================
+___ ERROR at teardown of test_top_two_gap_at_or_above_margin_skips_seed_rule ___
+
+    @pytest.fixture(scope="module", autouse=True)
+    def research_outputs_untouched():
+        before = _snapshot()
+        yield
+        after = _snapshot()
+>       assert after == before, "a B2 protocol test created or modified files under results/ or checkpoints/"
+E       AssertionError: a B2 protocol test created or modified files under results/ or checkpoints/
+E       assert {'/home/ag/Am...8810961), ...} == {'/home/ag/Am...8810961), ...}
+E         
+E         Omitting 6769 identical items, use -vv to show
+E         Differing items:
+E         {'/home/ag/Amazon ML/fedrec-dp/results/extensions/effective_noise_v1/final_pytest.log': (21, 1790955893088409363)} != {'/home/ag/Amazon ML/fedrec-dp/results/extensions/effective_noise_v1/final_pytest.log': (0, 1790955878996400451)}
+E         Use -v to get more diff
+
+tests/test_b2_protocol.py:43: AssertionError
+----------------------------- Captured stdout call -----------------------------
+stage    T  seed  clip_norm  server_lr  target_epsilon  noise_multiplier  epsilon  epsilon_cross_check  ndcg@10  hr@10  recall@10  mrr@10  frac_clipped_mean  pre_clip_norm_median_mean  clipped_aggregate_norm_mean  noise_norm_mean  signal_to_noise_mean  final_item_norm_mean  pure_noise_item_norm_prediction
+ grid  100    42     0.0000     0.0000          0.0000            0.0000   0.0000               0.0000   0.0100 0.0000     0.0000  0.0000             0.0000                     0.0000                       0.0000           0.0000                0.0000                0.0000                           0.0000
+ grid  250    42     0.0000     0.0000          0.0000            0.0000   0.0000               0.0000   0.0330 0.0000     0.0000  0.0000             0.0000                     0.0000                       0.0000           0.0000                0.0000                0.0000                           0.0000
+ grid  500    42     0.0000     0.0000          0.0000            0.0000   0.0000               0.0000   0.0300 0.0000     0.0000  0.0000             0.0000                     0.0000                       0.0000           0.0000                0.0000                0.0000                           0.0000
+ grid 1000    42     0.0000     0.0000          0.0000            0.0000   0.0000               0.0000   0.0120 0.0000     0.0000  0.0000             0.0000                     0.0000                       0.0000           0.0000                0.0000                0.0000                           0.0000
+selected T = 250 (seed-42 winner; top-two gap 0.0030 >= 0.003 (provisional single-seed selection))
+_ ERROR at teardown of test_resume_ignores_other_ranks_selection_but_not_own_scientific_fields _
+
+    @pytest.fixture(scope="module", autouse=True)
+    def research_outputs_untouched():
+        before = _snapshot()
+        yield
+        after = _snapshot()
+>       assert after == before, "a B2 protocol test created or modified files under results/ or checkpoints/"
+E       AssertionError: a B2 protocol test created or modified files under results/ or checkpoints/
+E       assert {'/home/ag/Am...8810961), ...} == {'/home/ag/Am...8810961), ...}
+E         
+E         Omitting 6769 identical items, use -vv to show
+E         Differing items:
+E         {'/home/ag/Amazon ML/fedrec-dp/results/extensions/effective_noise_v1/final_pytest.log': (28, 1790955893750409783)} != {'/home/ag/Amazon ML/fedrec-dp/results/extensions/effective_noise_v1/final_pytest.log': (22, 1790955893146409400)}
+E         Use -v to get more diff
+
+tests/test_b2_protocol.py:43: AssertionError
+----------------------------- Captured stdout call -----------------------------
+final-train r=3 seed=42: early_stopping best 0/10
+final-train r=3 seed=7: early_stopping best 40/50
+ rank  seed  best_round  rounds_run     stopped_by  val_ndcg@10
+    3    42           0          10 early_stopping     0.258867
+    3     7          40          50 early_stopping     0.250383
+ rank  seed  best_round  rounds_run     stopped_by  val_ndcg@10
+    3    42           0          10 early_stopping     0.258867
+    3     7          40          50 early_stopping     0.250383
+_ ERROR at teardown of test_lr_c_then_slr_search_validation_only_and_eta1_cell_reused _
+
+    @pytest.fixture(scope="module", autouse=True)
+    def research_outputs_untouched():
+        before = _snapshot()
+        yield
+        after = _snapshot()
+>       assert after == before, "a B2 protocol test created or modified files under results/ or checkpoints/"
+E       AssertionError: a B2 protocol test created or modified files under results/ or checkpoints/
+E       assert {'/home/ag/Am...8810961), ...} == {'/home/ag/Am...8810961), ...}
+E         
+E         Omitting 6769 identical items, use -vv to show
+E         Differing items:
+E         {'/home/ag/Amazon ML/fedrec-dp/results/extensions/effective_noise_v1/final_pytest.log': (80, 1790955949285445529)} != {'/home/ag/Amazon ML/fedrec-dp/results/extensions/effective_noise_v1/final_pytest.log': (29, 1790955893810409821)}
+E         Use -v to get more diff
+
+tests/test_b2_protocol.py:43: AssertionError
+----------------------------- Captured stdout call -----------------------------
+lrcsearch_r2_eps4_T3_C0.5_lr0.25_slr1.0_seed42: ok val ndcg 0.0794
+lrcsearch_r2_eps4_T3_C1.0_lr0.25_slr1.0_seed42: ok val ndcg 0.1943
+lrcsearch_r2_eps4_T3_C0.5_lr0.5_slr1.0_seed42: ok val ndcg 0.0688
+lrcsearch_r2_eps4_T3_C1.0_lr0.5_slr1.0_seed42: ok val ndcg 0.2110
+lrcsearch_r2_eps4_T3_C0.5_lr1.0_slr1.0_seed42: ok val ndcg 0.0912
+lrcsearch_r2_eps4_T3_C1.0_lr1.0_slr1.0_seed42: ok val ndcg 0.2199
+lrcsearch_r4_eps4_T3_C0.5_lr0.5_slr1.0_seed42: ok val ndcg 0.1171
+lrcsearch_r4_eps4_T3_C1.0_lr0.5_slr1.0_seed42: ok val ndcg 0.1079
+lrcsearch_r4_eps4_T3_C0.5_lr1.0_slr1.0_seed42: ok val ndcg 0.1147
+lrcsearch_r4_eps4_T3_C1.0_lr1.0_slr1.0_seed42: ok val ndcg 0.1266
+ rank  local_lr  privacy_clip_norm status  val_ndcg@10  frac_clipped_mean  signal_to_noise_mean
+    2      0.25                0.5     ok     0.079358                0.0              0.000594
+    2      0.25                1.0     ok     0.194324                0.0              0.000593
+    2      0.50                0.5     ok     0.068842                0.0              0.001269
+    2      0.50                1.0     ok     0.210991                0.0              0.002085
+    2      1.00                0.5     ok     0.091231                0.0              0.003296
+    2      1.00                1.0     ok     0.219864                0.0              0.007994
+    4      0.50                0.5     ok     0.117100                0.0              0.001450
+    4      0.50                1.0     ok     0.107933                0.0              0.001989
+    4      1.00                0.5     ok     0.114690                0.0              0.003800
+    4      1.00                1.0     ok     0.126609                0.0              0.006883
+ rank  n_cells  n_failed  local_lr  clip_norm  val_ndcg@10                                           tag
+    2        6         0       1.0        1.0     0.219864 lrcsearch_r2_eps4_T3_C1.0_lr1.0_slr1.0_seed42
+    4        4         0       1.0        1.0     0.126609 lrcsearch_r4_eps4_T3_C1.0_lr1.0_slr1.0_seed42
+slrsearch_r2_eps4_T3_C1.0_lr1.0_slr0.5_seed42: ok val ndcg 0.0912
+slrsearch_r2_eps4_T3_C1.0_lr1.0_slr2.0_seed42: ok val ndcg 0.2330
+slrsearch_r4_eps4_T3_C1.0_lr1.0_slr0.5_seed42: ok val ndcg 0.1147
+slrsearch_r4_eps4_T3_C1.0_lr1.0_slr2.0_seed42: ok val ndcg 0.0786
+ rank  server_lr status  val_ndcg@10
+    2        1.0     ok     0.219864
+    4        1.0     ok     0.126609
+    2        0.5     ok     0.091231
+    2        2.0     ok     0.233005
+    4        0.5     ok     0.114690
+    4        2.0     ok     0.078597
+ rank  server_lr  val_ndcg@10  n_failed
+    2        2.0     0.233005         0
+    4        1.0     0.126609         0
+_ ERROR at teardown of test_finite_scores_with_finite_message_is_not_relabelled _
+
+    @pytest.fixture(scope="module", autouse=True)
+    def research_outputs_untouched():
+        before = _snapshot()
+        yield
+        after = _snapshot()
+>       assert after == before, "a B2 protocol test created or modified files under results/ or checkpoints/"
+E       AssertionError: a B2 protocol test created or modified files under results/ or checkpoints/
+E       assert {'/home/ag/Am...8810961), ...} == {'/home/ag/Am...8810961), ...}
+E         
+E         Omitting 6769 identical items, use -vv to show
+E         Differing items:
+E         {'/home/ag/Amazon ML/fedrec-dp/results/extensions/effective_noise_v1/final_pytest.log': (190, 1790955953354448184)} != {'/home/ag/Amazon ML/fedrec-dp/results/extensions/effective_noise_v1/final_pytest.log': (172, 1790955953019447965)}
+E         Use -v to get more diff
+
+tests/test_b2_protocol.py:43: AssertionError
+=============================== warnings summary ===============================
+tests/test_b2_protocol.py: 11 warnings
+tests/test_privacy.py: 1 warning
+  /home/ag/Amazon ML/fedrec-dp/.venv/lib/python3.10/site-packages/opacus/accountants/analysis/rdp.py:332: UserWarning: Optimal order is the largest alpha. Please consider expanding the range of alphas to get a tighter privacy bound.
+    warnings.warn(
+
+tests/test_b2_protocol.py::test_required_sigma_increases_with_T_at_fixed_epsilon
+  /home/ag/Amazon ML/fedrec-dp/.venv/lib/python3.10/site-packages/opacus/accountants/analysis/rdp.py:332: UserWarning: Optimal order is the smallest alpha. Please consider expanding the range of alphas to get a tighter privacy bound.
+    warnings.warn(
+
+tests/test_b2_protocol.py::test_exactly_T_steps_executed_and_accounted_including_empty_rounds
+tests/test_privacy.py::test_empty_round_is_defined_noised_and_counted
+  /home/ag/Amazon ML/fedrec-dp/src/privacy.py:174: RuntimeWarning: Mean of empty slice
+    "pre_clip_norm_mean": float(np.nanmean(norms_a)), "pre_clip_norm_median": float(np.nanmedian(norms_a)),
+
+tests/test_b2_protocol.py::test_exactly_T_steps_executed_and_accounted_including_empty_rounds
+tests/test_privacy.py::test_empty_round_is_defined_noised_and_counted
+  /home/ag/Amazon ML/fedrec-dp/src/privacy.py:174: RuntimeWarning: All-NaN slice encountered
+    "pre_clip_norm_mean": float(np.nanmean(norms_a)), "pre_clip_norm_median": float(np.nanmedian(norms_a)),
+
+tests/test_b2_protocol.py::test_exactly_T_steps_executed_and_accounted_including_empty_rounds
+tests/test_lowrank.py::test_empty_round_is_noised_and_counted
+tests/test_privacy.py::test_empty_round_is_defined_noised_and_counted
+  /home/ag/Amazon ML/fedrec-dp/.venv/lib/python3.10/site-packages/numpy/lib/_nanfunctions_impl.py:1409: RuntimeWarning: All-NaN slice encountered
+    return _nanquantile_unchecked(
+
+tests/test_b2_protocol.py::test_exactly_T_steps_executed_and_accounted_including_empty_rounds
+tests/test_privacy.py::test_empty_round_is_defined_noised_and_counted
+  /home/ag/Amazon ML/fedrec-dp/src/privacy.py:177: RuntimeWarning: All-NaN slice encountered
+    "pre_clip_norm_max": float(np.nanmax(norms_a)),
+
+tests/test_lowrank.py::test_empty_round_is_noised_and_counted
+  /home/ag/Amazon ML/fedrec-dp/src/lowrank.py:185: RuntimeWarning: Mean of empty slice
+    "pre_clip_norm_mean": float(np.nanmean(na)), "pre_clip_norm_median": float(np.nanmedian(na)),
+
+tests/test_lowrank.py::test_empty_round_is_noised_and_counted
+  /home/ag/Amazon ML/fedrec-dp/src/lowrank.py:185: RuntimeWarning: All-NaN slice encountered
+    "pre_clip_norm_mean": float(np.nanmean(na)), "pre_clip_norm_median": float(np.nanmedian(na)),
+
+tests/test_lowrank.py::test_empty_round_is_noised_and_counted
+  /home/ag/Amazon ML/fedrec-dp/src/lowrank.py:187: RuntimeWarning: All-NaN slice encountered
+    "pre_clip_norm_max": float(np.nanmax(na)),
+
+tests/test_lowrank.py::test_confirmed_nonfinite_scores_are_recorded_as_divergence
+  /home/ag/Amazon ML/fedrec-dp/src/lowrank.py:202: RuntimeWarning: overflow encountered in matmul
+    return (self.P[users] @ self.Q.T).astype(np.float64)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+ERROR tests/test_b2_protocol.py::test_top_two_gap_at_or_above_margin_skips_seed_rule
+ERROR tests/test_b3_runner.py::test_resume_ignores_other_ranks_selection_but_not_own_scientific_fields
+ERROR tests/test_b4_runner.py::test_lr_c_then_slr_search_validation_only_and_eta1_cell_reused
+ERROR tests/test_lowrank.py::test_finite_scores_with_finite_message_is_not_relabelled
+203 passed, 26 warnings, 4 errors in 76.42s (0:01:16)
