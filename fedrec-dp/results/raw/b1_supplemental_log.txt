@@ -1,0 +1,9 @@
+seed 7: best round 1560 of 2560
+     split  ndcg@10  hr@10  recall@10  mrr@10
+validation   0.0953 0.1762     0.1762  0.0712
+      test   0.0910 0.1720     0.1720  0.0667
+seed 99: best round 1200 of 2200
+     split  ndcg@10  hr@10  recall@10  mrr@10
+validation   0.0929 0.1762     0.1762  0.0681
+      test   0.0914 0.1709     0.1709  0.0675
+exit 0

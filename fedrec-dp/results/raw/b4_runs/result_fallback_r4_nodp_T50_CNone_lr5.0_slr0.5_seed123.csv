@@ -1,0 +1,2 @@
+kind,rank,privacy_level,seed,status,privacy_T,privacy_clip_norm,privacy_noise_multiplier,privacy_epsilon,privacy_epsilon_cross_check,privacy_q,privacy_delta,local_lr,server_lr,shared_coordinates_D,split_fingerprint,tag,numpy_openblas_threads,torch_threads
+fallback,4,nodp,123,training diverged at round 50,50,,0,inf,inf,0.10000000000000001,1.0000000000000001e-05,5,0.5,6984,6faed6fc3d47b5b6fa638adfeea83cd7409d50c39fa01f85c10379d0daef6989,fallback_r4_nodp_T50_CNone_lr5.0_slr0.5_seed123,1,1

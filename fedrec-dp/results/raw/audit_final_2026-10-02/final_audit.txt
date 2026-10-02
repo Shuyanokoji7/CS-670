@@ -1,0 +1,8 @@
+# raw: 23 files vs session-start snapshot (2026-09-28): mismatches=[]
+# post-B2 baseline (17:30, 877 non-doc files): identical=876 changed=1 missing=0
+changed results/raw/b2_final_command_log.txt
+# B4 frozen-hparam check: main 100 + fixeddiag 20 checkpoints vs FROZEN per_rank / fixed_settings_diagnostic: mismatches=[]
+# times (+05:30): B3 initial freeze 18:33:55 (superseded); B3 rev2 freeze 19:11:33 (13:41:33Z); B3 first real test 19:11:35; B4 freeze 19:14:35 (13:44:35Z); B4 first real test 19:16:38
+# baseline inventory B1 per-user test files (5 seeds): 5 /5
+# baseline inventory B2 per-user test files (5 levels x 5 seeds): 25 /25
+note: changed file = append-only command log, last written 17:34:41 during B2 doc phase (before any B3 work)

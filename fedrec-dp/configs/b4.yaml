@@ -1,0 +1,66 @@
+# B4 — low-rank user-level DP federated BPR. Matches final B2 (q 0.1, T 50, delta 1e-5, PRV/RDP, target eps 8/4/2/1,
+# B2's T=50 sigma reused by full-key lookup — never re-solved), with shared Q = A B and ONE whole-client clip over
+# [dA, dB], Gaussian noise on ALL D_r shared coordinates, fixed qN, eta_s, then balancing (post-processing).
+# Protocol: RESEARCH_LOG "B3/B4 protocol (low-rank shared item matrix)" (2026-10-02) as AMENDED by "B4 PROTOCOL
+# AMENDMENT" (2026-10-02): joint lr x C check replaces B3-lr inheritance + norm-quantile C grid (superseded).
+
+name: b4_lowrank_dp_federated_bpr
+dataset_config: configs/dataset.yaml
+
+model:
+  dim: 64
+  init_std: 0.01
+  ranks: [4, 8, 16, 32]
+  rank: null
+
+federated:
+  client_sampling_q: 0.1
+  local_optimizer: sgd
+  local_lr: null            # per rank = amended lr x C selection (per_rank below)
+  local_epochs: 2
+  l2_reg: 0.00001
+  server_lr: 1.0            # final B2's; per-rank eta_s selected below
+  aggregation: fedavg
+  eval_every: 10            # validation logged as a DIAGNOSTIC only
+
+privacy:
+  unit: user
+  T: 50                     # = final B2
+  delta: 0.00001
+  denominator: expected     # fixed q N = 94.2
+  accountant: prv
+  cross_check_accountant: rdp
+  solver_tolerance: 0.01    # must equal B2's (full-key accounting reuse)
+  target_epsilons: [8, 4, 2, 1]
+  reference_epsilon: 4
+  server_lr_grid: [0.5, 1.0, 2.0]
+  noise_multiplier: 0.0     # per run from B2's T=50 accounting rows
+  clip_norm: null           # per rank (per_rank below)
+  target_epsilon: null
+
+lr_c_search:                # amended step 1 — existing values only, no expansions
+  epsilon: 4
+  server_lr: 1.0
+  seed: 42
+  local_lr_grid: [1.25, 2.5, 5.0, 10.0, 20.0]   # = B3's existing grid
+  edge_lr_if_b3_selected: 0.625                 # included only for a rank whose FROZEN B3 selection is this value
+  b3_reference_config: results/raw/b3_freeze_snapshot_20261002T130355Z/configs/b3.yaml   # INITIAL B3 freeze (63-cell grid)
+  clip_grid: [1.0, 1.5, 2.4]                    # = B2's existing grid
+
+fixed_settings_diagnostic:  # pre-declared: every rank at eps≈4 with B2's inherited settings
+  epsilon: 4
+  local_lr: 5.0
+  clip_norm: 1.0
+  server_lr: 1.0
+
+evaluation:
+  k: 10
+
+seed: 42
+seeds: [42, 123, 2026, 7, 99]
+protocol_frozen: true       # FROZEN (see RESEARCH_LOG "B4 FREEZE")
+per_rank:                   # FROZEN (bounded fallback; supervisor-approved)
+  4: {local_lr: 2.5, clip_norm: 1.0, server_lr: 1.0}
+  8: {local_lr: 5.0, clip_norm: 1.0, server_lr: 0.5}
+  16: {local_lr: 5.0, clip_norm: 1.0, server_lr: 0.5}
+  32: {local_lr: 5.0, clip_norm: 1.0, server_lr: 0.5}

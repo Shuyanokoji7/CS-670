@@ -1,0 +1,2 @@
+selected_T,decision,boundary_T,top_two_gap_seed42,margin
+50,"top two on seed 42 (T=50, T=100) differ by 0.0002 < 0.003: selected by mean over seeds [42, 123, 2026] (T=50: 0.0291, T=100: 0.0241); boundary expansion to T=50 applied (best grid T=100)",50,0.00016887302365670154,0.003

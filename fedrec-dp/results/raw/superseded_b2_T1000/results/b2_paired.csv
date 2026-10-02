@@ -1,0 +1,7 @@
+comparison,mean_diff,ci_low,ci_high,frac_improved,frac_degraded,frac_tied
+"B1-DPReady (eta_s=1, qN, T=1000) - B1 frozen  [protocol effect]",0.000695,-0.001418,0.002795,0.093418,0.101911,0.804671
+matched no-DP (eta_s=2) - B1-DPReady  [server-lr effect],0.000199,-0.003463,0.004010,0.116773,0.116773,0.766454
+B2 eps8 - matched no-DP  [DP effect],-0.066234,-0.079365,-0.054104,0.078556,0.231423,0.690021
+B2 eps4 - matched no-DP  [DP effect],-0.069128,-0.082259,-0.057117,0.062633,0.234607,0.702760
+B2 eps2 - matched no-DP  [DP effect],-0.078026,-0.091097,-0.066084,0.030786,0.245223,0.723992
+B2 eps1 - matched no-DP  [DP effect],-0.083001,-0.096231,-0.070755,0.023355,0.249469,0.727176

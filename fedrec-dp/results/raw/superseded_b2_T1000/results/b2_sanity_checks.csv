@@ -1,0 +1,9 @@
+check,passed
+scores finite,True
+validation NDCG@10 above initial (round 0),True
+clipping active (some clients clipped),True
+post-clip norms <= C,True
+"noise non-zero, std = sigma*C",True
+accountant eps matches table,True
+exactly T rounds,True
+comm = clients x 2 x M x d x 4 bytes,True

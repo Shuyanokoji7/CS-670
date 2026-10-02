@@ -1,0 +1,2 @@
+rank,local_lr,seed,tag,best_round,rounds_run,stopped_by,comm_bytes_to_best_round,comm_bytes_total_run,shared_coordinates_D,bytes_per_client_per_round,split_fingerprint,val_ndcg@10,val_hr@10,val_recall@10,val_mrr@10,checkpoint_sha256
+16,1.25,2026,r16_lr1.25_seed2026,4910,5910,early_stopping,103305093120,124452421632,27936,223488,6faed6fc3d47b5b6fa638adfeea83cd7409d50c39fa01f85c10379d0daef6989,0.08619794034579209,0.16454352441613587,0.16454352441613587,0.062783506891787133,e96992bef6a1443ecd45d88be9fad09626e269b4783e5787624538600257526b

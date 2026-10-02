@@ -1,0 +1,3 @@
+round,clients,denominator,local_loss,update_norm,pre_clip_norm_mean,pre_clip_norm_median,pre_clip_norm_p90,pre_clip_norm_p95,pre_clip_norm_max,frac_clipped,post_clip_norm_mean,shrinkage_mean,noise_std,noise_norm,clipped_aggregate_norm,signal_to_noise,download_bytes,upload_bytes,bytes_per_client,sparse_upload_bytes_diag,skipped_empty
+1,92,94.200000,0.692751,4.044894,0.109421,0.084978,0.211415,0.252617,0.308415,0.000000,0.109421,1.000000,1.161969,381.022557,1.260549,0.003308,39614464,39614464,861184,3800420,False
+2,79,94.200000,0.690602,4.036688,0.214715,0.121603,0.394155,0.596545,2.649799,0.012658,0.200161,0.994507,1.161969,380.240551,2.842080,0.007474,34016768,34016768,861184,3072160,False

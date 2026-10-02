@@ -1,0 +1,2 @@
+round,wall_time_s,mean_user_norm,item_norm_mean,A_fro,B_fro,frac_clients_ever_sampled,cum_download_bytes,cum_upload_bytes,val_ndcg@10,val_hr@10,val_recall@10,val_mrr@10
+0,0.000011,0.079632,0.081880,3.110445,3.110446,0.000000,0,0,0.005391,0.009554,0.009554,0.004190

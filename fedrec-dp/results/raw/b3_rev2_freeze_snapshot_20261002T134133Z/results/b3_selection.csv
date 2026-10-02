@@ -1,0 +1,5 @@
+rank,selected_lr,val_ndcg@10,best_round,stopped_by,edge_expanded,n_diverged,flag
+4,1.25,0.07290780985515664,1430,early_stopping,True,4,
+8,1.25,0.08521459258946526,3330,early_stopping,True,4,
+16,1.25,0.09129624473132864,3920,early_stopping,True,4,
+32,0.625,0.08594977612682272,5640,early_stopping,True,4,

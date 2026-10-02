@@ -40,7 +40,7 @@ dimensionality changes **utility and communication under the same privacy guaran
 Implemented and tested: dataset pipeline, chronological split with leakage checks,
 full-ranking evaluation, ranking metrics, random and popularity baselines (Phase 0), and
 **B0, centralised BPR matrix factorisation**, **B1, federated BPR without DP**, and **B2,
-user-level DP federated BPR** (see below).
+user-level DP federated BPR** (final privacy-aware protocol frozen 2026-10-02; see below).
 
 **Not implemented yet:** real (cryptographic) secure aggregation and low-rank representations (B3, B4).
 The only DP claim in this repository is the narrow B2 claim stated in the B2 section.
@@ -182,50 +182,99 @@ normally byte-identical. See `RESEARCH_LOG.md` for all search trials, protocol r
 ## B2 — User-level DP federated BPR
 
 B2 is the frozen B1 system plus four additions:
-- **Whole-client clipping:** each client's entire shared update ΔQ_u is clipped to Frobenius norm C = 1.5. p_u is local, never
+- **Whole-client clipping:** each client's whole shared update ΔQ_u is clipped to Frobenius norm C. p_u is local, never
   clipped and never uploaded.
 - **Gaussian noise** N(0, σ²C² I) on the **sum** of clipped updates. Secure aggregation is **assumed/simulated**.
-- **A fixed denominator** qN = 94.2: Q ← Q + η_s (sum + noise) / qN, with η_s = 2.
-- **Accounting:** exactly T = 1000 private rounds with no early stopping, accounted with Opacus PRV (primary) and RDP
+- **A fixed denominator:** Q ← Q + η_s (sum + noise) / qN, with qN = 94.2.
+- **Accounting:** exactly T private rounds with no early stopping, accounted with Opacus PRV (primary) and RDP
   (cross-check). The privacy unit is one user (add/remove-one-user adjacency), δ = 1e-5, q = 0.1. Opacus is used only
   for accounting.
 
 **Claim scope.** The final B2 training mechanism, conditional on fixed hyperparameters and under the stated
 secure-aggregation assumption, is accounted as user-level (ε, δ)-DP. Several things are **not** covered:
-- the research process (baselines, the non-private clipping-grid statistics, and C/η_s selection on validation);
-- validation monitoring;
+- hyperparameter and T selection on validation;
+- the non-private statistics used to build the clipping grid;
+- the simulated secure aggregation;
 - the noise RNG, which is a reproducible PCG64 stream and not cryptographically secure.
 
-Lower dimensionality does not change ε.
+Neither C nor the dimension D changes ε.
 
-| Level (test, seeds 42/123/2026) | ε (PRV) | σ | NDCG@10 | HR@10 = Recall@10 | MRR@10 | Retention |
+### FINAL B2 (frozen 2026-10-02): privacy-aware horizon
+
+**T = 50, C = 1.0, η_s = 1.0** (local SGD lr 5, E 2). All three were selected on validation only, under rules declared
+beforehand:
+- **T:** grid {100, 250, 500, 1000} at ε≈4 with σ re-solved per T, then a one-time boundary expansion to 50, then a
+  three-seed tie-break.
+- **C:** argmax over {1.0, 1.5, 2.4}.
+- **η_s:** argmax over {0.5, 1, 2}.
+
+T = 50 and C = 1.0 lie at the edges of their grids, and there was no further expansion. See `RESEARCH_LOG.md` and
+`docs/B2_RESULTS.md`.
+
+| Level (test, seeds 42/123/2026) | ε PRV / RDP | σ | NDCG@10 | HR@10 = Recall@10 | MRR@10 | Retention vs matched no-DP |
 |---|---|---|---|---|---|---|
-| matched no-DP (B2 protocol without DP) | ∞ | 0 | 0.0884 ± 0.0046 | 0.1674 ± 0.0060 | 0.0648 ± 0.0040 | 1.00 |
-| ε ≈ 8 | 7.94 | 2.06 | 0.0222 ± 0.0050 | 0.0456 ± 0.0074 | 0.0153 ± 0.0043 | 0.25 |
-| ε ≈ 4 | 3.97 | 3.56 | 0.0193 ± 0.0058 | 0.0368 ± 0.0086 | 0.0141 ± 0.0050 | 0.22 |
-| ε ≈ 2 | 1.99 | 6.43 | 0.0104 ± 0.0024 | 0.0202 ± 0.0055 | 0.0074 ± 0.0014 | 0.12 |
-| ε ≈ 1 | 1.00 | 11.98 | 0.0054 ± 0.0022 | 0.0124 ± 0.0043 | 0.0034 ± 0.0017 | 0.06 |
+| matched no-DP (T 50, qN, η_s 1) | ∞ | 0 | 0.0582 ± 0.0021 | 0.1090 ± 0.0034 | 0.0429 ± 0.0021 | 1.000 |
+| ε ≈ 8 | 7.97 / 9.12 | 0.8051 | 0.0544 ± 0.0007 | 0.1030 ± 0.0021 | 0.0397 ± 0.0005 | 0.935 |
+| ε ≈ 4 | 3.96 / 4.50 | 1.1519 | 0.0456 ± 0.0010 | 0.0839 ± 0.0046 | 0.0340 ± 0.0020 | 0.783 |
+| ε ≈ 2 | 1.99 / 2.22 | 1.7604 | 0.0274 ± 0.0012 | 0.0502 ± 0.0067 | 0.0205 ± 0.0003 | 0.470 |
+| ε ≈ 1 | 0.99 / 1.09 | 2.9775 | 0.0115 ± 0.0008 | 0.0226 ± 0.0012 | 0.0082 ± 0.0011 | 0.198 |
 
-With about 94 clients per round, the noise norm σC√D (D = 107,648) is 70–370× the clipped aggregate, and Q becomes
-noise-dominated. **Every private level falls below popularity (0.0443).** The protocol-only control (B1-DPReady, 0.0882) and the
-η_s change are both negligible relative to B1. Communication is unchanged from B1 (0.86 MB per selected client per round).
-B2 is the full-rank DP reference for B4.
+Paired per-user differences (seed-averaged, 95% bootstrap CI):
+- **Horizon/protocol effect**, matched no-DP − B1: −0.0293 [−0.0443, −0.0143]. This is not a DP effect.
+- **DP effect**, ε − matched no-DP:
 
-Reproduce (from `fedrec-dp/`, venv active, after `python -m src.data`). All commands were run as written:
+  | ε | Difference [95% CI] |
+  |---|---|
+  | ≈ 8 | −0.0038 [−0.0094, +0.0017] (no reliable difference detected) |
+  | ≈ 4 | −0.0126 [−0.0201, −0.0056] |
+  | ≈ 2 | −0.0308 [−0.0407, −0.0216] |
+  | ≈ 1 | −0.0467 [−0.0582, −0.0360] |
+
+Compared with popularity (0.044292; point estimates only, no paired or significance claim), ε≈8 is above it
+(0.054411), ε≈4 is near it (0.045590), and ε≈2 and ε≈1 are below it (0.027378, 0.011526). At ε≈8 the DP effect's interval
+includes 0, so no reliable DP loss was detected there. The diagnostics do not prove that dimensionality is the cause. Because
+final B2 is this strong at ε 8 and 4, a fair B4 comparison is more demanding. Item-vector norms
+stay close to the pure-noise random-walk prediction at every ε. That is consistent with accumulated Gaussian
+perturbation dominating Q's magnitude, though ranking utility still survives at ε 8 and 4. Communication is 0.86 MB per
+selected client per round, about 4.0 GB per 50-round run.
+
+### INITIAL B2 (superseded): fixed T = 1000 inherited from B1
+
+T = 1000, C = 1.5, η_s = 2. Test NDCG@10: matched no-DP 0.0884, ε≈8 0.0222, ε≈4 0.0193, ε≈2 0.0104, ε≈1 0.0054. Under
+*this initial protocol*, every private level was below popularity. The revised protocol changed T, C **and** η_s together and
+materially improves the private point estimates (ε≈4: 0.019306 → 0.045590). That change is not attributable to T alone.
+It is archived, with a known checkpoint-naming issue that does not affect any number, in `results/raw/superseded_b2_T1000/`.
+
+### Commands executed for the final protocol
+
+Executed from `fedrec-dp/` exactly as written, with the project venv. All are also in `results/raw/b2_final_command_log.txt`
+or the RESEARCH_LOG.
 
 ```bash
-pip install --no-deps opacus==1.6.0 && pip install scipy==1.15.3 opt_einsum==3.4.0   # accountants only
-
-python experiments/run_b2.py --accounting                   # solve sigma per target eps (PRV) + RDP cross-check
-python experiments/run_b2.py --norm-stats                   # B1 client-update norm quantiles (no test, no DP)
-python experiments/run_b2.py --sanity --clip 1.5            # mechanism checks at eps≈4 (validation only)
-python experiments/run_b2.py --clip-search --workers 3      # C grid at eps≈4 (validation only)
-python experiments/run_b2.py --server-lr-check --workers 3  # eta_s check (validation only; run because the failure rule fired)
-python experiments/run_b2.py --run --epsilon 4 --seed 42    # one B2 run (round-T model, test evaluated once)
-python experiments/run_b2.py --sweep --seeds 42 123 2026    # no-DP controls + eps 8/4/2/1, then analysis + plots
-python experiments/run_b2.py --analyse --seeds 42 123 2026  # re-run analysis/plots from saved results only
-python -m pytest
+.venv/bin/python experiments/run_b2.py --t-sweep --workers 6           # validation-only T study (ε≈4, PRV σ per T)
+.venv/bin/python experiments/run_b2.py --clip-search --workers 3       # C ∈ {1.0, 1.5, 2.4} at T = 50 (validation only)
+.venv/bin/python experiments/run_b2.py --server-lr-check --workers 3   # η_s ∈ {0.5, 1, 2} at T = 50, C = 1.0 (validation only)
+.venv/bin/python experiments/run_b2.py --accounting                    # σ for ε 8/4/2/1 at T = 50 (PRV + RDP)
+.venv/bin/python experiments/run_b2.py --sweep --seeds 42 123 2026 --workers 15   # final sweep + analysis (test once per run)
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest -q -p no:cacheprovider
 ```
+
+The runner refuses test evaluation unless `privacy.protocol_frozen` is true. The initial-protocol commands (`--norm-stats`,
+`--sanity --clip 1.5`, and `--run`/`--sweep` at T = 1000) were run only under the superseded protocol.
+
+## B3 / B4 — Low-rank shared item matrix (no DP / user-level DP)
+
+Q = AB with ranks 4/8/16/32, five seeds, B1/B2 baselines extended to seeds 7/99 by exact replication. Full results are in
+`docs/B3_RESULTS.md` and `docs/B4_RESULTS.md`; the predeclared analysis script is `experiments/analyse_b3b4.py`.
+
+- **B3 (no DP):** every rank is below B1 on test NDCG@10. The best is r16 at 0.0763, against B1's 0.0890. A smaller
+  per-round payload does not mean less total traffic: r32 needs 1.92× B1's volume to reach its best round.
+- **B4 (DP, matched ε and T 50):** only four of the 16 adjusted cells are reliably positive (r8/r16/r32 at ε 2, and r8
+  at ε 1). Low-rank is worse than B2 at ε 8 and shows no reliable gain at ε 4. This is limited support for H1, with no
+  monotonic rank trend. Raw factor noise is not effective-Q noise. This compares an optimised low-rank model with frozen B2: low-rank had a
+  larger tuning budget, and no isolated-dimensionality claim is made.
+- **Superseded stages:** the initial B3 freeze, B3 correction 1, the original B4 lr-inheritance protocol, and the B4
+  lr × C winners rejected on stability. All are kept, with the reasons logged in RESEARCH_LOG.
 
 ## Protocol summary
 
@@ -267,9 +316,9 @@ configs/b1.yaml           frozen B1 configuration
 src/privacy.py            B2 clipping, Gaussian aggregate noise, accounting, DP simulator
 src/train_dp_federated.py B2 fixed-horizon training loop
 experiments/run_b2.py     B2 accounting / norm stats / searches / sweep / analysis
-configs/b2.yaml           frozen B2 configuration
+configs/b2.yaml           frozen FINAL B2 configuration (T 50, C 1.0, eta_s 1.0; protocol_frozen true)
 checkpoints/              B0, B0-UW, B1, B2 checkpoints (config, seeds, split fingerprint; B2: privacy metadata)
-tests/                    test_metrics.py, test_evaluate.py, test_data_split.py, test_bpr.py, test_federated.py, test_privacy.py (92 tests)
+tests/                    test_metrics.py, test_evaluate.py, test_data_split.py, test_bpr.py, test_federated.py, test_privacy.py, test_b2_protocol.py (113 tests)
 docs/THREAT_MODEL.md
 results/                  data_summary.json, DATASET_REPORT.md, *_baseline.csv, b0_*.csv, plots/, raw/
 data/raw/                 read-only raw data

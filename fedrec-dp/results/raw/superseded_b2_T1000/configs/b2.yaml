@@ -1,0 +1,42 @@
+# B2 — user-level DP federated BPR = frozen B1 + whole-client clipping + Gaussian noise on the
+# clipped sum + fixed denominator qN + exactly T private rounds. Everything else is B1's.
+
+name: b2_dp_federated_bpr
+dataset_config: configs/dataset.yaml
+
+model:
+  dim: 64
+  init_std: 0.01
+
+federated:                  # identical to configs/b1.yaml (frozen B1)
+  client_sampling_q: 0.1
+  local_optimizer: sgd
+  local_lr: 5.0
+  local_epochs: 2
+  l2_reg: 0.00001
+  server_lr: 2.0            # FROZEN by the declared failure rule (b2_server_lr_check.csv); B1 = 1.0
+  aggregation: fedavg       # clipped-update sum / fixed denominator (see privacy.denominator)
+  max_rounds: 1000          # unused: B2 runs exactly privacy.T rounds, no early stopping
+  eval_every: 10            # validation logged every 10 rounds as a DIAGNOSTIC only
+  patience_evals: 100       # unused by B2
+
+privacy:
+  unit: user                # add/remove-one-user adjacency; the record is a client's whole ΔQ_u
+  T: 1000                   # fixed private horizon (B1's best rounds were 970-1040); never changed after test
+  delta: 0.00001
+  denominator: expected     # Q += eta_s * (sum of clipped + noise) / (q * N); post-processing
+  accountant: prv           # PRIMARY accountant, declared before the sweep (Opacus PRVAccountant)
+  cross_check_accountant: rdp
+  solver_tolerance: 0.01    # achieved eps within 1% below the target
+  target_epsilons: [8, 4, 2, 1]
+  reference_epsilon: 4      # sanity run, clip search and (conditional) server-lr check
+  clip_grid: [1.0, 1.5, 2.4]  # = p25, p50, p90 of pooled B1 client-update norms (results/b2_b1_update_norm_stats.csv)
+  clip_norm: 1.5            # FROZEN: highest final-round val NDCG@10 at eps≈4 (results/b2_clip_search.csv)
+  server_lr_grid: [0.5, 1.0, 2.0]   # used ONLY if the declared failure criterion is met
+  noise_multiplier: 0.0     # set per run from results/b2_accounting.csv
+  target_epsilon: null
+
+evaluation:
+  k: 10
+
+seed: 42

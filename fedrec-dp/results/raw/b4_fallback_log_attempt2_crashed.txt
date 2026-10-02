@@ -1,0 +1,35 @@
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 246, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 205, in _process_chunk
+    return [fn(*args) for args in chunk]
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 205, in <listcomp>
+    return [fn(*args) for args in chunk]
+  File "/home/ag/Amazon ML/fedrec-dp/./experiments/run_b4.py", line 149, in train_validate
+    validate_checkpoint(torch.load(_ckpt_path(tag0), weights_only=True), cfg, j, split, fp)
+  File "/home/ag/Amazon ML/fedrec-dp/./experiments/run_b4.py", line 258, in validate_checkpoint
+    raise ValueError("checkpoint does not match the frozen job: " + "; ".join(problems))
+ValueError: checkpoint does not match the frozen job: epsilon: checkpoint 3.963885356647058 != expected 3.9638853566470567
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ag/Amazon ML/fedrec-dp/results/raw/b4_fallback_orchestration.py", line 16, in <module>
+    df = rb4.run_many(jobs, 18, keep_checkpoint=True)
+  File "/home/ag/Amazon ML/fedrec-dp/./experiments/run_b4.py", line 209, in run_many
+    return pd.DataFrame(list(ex.map(train_validate, jobs, [keep_checkpoint] * len(jobs))))
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 575, in _chain_from_iterable_of_lists
+    for element in iterable:
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 621, in result_iterator
+    yield _result_or_cancel(fs.pop())
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 319, in _result_or_cancel
+    return fut.result(timeout)
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 458, in result
+    return self.__get_result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+ValueError: checkpoint does not match the frozen job: epsilon: checkpoint 3.963885356647058 != expected 3.9638853566470567
+exit 1

@@ -1,0 +1,344 @@
+fallback_r4_nodp_T50_CNone_lr2.5_slr0.5_seed2026: ok val ndcg 0.0196
+fallback_r4_nodp_T50_CNone_lr2.5_slr0.5_seed7: ok val ndcg 0.0208
+fallback_r4_nodp_T50_CNone_lr2.5_slr0.5_seed42: ok val ndcg 0.0114
+fallback_r4_nodp_T50_CNone_lr2.5_slr0.5_seed123: ok val ndcg 0.0134
+fallback_r4_eps4_T50_C1.0_lr2.5_slr0.5_seed123: ok val ndcg 0.0131
+fallback_r4_eps1_T50_C1.0_lr2.5_slr0.5_seed123: ok val ndcg 0.0081
+fallback_r4_eps2_T50_C1.0_lr2.5_slr0.5_seed42: ok val ndcg 0.0052
+fallback_r4_eps1_T50_C1.0_lr2.5_slr0.5_seed42: ok val ndcg 0.0086
+fallback_r4_eps2_T50_C1.0_lr2.5_slr0.5_seed2026: ok val ndcg 0.0157
+fallback_r4_eps2_T50_C1.0_lr2.5_slr0.5_seed123: ok val ndcg 0.0090
+fallback_r4_eps8_T50_C1.0_lr2.5_slr0.5_seed2026: ok val ndcg 0.0110
+fallback_r4_eps4_T50_C1.0_lr2.5_slr0.5_seed2026: ok val ndcg 0.0122
+fallback_r4_eps4_T50_C1.0_lr2.5_slr0.5_seed7: ok val ndcg 0.0247
+fallback_r4_eps1_T50_C1.0_lr2.5_slr0.5_seed2026: ok val ndcg 0.0114
+fallback_r4_eps8_T50_C1.0_lr2.5_slr0.5_seed42: ok val ndcg 0.0093
+fallback_r4_eps4_T50_C1.0_lr2.5_slr0.5_seed42: ok val ndcg 0.0066
+fallback_r4_eps8_T50_C1.0_lr2.5_slr0.5_seed7: ok val ndcg 0.0238
+fallback_r4_eps8_T50_C1.0_lr2.5_slr0.5_seed123: ok val ndcg 0.0153
+fallback_r4_nodp_T50_CNone_lr2.5_slr0.5_seed99: ok val ndcg 0.0188
+fallback_r4_eps2_T50_C1.0_lr2.5_slr0.5_seed7: ok val ndcg 0.0207
+fallback_r4_nodp_T50_CNone_lr2.5_slr1.0_seed42: ok val ndcg 0.0283
+fallback_r4_eps1_T50_C1.0_lr2.5_slr0.5_seed7: ok val ndcg 0.0172
+fallback_r4_eps2_T50_C1.0_lr2.5_slr0.5_seed99: ok val ndcg 0.0066
+fallback_r4_eps1_T50_C1.0_lr2.5_slr0.5_seed99: ok val ndcg 0.0069
+fallback_r4_eps8_T50_C1.0_lr2.5_slr1.0_seed123: ok val ndcg 0.0354
+fallback_r4_eps4_T50_C1.0_lr2.5_slr0.5_seed99: ok val ndcg 0.0085
+fallback_r4_eps4_T50_C1.0_lr2.5_slr1.0_seed42: ok val ndcg 0.0329
+fallback_r4_eps1_T50_C1.0_lr2.5_slr1.0_seed42: ok val ndcg 0.0119
+fallback_r4_eps8_T50_C1.0_lr2.5_slr1.0_seed42: ok val ndcg 0.0299
+fallback_r4_eps2_T50_C1.0_lr2.5_slr1.0_seed42: ok val ndcg 0.0257
+fallback_r4_nodp_T50_CNone_lr2.5_slr1.0_seed123: ok val ndcg 0.0347
+fallback_r4_eps8_T50_C1.0_lr2.5_slr0.5_seed99: ok val ndcg 0.0061
+fallback_r4_nodp_T50_CNone_lr2.5_slr1.0_seed2026: ok val ndcg 0.0356
+fallback_r4_eps2_T50_C1.0_lr2.5_slr1.0_seed123: ok val ndcg 0.0186
+fallback_r4_eps1_T50_C1.0_lr2.5_slr1.0_seed123: ok val ndcg 0.0095
+fallback_r4_eps4_T50_C1.0_lr2.5_slr1.0_seed123: ok val ndcg 0.0349
+fallback_r4_eps1_T50_C1.0_lr2.5_slr1.0_seed99: ok val ndcg 0.0190
+fallback_r4_eps1_T50_C1.0_lr2.5_slr1.0_seed2026: ok val ndcg 0.0213
+fallback_r4_nodp_T50_CNone_lr2.5_slr1.0_seed7: ok val ndcg 0.0442
+fallback_r4_eps4_T50_C1.0_lr2.5_slr1.0_seed2026: ok val ndcg 0.0338
+fallback_r4_eps2_T50_C1.0_lr2.5_slr1.0_seed2026: ok val ndcg 0.0288
+fallback_r4_eps8_T50_C1.0_lr2.5_slr1.0_seed2026: ok val ndcg 0.0353
+fallback_r4_nodp_T50_CNone_lr2.5_slr1.0_seed99: ok val ndcg 0.0365
+fallback_r4_eps1_T50_C1.0_lr2.5_slr1.0_seed7: ok val ndcg 0.0095
+fallback_r4_eps4_T50_C1.0_lr2.5_slr1.0_seed7: ok val ndcg 0.0407
+fallback_r4_eps8_T50_C1.0_lr2.5_slr1.0_seed99: ok val ndcg 0.0260
+fallback_r4_nodp_T50_CNone_lr5.0_slr0.5_seed42: ok val ndcg 0.0457
+fallback_r4_eps2_T50_C1.0_lr2.5_slr1.0_seed7: ok val ndcg 0.0331
+fallback_r4_eps8_T50_C1.0_lr2.5_slr1.0_seed7: ok val ndcg 0.0451
+fallback_r4_eps4_T50_C1.0_lr2.5_slr1.0_seed99: ok val ndcg 0.0278
+fallback_r4_eps4_T50_C1.0_lr5.0_slr0.5_seed42: ok val ndcg 0.0398
+fallback_r4_eps2_T50_C1.0_lr5.0_slr0.5_seed42: ok val ndcg 0.0226
+fallback_r4_eps2_T50_C1.0_lr2.5_slr1.0_seed99: ok val ndcg 0.0210
+fallback_r4_eps8_T50_C1.0_lr5.0_slr0.5_seed42: ok val ndcg 0.0404
+fallback_r4_nodp_T50_CNone_lr5.0_slr0.5_seed123: training diverged at round 50 val ndcg nan
+fallback_r4_eps1_T50_C1.0_lr5.0_slr0.5_seed42: ok val ndcg 0.0206
+fallback_r4_nodp_T50_CNone_lr5.0_slr0.5_seed2026: training diverged at round 50 val ndcg nan
+fallback_r4_eps8_T50_C1.0_lr5.0_slr0.5_seed123: ok val ndcg 0.0360
+fallback_r4_eps4_T50_C1.0_lr5.0_slr0.5_seed123: ok val ndcg 0.0356
+fallback_r4_nodp_T50_CNone_lr5.0_slr0.5_seed7: ok val ndcg 0.0047
+fallback_r4_eps1_T50_C1.0_lr5.0_slr0.5_seed123: ok val ndcg 0.0180
+fallback_r4_eps2_T50_C1.0_lr5.0_slr0.5_seed123: ok val ndcg 0.0320
+fallback_r4_eps1_T50_C1.0_lr5.0_slr0.5_seed2026: ok val ndcg 0.0228
+fallback_r4_eps8_T50_C1.0_lr5.0_slr0.5_seed2026: ok val ndcg 0.0402
+fallback_r4_eps4_T50_C1.0_lr5.0_slr0.5_seed2026: ok val ndcg 0.0425
+fallback_r4_eps2_T50_C1.0_lr5.0_slr0.5_seed2026: ok val ndcg 0.0386
+fallback_r4_eps2_T50_C1.0_lr5.0_slr0.5_seed7: ok val ndcg 0.0400
+fallback_r4_nodp_T50_CNone_lr5.0_slr0.5_seed99: ok val ndcg 0.0504
+fallback_r4_eps1_T50_C1.0_lr5.0_slr0.5_seed7: ok val ndcg 0.0250
+fallback_r4_eps8_T50_C1.0_lr5.0_slr0.5_seed7: ok val ndcg 0.0432
+fallback_r4_eps4_T50_C1.0_lr5.0_slr0.5_seed7: ok val ndcg 0.0420
+fallback_r4_eps8_T50_C1.0_lr5.0_slr0.5_seed99: ok val ndcg 0.0316
+fallback_r4_eps4_T50_C1.0_lr5.0_slr0.5_seed99: ok val ndcg 0.0317
+fallback_r4_eps2_T50_C1.0_lr5.0_slr0.5_seed99: ok val ndcg 0.0234
+fallback_r4_nodp_T50_CNone_lr5.0_slr1.0_seed2026: training diverged at round 39 val ndcg nan
+fallback_r4_nodp_T50_CNone_lr5.0_slr1.0_seed123: training diverged at round 42 val ndcg nan
+fallback_r4_nodp_T50_CNone_lr5.0_slr1.0_seed42: ok val ndcg 0.0395
+fallback_r4_eps1_T50_C1.0_lr5.0_slr0.5_seed99: ok val ndcg 0.0144
+fallback_r4_eps1_T50_C1.0_lr5.0_slr1.0_seed42: training diverged at round 49 val ndcg nan
+fallback_r4_eps8_T50_C1.0_lr5.0_slr1.0_seed42: ok val ndcg 0.0434
+fallback_r4_eps4_T50_C1.0_lr5.0_slr1.0_seed42: ok val ndcg 0.0406
+fallback_r4_eps2_T50_C1.0_lr5.0_slr1.0_seed42: ok val ndcg 0.0328
+fallback_r4_eps1_T50_C1.0_lr5.0_slr1.0_seed123: training diverged at round 44 val ndcg nan
+fallback_r4_eps4_T50_C1.0_lr5.0_slr1.0_seed123: ok val ndcg 0.0404
+fallback_r4_eps2_T50_C1.0_lr5.0_slr1.0_seed123: ok val ndcg 0.0281
+fallback_r4_eps8_T50_C1.0_lr5.0_slr1.0_seed123: ok val ndcg 0.0433
+fallback_r4_eps2_T50_C1.0_lr5.0_slr1.0_seed2026: ok val ndcg 0.0389
+fallback_r4_eps8_T50_C1.0_lr5.0_slr1.0_seed2026: ok val ndcg 0.0444
+fallback_r4_eps4_T50_C1.0_lr5.0_slr1.0_seed2026: ok val ndcg 0.0432
+fallback_r4_nodp_T50_CNone_lr5.0_slr1.0_seed7: training diverged at round 36 val ndcg nan
+fallback_r4_eps1_T50_C1.0_lr5.0_slr1.0_seed2026: ok val ndcg 0.0291
+fallback_r4_eps1_T50_C1.0_lr5.0_slr1.0_seed7: training diverged at round 48 val ndcg nan
+fallback_r4_eps8_T50_C1.0_lr5.0_slr1.0_seed7: ok val ndcg 0.0472
+fallback_r4_eps1_T50_C1.0_lr5.0_slr1.0_seed99: training diverged at round 45 val ndcg nan
+fallback_r4_eps2_T50_C1.0_lr5.0_slr1.0_seed7: ok val ndcg 0.0400
+fallback_r4_nodp_T50_CNone_lr5.0_slr1.0_seed99: ok val ndcg 0.0260
+fallback_r4_eps2_T50_C1.0_lr5.0_slr1.0_seed99: ok val ndcg 0.0228
+fallback_r4_eps4_T50_C1.0_lr5.0_slr1.0_seed7: ok val ndcg 0.0448
+fallback_r4_eps4_T50_C1.0_lr5.0_slr1.0_seed99: ok val ndcg 0.0436
+fallback_r4_eps8_T50_C1.0_lr5.0_slr1.0_seed99: ok val ndcg 0.0463
+fallback_r8_nodp_T50_CNone_lr2.5_slr0.5_seed42: ok val ndcg 0.0196
+fallback_r8_eps8_T50_C1.0_lr2.5_slr0.5_seed42: ok val ndcg 0.0110
+fallback_r8_nodp_T50_CNone_lr2.5_slr0.5_seed123: ok val ndcg 0.0088
+fallback_r8_eps2_T50_C1.0_lr2.5_slr0.5_seed42: ok val ndcg 0.0155
+fallback_r8_eps4_T50_C1.0_lr2.5_slr0.5_seed42: ok val ndcg 0.0167
+fallback_r8_eps8_T50_C1.0_lr2.5_slr0.5_seed123: ok val ndcg 0.0088
+fallback_r8_eps1_T50_C1.0_lr2.5_slr0.5_seed42: ok val ndcg 0.0033
+fallback_r8_eps4_T50_C1.0_lr2.5_slr0.5_seed123: ok val ndcg 0.0068
+fallback_r8_eps2_T50_C1.0_lr2.5_slr0.5_seed123: ok val ndcg 0.0055
+fallback_r8_eps1_T50_C1.0_lr2.5_slr0.5_seed123: ok val ndcg 0.0070
+fallback_r8_nodp_T50_CNone_lr2.5_slr0.5_seed2026: ok val ndcg 0.0159
+fallback_r8_nodp_T50_CNone_lr2.5_slr0.5_seed7: ok val ndcg 0.0080
+fallback_r8_eps8_T50_C1.0_lr2.5_slr0.5_seed2026: ok val ndcg 0.0147
+fallback_r8_eps4_T50_C1.0_lr2.5_slr0.5_seed2026: ok val ndcg 0.0188
+fallback_r8_eps1_T50_C1.0_lr2.5_slr0.5_seed2026: ok val ndcg 0.0179
+fallback_r8_eps2_T50_C1.0_lr2.5_slr0.5_seed2026: ok val ndcg 0.0096
+fallback_r8_eps2_T50_C1.0_lr2.5_slr0.5_seed7: ok val ndcg 0.0076
+fallback_r8_eps8_T50_C1.0_lr2.5_slr0.5_seed7: ok val ndcg 0.0031
+fallback_r8_eps1_T50_C1.0_lr2.5_slr0.5_seed7: ok val ndcg 0.0055
+fallback_r8_eps4_T50_C1.0_lr2.5_slr0.5_seed7: ok val ndcg 0.0110
+fallback_r8_eps2_T50_C1.0_lr2.5_slr0.5_seed99: ok val ndcg 0.0112
+fallback_r8_nodp_T50_CNone_lr2.5_slr0.5_seed99: ok val ndcg 0.0147
+fallback_r8_eps4_T50_C1.0_lr2.5_slr0.5_seed99: ok val ndcg 0.0166
+fallback_r8_eps1_T50_C1.0_lr2.5_slr0.5_seed99: ok val ndcg 0.0025
+fallback_r8_eps8_T50_C1.0_lr2.5_slr0.5_seed99: ok val ndcg 0.0109
+fallback_r8_nodp_T50_CNone_lr2.5_slr1.0_seed42: ok val ndcg 0.0431
+fallback_r8_eps8_T50_C1.0_lr2.5_slr1.0_seed42: ok val ndcg 0.0399
+fallback_r8_eps4_T50_C1.0_lr2.5_slr1.0_seed42: ok val ndcg 0.0319
+fallback_r8_eps2_T50_C1.0_lr2.5_slr1.0_seed42: ok val ndcg 0.0111
+fallback_r8_nodp_T50_CNone_lr2.5_slr1.0_seed123: ok val ndcg 0.0332
+fallback_r8_eps1_T50_C1.0_lr2.5_slr1.0_seed42: ok val ndcg 0.0130
+fallback_r8_eps1_T50_C1.0_lr2.5_slr1.0_seed123: ok val ndcg 0.0210
+fallback_r8_eps2_T50_C1.0_lr2.5_slr1.0_seed123: ok val ndcg 0.0396
+fallback_r8_eps4_T50_C1.0_lr2.5_slr1.0_seed123: ok val ndcg 0.0364
+fallback_r8_eps8_T50_C1.0_lr2.5_slr1.0_seed123: ok val ndcg 0.0419
+fallback_r8_nodp_T50_CNone_lr2.5_slr1.0_seed2026: ok val ndcg 0.0404
+fallback_r8_eps8_T50_C1.0_lr2.5_slr1.0_seed2026: ok val ndcg 0.0329
+fallback_r8_eps1_T50_C1.0_lr2.5_slr1.0_seed2026: ok val ndcg 0.0196
+fallback_r8_nodp_T50_CNone_lr2.5_slr1.0_seed7: ok val ndcg 0.0271
+fallback_r8_eps2_T50_C1.0_lr2.5_slr1.0_seed2026: ok val ndcg 0.0275
+fallback_r8_eps2_T50_C1.0_lr2.5_slr1.0_seed7: ok val ndcg 0.0254
+fallback_r8_eps8_T50_C1.0_lr2.5_slr1.0_seed7: ok val ndcg 0.0342
+fallback_r8_eps4_T50_C1.0_lr2.5_slr1.0_seed2026: ok val ndcg 0.0413
+fallback_r8_eps4_T50_C1.0_lr2.5_slr1.0_seed7: ok val ndcg 0.0381
+fallback_r8_eps1_T50_C1.0_lr2.5_slr1.0_seed7: ok val ndcg 0.0127
+fallback_r8_nodp_T50_CNone_lr2.5_slr1.0_seed99: ok val ndcg 0.0361
+fallback_r8_eps8_T50_C1.0_lr2.5_slr1.0_seed99: ok val ndcg 0.0366
+fallback_r8_nodp_T50_CNone_lr5.0_slr0.5_seed42: ok val ndcg 0.0388
+fallback_r8_eps4_T50_C1.0_lr2.5_slr1.0_seed99: ok val ndcg 0.0329
+fallback_r8_eps1_T50_C1.0_lr2.5_slr1.0_seed99: ok val ndcg 0.0156
+fallback_r8_eps2_T50_C1.0_lr2.5_slr1.0_seed99: ok val ndcg 0.0212
+fallback_r8_eps2_T50_C1.0_lr5.0_slr0.5_seed42: ok val ndcg 0.0358
+fallback_r8_eps1_T50_C1.0_lr5.0_slr0.5_seed42: ok val ndcg 0.0242
+fallback_r8_eps8_T50_C1.0_lr5.0_slr0.5_seed42: ok val ndcg 0.0485
+fallback_r8_eps4_T50_C1.0_lr5.0_slr0.5_seed42: ok val ndcg 0.0455
+fallback_r8_nodp_T50_CNone_lr5.0_slr0.5_seed123: ok val ndcg 0.0460
+fallback_r8_nodp_T50_CNone_lr5.0_slr0.5_seed2026: ok val ndcg 0.0496
+fallback_r8_eps2_T50_C1.0_lr5.0_slr0.5_seed123: ok val ndcg 0.0281
+fallback_r8_eps1_T50_C1.0_lr5.0_slr0.5_seed123: ok val ndcg 0.0209
+fallback_r8_eps4_T50_C1.0_lr5.0_slr0.5_seed123: ok val ndcg 0.0434
+fallback_r8_eps8_T50_C1.0_lr5.0_slr0.5_seed123: ok val ndcg 0.0469
+fallback_r8_eps8_T50_C1.0_lr5.0_slr0.5_seed2026: ok val ndcg 0.0419
+fallback_r8_nodp_T50_CNone_lr5.0_slr0.5_seed7: ok val ndcg 0.0376
+fallback_r8_eps4_T50_C1.0_lr5.0_slr0.5_seed2026: ok val ndcg 0.0412
+fallback_r8_eps2_T50_C1.0_lr5.0_slr0.5_seed2026: ok val ndcg 0.0326
+fallback_r8_eps8_T50_C1.0_lr5.0_slr0.5_seed7: ok val ndcg 0.0329
+fallback_r8_eps1_T50_C1.0_lr5.0_slr0.5_seed2026: ok val ndcg 0.0207
+fallback_r8_eps2_T50_C1.0_lr5.0_slr0.5_seed7: ok val ndcg 0.0308
+fallback_r8_eps4_T50_C1.0_lr5.0_slr0.5_seed7: ok val ndcg 0.0400
+fallback_r8_nodp_T50_CNone_lr5.0_slr0.5_seed99: ok val ndcg 0.0471
+fallback_r8_eps1_T50_C1.0_lr5.0_slr0.5_seed7: ok val ndcg 0.0099
+fallback_r8_nodp_T50_CNone_lr5.0_slr1.0_seed42: training diverged at round 48 val ndcg nan
+fallback_r8_eps8_T50_C1.0_lr5.0_slr0.5_seed99: ok val ndcg 0.0465
+fallback_r8_eps4_T50_C1.0_lr5.0_slr0.5_seed99: ok val ndcg 0.0399
+fallback_r8_eps2_T50_C1.0_lr5.0_slr0.5_seed99: ok val ndcg 0.0293
+fallback_r8_eps1_T50_C1.0_lr5.0_slr0.5_seed99: ok val ndcg 0.0198
+fallback_r8_eps2_T50_C1.0_lr5.0_slr1.0_seed42: ok val ndcg 0.0386
+fallback_r8_nodp_T50_CNone_lr5.0_slr1.0_seed123: training diverged at round 47 val ndcg nan
+fallback_r8_eps4_T50_C1.0_lr5.0_slr1.0_seed42: ok val ndcg 0.0434
+fallback_r8_eps8_T50_C1.0_lr5.0_slr1.0_seed42: ok val ndcg 0.0518
+fallback_r8_eps1_T50_C1.0_lr5.0_slr1.0_seed42: ok val ndcg 0.0212
+fallback_r8_eps8_T50_C1.0_lr5.0_slr1.0_seed123: ok val ndcg 0.0515
+fallback_r8_eps2_T50_C1.0_lr5.0_slr1.0_seed123: ok val ndcg 0.0431
+fallback_r8_eps1_T50_C1.0_lr5.0_slr1.0_seed123: ok val ndcg 0.0132
+fallback_r8_nodp_T50_CNone_lr5.0_slr1.0_seed2026: training diverged at round 44 val ndcg nan
+fallback_r8_eps4_T50_C1.0_lr5.0_slr1.0_seed123: ok val ndcg 0.0503
+fallback_r8_nodp_T50_CNone_lr5.0_slr1.0_seed7: ok val ndcg 0.0482
+fallback_r8_eps8_T50_C1.0_lr5.0_slr1.0_seed2026: ok val ndcg 0.0458
+fallback_r8_eps4_T50_C1.0_lr5.0_slr1.0_seed2026: ok val ndcg 0.0465
+fallback_r8_eps1_T50_C1.0_lr5.0_slr1.0_seed2026: ok val ndcg 0.0213
+fallback_r8_eps2_T50_C1.0_lr5.0_slr1.0_seed2026: ok val ndcg 0.0395
+fallback_r8_nodp_T50_CNone_lr5.0_slr1.0_seed99: training diverged at round 44 val ndcg nan
+fallback_r8_eps8_T50_C1.0_lr5.0_slr1.0_seed7: ok val ndcg 0.0504
+fallback_r8_eps1_T50_C1.0_lr5.0_slr1.0_seed7: ok val ndcg 0.0100
+fallback_r8_eps2_T50_C1.0_lr5.0_slr1.0_seed7: ok val ndcg 0.0363
+fallback_r8_eps4_T50_C1.0_lr5.0_slr1.0_seed7: ok val ndcg 0.0409
+fallback_r8_eps8_T50_C1.0_lr5.0_slr1.0_seed99: ok val ndcg 0.0459
+fallback_r8_eps4_T50_C1.0_lr5.0_slr1.0_seed99: ok val ndcg 0.0434
+fallback_r8_eps1_T50_C1.0_lr5.0_slr1.0_seed99: training diverged at round 46 val ndcg nan
+fallback_r8_eps2_T50_C1.0_lr5.0_slr1.0_seed99: ok val ndcg 0.0272
+fallback_r16_nodp_T50_CNone_lr2.5_slr0.5_seed42: ok val ndcg 0.0033
+fallback_r16_eps2_T50_C1.0_lr2.5_slr0.5_seed42: ok val ndcg 0.0067
+fallback_r16_eps4_T50_C1.0_lr2.5_slr0.5_seed42: ok val ndcg 0.0036
+fallback_r16_eps8_T50_C1.0_lr2.5_slr0.5_seed42: ok val ndcg 0.0085
+fallback_r16_nodp_T50_CNone_lr2.5_slr0.5_seed123: ok val ndcg 0.0043
+fallback_r16_eps1_T50_C1.0_lr2.5_slr0.5_seed42: ok val ndcg 0.0090
+fallback_r16_eps8_T50_C1.0_lr2.5_slr0.5_seed123: ok val ndcg 0.0047
+fallback_r16_eps4_T50_C1.0_lr2.5_slr0.5_seed123: ok val ndcg 0.0054
+fallback_r16_eps2_T50_C1.0_lr2.5_slr0.5_seed123: ok val ndcg 0.0073
+fallback_r16_eps1_T50_C1.0_lr2.5_slr0.5_seed123: ok val ndcg 0.0070
+fallback_r16_nodp_T50_CNone_lr2.5_slr0.5_seed2026: ok val ndcg 0.0177
+fallback_r16_eps4_T50_C1.0_lr2.5_slr0.5_seed2026: ok val ndcg 0.0071
+fallback_r16_eps8_T50_C1.0_lr2.5_slr0.5_seed2026: ok val ndcg 0.0132
+fallback_r16_eps2_T50_C1.0_lr2.5_slr0.5_seed2026: ok val ndcg 0.0088
+fallback_r16_nodp_T50_CNone_lr2.5_slr0.5_seed7: ok val ndcg 0.0095
+fallback_r16_eps8_T50_C1.0_lr2.5_slr0.5_seed7: ok val ndcg 0.0060
+fallback_r16_eps1_T50_C1.0_lr2.5_slr0.5_seed2026: ok val ndcg 0.0103
+fallback_r16_eps4_T50_C1.0_lr2.5_slr0.5_seed7: ok val ndcg 0.0125
+fallback_r16_eps2_T50_C1.0_lr2.5_slr0.5_seed7: ok val ndcg 0.0043
+fallback_r16_eps1_T50_C1.0_lr2.5_slr0.5_seed7: ok val ndcg 0.0090
+fallback_r16_nodp_T50_CNone_lr2.5_slr0.5_seed99: ok val ndcg 0.0159
+fallback_r16_eps8_T50_C1.0_lr2.5_slr0.5_seed99: ok val ndcg 0.0142
+fallback_r16_eps4_T50_C1.0_lr2.5_slr0.5_seed99: ok val ndcg 0.0090
+fallback_r16_eps2_T50_C1.0_lr2.5_slr0.5_seed99: ok val ndcg 0.0085
+fallback_r16_eps1_T50_C1.0_lr2.5_slr0.5_seed99: ok val ndcg 0.0137
+fallback_r16_nodp_T50_CNone_lr2.5_slr1.0_seed42: ok val ndcg 0.0123
+fallback_r16_eps8_T50_C1.0_lr2.5_slr1.0_seed123: ok val ndcg 0.0344
+fallback_r16_eps4_T50_C1.0_lr2.5_slr1.0_seed42: ok val ndcg 0.0274
+fallback_r16_eps8_T50_C1.0_lr2.5_slr1.0_seed42: ok val ndcg 0.0251
+fallback_r16_eps2_T50_C1.0_lr2.5_slr1.0_seed42: ok val ndcg 0.0237
+fallback_r16_eps1_T50_C1.0_lr2.5_slr1.0_seed42: ok val ndcg 0.0125
+fallback_r16_nodp_T50_CNone_lr2.5_slr1.0_seed123: ok val ndcg 0.0151
+fallback_r16_eps4_T50_C1.0_lr2.5_slr1.0_seed123: ok val ndcg 0.0340
+fallback_r16_nodp_T50_CNone_lr2.5_slr1.0_seed2026: ok val ndcg 0.0424
+fallback_r16_eps2_T50_C1.0_lr2.5_slr1.0_seed123: ok val ndcg 0.0242
+fallback_r16_eps1_T50_C1.0_lr2.5_slr1.0_seed123: ok val ndcg 0.0123
+fallback_r16_eps8_T50_C1.0_lr2.5_slr1.0_seed2026: ok val ndcg 0.0437
+fallback_r16_eps4_T50_C1.0_lr2.5_slr1.0_seed2026: ok val ndcg 0.0302
+fallback_r16_eps2_T50_C1.0_lr2.5_slr1.0_seed2026: ok val ndcg 0.0187
+fallback_r16_eps1_T50_C1.0_lr2.5_slr1.0_seed2026: ok val ndcg 0.0138
+fallback_r16_nodp_T50_CNone_lr2.5_slr1.0_seed7: ok val ndcg 0.0265
+fallback_r16_eps2_T50_C1.0_lr2.5_slr1.0_seed7: ok val ndcg 0.0238
+fallback_r16_eps8_T50_C1.0_lr2.5_slr1.0_seed7: ok val ndcg 0.0357
+fallback_r16_eps4_T50_C1.0_lr2.5_slr1.0_seed7: ok val ndcg 0.0425
+fallback_r16_eps1_T50_C1.0_lr2.5_slr1.0_seed7: ok val ndcg 0.0151
+fallback_r16_nodp_T50_CNone_lr2.5_slr1.0_seed99: ok val ndcg 0.0413
+fallback_r16_nodp_T50_CNone_lr5.0_slr0.5_seed42: ok val ndcg 0.0354
+fallback_r16_eps2_T50_C1.0_lr2.5_slr1.0_seed99: ok val ndcg 0.0297
+fallback_r16_eps8_T50_C1.0_lr2.5_slr1.0_seed99: ok val ndcg 0.0401
+fallback_r16_eps4_T50_C1.0_lr2.5_slr1.0_seed99: ok val ndcg 0.0286
+fallback_r16_eps1_T50_C1.0_lr2.5_slr1.0_seed99: ok val ndcg 0.0127
+fallback_r16_eps1_T50_C1.0_lr5.0_slr0.5_seed42: ok val ndcg 0.0155
+fallback_r16_eps8_T50_C1.0_lr5.0_slr0.5_seed42: ok val ndcg 0.0347
+fallback_r16_eps4_T50_C1.0_lr5.0_slr0.5_seed42: ok val ndcg 0.0290
+fallback_r16_eps2_T50_C1.0_lr5.0_slr0.5_seed42: ok val ndcg 0.0388
+fallback_r16_nodp_T50_CNone_lr5.0_slr0.5_seed123: ok val ndcg 0.0439
+fallback_r16_nodp_T50_CNone_lr5.0_slr0.5_seed2026: ok val ndcg 0.0466
+fallback_r16_eps4_T50_C1.0_lr5.0_slr0.5_seed123: ok val ndcg 0.0284
+fallback_r16_eps8_T50_C1.0_lr5.0_slr0.5_seed123: ok val ndcg 0.0348
+fallback_r16_eps2_T50_C1.0_lr5.0_slr0.5_seed123: ok val ndcg 0.0299
+fallback_r16_eps1_T50_C1.0_lr5.0_slr0.5_seed123: ok val ndcg 0.0269
+fallback_r16_eps4_T50_C1.0_lr5.0_slr0.5_seed7: ok val ndcg 0.0422
+fallback_r16_eps8_T50_C1.0_lr5.0_slr0.5_seed2026: ok val ndcg 0.0465
+fallback_r16_eps2_T50_C1.0_lr5.0_slr0.5_seed2026: ok val ndcg 0.0335
+fallback_r16_eps4_T50_C1.0_lr5.0_slr0.5_seed2026: ok val ndcg 0.0367
+fallback_r16_nodp_T50_CNone_lr5.0_slr0.5_seed7: ok val ndcg 0.0443
+fallback_r16_eps1_T50_C1.0_lr5.0_slr0.5_seed2026: ok val ndcg 0.0169
+fallback_r16_eps2_T50_C1.0_lr5.0_slr0.5_seed7: ok val ndcg 0.0359
+fallback_r16_eps8_T50_C1.0_lr5.0_slr0.5_seed7: ok val ndcg 0.0471
+fallback_r16_nodp_T50_CNone_lr5.0_slr0.5_seed99: ok val ndcg 0.0465
+fallback_r16_eps1_T50_C1.0_lr5.0_slr0.5_seed7: ok val ndcg 0.0274
+fallback_r16_eps8_T50_C1.0_lr5.0_slr0.5_seed99: ok val ndcg 0.0448
+fallback_r16_eps4_T50_C1.0_lr5.0_slr0.5_seed99: ok val ndcg 0.0444
+fallback_r16_eps2_T50_C1.0_lr5.0_slr0.5_seed99: ok val ndcg 0.0383
+fallback_r16_eps1_T50_C1.0_lr5.0_slr0.5_seed99: ok val ndcg 0.0191
+fallback_r32_eps2_T50_C1.0_lr2.5_slr0.5_seed42: ok val ndcg 0.0071
+fallback_r32_nodp_T50_CNone_lr2.5_slr0.5_seed42: ok val ndcg 0.0032
+fallback_r32_nodp_T50_CNone_lr2.5_slr0.5_seed2026: ok val ndcg 0.0145
+fallback_r32_eps4_T50_C1.0_lr2.5_slr0.5_seed42: ok val ndcg 0.0071
+fallback_r32_nodp_T50_CNone_lr2.5_slr0.5_seed123: ok val ndcg 0.0045
+fallback_r32_eps1_T50_C1.0_lr2.5_slr0.5_seed42: ok val ndcg 0.0095
+fallback_r32_eps2_T50_C1.0_lr2.5_slr0.5_seed123: ok val ndcg 0.0143
+fallback_r32_eps8_T50_C1.0_lr2.5_slr0.5_seed42: ok val ndcg 0.0036
+fallback_r32_eps4_T50_C1.0_lr2.5_slr0.5_seed123: ok val ndcg 0.0133
+fallback_r32_eps1_T50_C1.0_lr2.5_slr0.5_seed123: ok val ndcg 0.0062
+fallback_r32_eps8_T50_C1.0_lr2.5_slr0.5_seed2026: ok val ndcg 0.0113
+fallback_r32_eps4_T50_C1.0_lr2.5_slr0.5_seed2026: ok val ndcg 0.0116
+fallback_r32_eps2_T50_C1.0_lr2.5_slr0.5_seed2026: ok val ndcg 0.0105
+fallback_r32_eps1_T50_C1.0_lr2.5_slr0.5_seed2026: ok val ndcg 0.0080
+fallback_r32_eps8_T50_C1.0_lr2.5_slr0.5_seed123: ok val ndcg 0.0093
+fallback_r32_nodp_T50_CNone_lr2.5_slr0.5_seed7: ok val ndcg 0.0085
+fallback_r32_eps8_T50_C1.0_lr2.5_slr0.5_seed7: ok val ndcg 0.0043
+fallback_r32_eps4_T50_C1.0_lr2.5_slr0.5_seed7: ok val ndcg 0.0039
+fallback_r32_nodp_T50_CNone_lr2.5_slr0.5_seed99: ok val ndcg 0.0087
+fallback_r32_eps2_T50_C1.0_lr2.5_slr0.5_seed7: ok val ndcg 0.0102
+fallback_r32_eps1_T50_C1.0_lr2.5_slr0.5_seed99: ok val ndcg 0.0120
+fallback_r32_nodp_T50_CNone_lr2.5_slr1.0_seed42: ok val ndcg 0.0198
+fallback_r32_eps1_T50_C1.0_lr2.5_slr0.5_seed7: ok val ndcg 0.0108
+fallback_r32_eps2_T50_C1.0_lr2.5_slr0.5_seed99: ok val ndcg 0.0099
+fallback_r32_eps8_T50_C1.0_lr2.5_slr0.5_seed99: ok val ndcg 0.0065
+fallback_r32_eps8_T50_C1.0_lr2.5_slr1.0_seed42: ok val ndcg 0.0263
+fallback_r32_eps4_T50_C1.0_lr2.5_slr0.5_seed99: ok val ndcg 0.0099
+fallback_r32_eps1_T50_C1.0_lr2.5_slr1.0_seed42: ok val ndcg 0.0056
+fallback_r32_eps4_T50_C1.0_lr2.5_slr1.0_seed42: ok val ndcg 0.0374
+fallback_r32_nodp_T50_CNone_lr2.5_slr1.0_seed123: ok val ndcg 0.0235
+fallback_r32_eps2_T50_C1.0_lr2.5_slr1.0_seed42: ok val ndcg 0.0188
+fallback_r32_eps4_T50_C1.0_lr2.5_slr1.0_seed123: ok val ndcg 0.0436
+fallback_r32_eps8_T50_C1.0_lr2.5_slr1.0_seed123: ok val ndcg 0.0370
+fallback_r32_eps2_T50_C1.0_lr2.5_slr1.0_seed123: ok val ndcg 0.0232
+fallback_r32_nodp_T50_CNone_lr2.5_slr1.0_seed2026: ok val ndcg 0.0393
+fallback_r32_eps1_T50_C1.0_lr2.5_slr1.0_seed123: ok val ndcg 0.0100
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 246, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 205, in _process_chunk
+    return [fn(*args) for args in chunk]
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 205, in <listcomp>
+    return [fn(*args) for args in chunk]
+  File "/home/ag/Amazon ML/fedrec-dp/./experiments/run_b4.py", line 143, in train_validate
+    raise RuntimeError(f"{tag0}: partial artifacts exist; refusing to overwrite (report and inspect)")
+RuntimeError: stability_r16_nodp_T50_CNone_lr5.0_slr1.0_seed123: partial artifacts exist; refusing to overwrite (report and inspect)
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/claude-1010/-home-ag-Amazon-ML/2557b4a9-4c18-4960-962d-b96225ed0451/scratchpad/b4_fallback.py", line 16, in <module>
+    df = rb4.run_many(jobs, 18, keep_checkpoint=True)
+  File "/home/ag/Amazon ML/fedrec-dp/./experiments/run_b4.py", line 205, in run_many
+    return pd.DataFrame(list(ex.map(train_validate, jobs, [keep_checkpoint] * len(jobs))))
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 575, in _chain_from_iterable_of_lists
+    for element in iterable:
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 621, in result_iterator
+    yield _result_or_cancel(fs.pop())
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 319, in _result_or_cancel
+    return fut.result(timeout)
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 451, in result
+    return self.__get_result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+RuntimeError: stability_r16_nodp_T50_CNone_lr5.0_slr1.0_seed123: partial artifacts exist; refusing to overwrite (report and inspect)
+exit 1

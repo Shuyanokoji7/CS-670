@@ -1,0 +1,5 @@
+rank,n_cells,n_failed,local_lr,clip_norm,val_ndcg@10,tag
+4,15,5,10,1,0.042941136795006961,lrcsearch_r4_eps4_T50_C1.0_lr10.0_slr1.0_seed42
+8,15,5,10,1,0.046523484252560289,lrcsearch_r8_eps4_T50_C1.0_lr10.0_slr1.0_seed42
+16,15,3,5,1,0.04842116439559753,lrcsearch_r16_eps4_T50_C1.0_lr5.0_slr1.0_seed42
+32,18,4,5,1,0.048651505989822458,lrcsearch_r32_eps4_T50_C1.0_lr5.0_slr1.0_seed42

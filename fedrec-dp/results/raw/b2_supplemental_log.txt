@@ -1,0 +1,13 @@
+nodp_T50_CNone_slr1.0_seed7: val ndcg@10 0.0523  test ndcg@10 0.0581  eps inf  sigma 0.000  clipped 0.00  snr nan
+nodp_T50_CNone_slr1.0_seed99: val ndcg@10 0.0528  test ndcg@10 0.0568  eps inf  sigma 0.000  clipped 0.00  snr nan
+eps1_T50_C1.0_slr1.0_seed7: val ndcg@10 0.0076  test ndcg@10 0.0124  eps 0.990  sigma 2.977  clipped 0.54  snr 0.0105
+eps2_T50_C1.0_slr1.0_seed7: val ndcg@10 0.0215  test ndcg@10 0.0246  eps 1.993  sigma 1.760  clipped 0.45  snr 0.0170
+eps8_T50_C1.0_slr1.0_seed7: val ndcg@10 0.0437  test ndcg@10 0.0474  eps 7.968  sigma 0.805  clipped 0.32  snr 0.0332
+eps8_T50_C1.0_slr1.0_seed99: val ndcg@10 0.0453  test ndcg@10 0.0508  eps 7.968  sigma 0.805  clipped 0.33  snr 0.0331
+eps1_T50_C1.0_slr1.0_seed99: val ndcg@10 0.0058  test ndcg@10 0.0103  eps 0.990  sigma 2.977  clipped 0.54  snr 0.0104
+eps4_T50_C1.0_slr1.0_seed99: val ndcg@10 0.0313  test ndcg@10 0.0352  eps 3.964  sigma 1.152  clipped 0.38  snr 0.0243
+eps2_T50_C1.0_slr1.0_seed99: val ndcg@10 0.0134  test ndcg@10 0.0204  eps 1.993  sigma 1.760  clipped 0.46  snr 0.0168
+eps4_T50_C1.0_slr1.0_seed7: val ndcg@10 0.0343  test ndcg@10 0.0389  eps 3.964  sigma 1.152  clipped 0.38  snr 0.0245
+/home/ag/Amazon ML/fedrec-dp/./experiments/run_b2.py:273: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  return pd.concat(list(ex.map(run_one, jobs)), ignore_index=True)
+exit 0

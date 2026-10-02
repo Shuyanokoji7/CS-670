@@ -1,0 +1,20 @@
+# B2 final completion — command log (exact commands; cwd /home/ag/Amazon ML/fedrec-dp)
+# 2026-10-02T17:26:16+05:30 appended FINAL B2 freeze entry to RESEARCH_LOG.md; set protocol_frozen: true in configs/b2.yaml
+# 2026-10-02T17:26:16+05:30 snapshot -> results/raw/b2_freeze_snapshot_20261002T172616
+# 2026-10-02T17:26:29+05:30 archived pre-sweep overwrite targets -> results/raw/archive_before_final_sweep_2026-10-02
+$ .venv/bin/python experiments/run_b2.py --accounting
+T 50 target eps 8: sigma 0.8051 -> prv eps 7.9675, rdp eps 9.1198
+T 50 target eps 4: sigma 1.1519 -> prv eps 3.9639, rdp eps 4.4973
+T 50 target eps 2: sigma 1.7604 -> prv eps 1.9933, rdp eps 2.2206
+T 50 target eps 1: sigma 2.9775 -> prv eps 0.9901, rdp eps 1.0872
+# recomputed from stored full-precision sigma (T=50, q=0.1, delta=1e-5):
+target 8: sigma 0.805072021484 | stored eps PRV 7.9675132821 recomputed 7.9675132821 | stored RDP 9.1198176086 recomputed 9.1198176086 | within [target*(1-0.01), target]: True
+target 4: sigma 1.15192871094 | stored eps PRV 3.9638853567 recomputed 3.9638853566 | stored RDP 4.4972831721 recomputed 4.4972831721 | within [target*(1-0.01), target]: True
+target 2: sigma 1.76044921875 | stored eps PRV 1.9932775313 recomputed 1.9932775313 | stored RDP 2.2206446807 recomputed 2.2206446807 | within [target*(1-0.01), target]: True
+target 1: sigma 2.97749023438 | stored eps PRV 0.9900622925 recomputed 0.9900622925 | stored RDP 1.0871961102 recomputed 1.0871961102 | within [target*(1-0.01), target]: True
+$ .venv/bin/python experiments/run_b2.py --sweep --seeds 42 123 2026 --workers 15   # started 2026-10-02T17:26:59+05:30
+# exit 0 at 2026-10-02T17:27:13+05:30; full stdout/stderr in results/raw/b2_final_sweep_log.txt
+# 2026-10-02T17:28:10+05:30 appended FINAL B2 results entry to RESEARCH_LOG.md
+# 2026-10-02T17:29:48+05:30 docs: README B2 section, docs/B2_RESULTS.md, docs/CODEX_HANDOFF.md updated (previous copy docs/archive/CODEX_HANDOFF_2026-10-02_pre_B2_final.md)
+# 2026-10-02T17:31:23+05:30 doc corrections after supervisor review (README, docs/B2_RESULTS.md, docs/CODEX_HANDOFF.md, RESEARCH_LOG annotation + clarification); non-.md files unchanged since verification
+# 2026-10-02T17:34:41+05:30 final corrections only: docs/B2_RESULTS.md wording ('closely'); docs/CODEX_HANDOFF.md consistency (113 tests, final B2 row, historical label, weighting/dense wording); added NOTE_MANIFEST.md + MANIFEST.sha256 to results/raw/b2_freeze_snapshot_20261002T172616 (verified sha256sum -c); RESEARCH_LOG note

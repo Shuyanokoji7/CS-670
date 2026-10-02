@@ -1,0 +1,6 @@
+privacy_level,rank,val_ndcg@10
+eps1,16,0.021173
+eps2,16,0.035268
+eps4,32,0.042062
+eps8,8,0.043309
+nodp,32,0.046760

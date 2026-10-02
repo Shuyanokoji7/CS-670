@@ -5,8 +5,10 @@
     python experiments/run_b2.py --sanity --clip C            # one eps≈4 run, mechanism checks (validation only)
     python experiments/run_b2.py --clip-search                # pre-declared C grid at eps≈4 (validation only)
     python experiments/run_b2.py --server-lr-check            # only if the declared failure criterion is met
+    python experiments/run_b2.py --t-sweep                    # privacy-aware horizon study at eps≈4 (validation only)
     python experiments/run_b2.py --run --epsilon 4 --seed 42  # one run (use --epsilon none for the no-DP control)
     python experiments/run_b2.py --sweep --seeds 42 123 2026  # control + all eps, then analysis and plots
+Test evaluation (--run, --sweep) is refused unless privacy.protocol_frozen is true in configs/b2.yaml.
 """
 
 import os
@@ -47,25 +49,73 @@ def load_all():
     return cfg, data_cfg, split, split_fingerprint(split)
 
 
-def sigma_table(cfg):
-    """Noise multipliers for the declared target epsilons (cached in results/b2_accounting.csv)."""
+def cached_accounting_row(cfg, epsilon, T, tab=None):
+    """The cached accounting row for the FULL key (target eps, T, q, delta, primary + cross-check accountant), or None.
+
+    A row also has to be consistent with the configured solver tolerance (target*(1-tol) <= eps <= target).
+    Several matching rows with different sigma are a conflict and raise. Rows for other keys are kept, not reused.
+    """
+    pc, q = cfg["privacy"], float(cfg["federated"]["client_sampling_q"])
     path = RESULTS / "b2_accounting.csv"
-    if not path.exists():
-        raise FileNotFoundError("run --accounting first")
-    return pd.read_csv(path).set_index("target_epsilon")
+    if tab is None:
+        if not path.exists():
+            return None
+        tab = pd.read_csv(path)
+    if not len(tab):
+        return None
+    tol = float(pc["solver_tolerance"])
+    m = tab[np.isclose(tab["target_epsilon"].astype(float), float(epsilon))
+            & (tab["T"].astype(int) == int(T))
+            & np.isclose(tab["q"].astype(float), q)
+            & np.isclose(tab["delta"].astype(float), float(pc["delta"]), rtol=0, atol=1e-15)
+            & (tab["accountant"] == pc["accountant"])
+            & (tab["cross_check_accountant"] == pc["cross_check_accountant"])
+            & (tab["epsilon"].astype(float) <= float(epsilon))
+            & (tab["epsilon"].astype(float) >= float(epsilon) * (1 - tol))]
+    if m["noise_multiplier"].nunique() > 1:
+        raise ValueError(f"conflicting cached sigma rows for eps={epsilon}, T={T}: {sorted(m['noise_multiplier'])}")
+    return m.iloc[0] if len(m) else None
 
 
-def run_cfg(cfg, epsilon, clip=None, server_lr=None):
+def sigma_for(cfg, epsilon, T):
+    """Noise multiplier for (target eps, T) under the configured q, delta and accountants, from
+    results/b2_accounting.csv; solved with the primary accountant and appended if no row matches the full key.
+    Every T gets its own sigma: eps depends on (sigma, q, T, delta), never on C or D."""
+    pc, q = cfg["privacy"], cfg["federated"]["client_sampling_q"]
+    path = RESULTS / "b2_accounting.csv"
+    tab = pd.read_csv(path) if path.exists() else pd.DataFrame()
+    hit = cached_accounting_row(cfg, epsilon, T, tab)
+    if hit is not None:
+        return float(hit["noise_multiplier"])
+    sigma, _ = solve_sigma(epsilon, q, T, pc["delta"], pc["accountant"], tol=pc["solver_tolerance"])
+    sigma = float("%.12g" % sigma)        # the exact value that is stored, accounted and later read back
+    rec = privacy_record({"noise_multiplier": sigma, "delta": pc["delta"], "clip_norm": None,
+                          "denominator": pc["denominator"]}, q, T, pc["accountant"], pc["cross_check_accountant"])
+    row = {"target_epsilon": float(epsilon), "noise_multiplier": sigma, "epsilon": rec["epsilon"],
+           "accountant": pc["accountant"], "epsilon_cross_check": rec["epsilon_cross_check"],
+           "cross_check_accountant": pc["cross_check_accountant"], "delta": pc["delta"], "q": q, "T": int(T)}
+    new = pd.DataFrame([row])
+    tab = (pd.concat([tab, new], ignore_index=True) if len(tab) else new).sort_values(["T", "target_epsilon"])
+    tab.to_csv(path, index=False, float_format="%.12g")
+    return sigma
+
+
+def require_frozen(cfg):
+    if not cfg["privacy"].get("protocol_frozen", False):
+        raise RuntimeError("B2 protocol is not frozen (privacy.protocol_frozen: false); test evaluation refused")
+
+
+def run_cfg(cfg, epsilon, clip=None, server_lr=None, T=None):
     """Privacy config for one run. epsilon=None -> matched no-DP control (no clipping, no noise)."""
     c = copy.deepcopy(cfg)
     pc = c["privacy"]
+    if T is not None:
+        pc["T"] = int(T)
     if epsilon is None:
         pc.update(clip_norm=None, noise_multiplier=0.0, target_epsilon=None)
     else:
-        tab = sigma_table(cfg)
         pc.update(clip_norm=float(clip if clip is not None else pc["clip_norm"]),
-                  noise_multiplier=float(tab.loc[float(epsilon), "noise_multiplier"]),
-                  target_epsilon=float(epsilon))
+                  noise_multiplier=sigma_for(cfg, float(epsilon), pc["T"]), target_epsilon=float(epsilon))
     if server_lr is not None:
         c["federated"]["server_lr"] = float(server_lr)
     return c
@@ -77,20 +127,14 @@ def label(epsilon):
 
 # --------------------------------------------------------------------------- accounting
 
-def accounting():
+def accounting(T=None):
     cfg = load_config(ROOT / CONFIG)
-    pc, q, T = cfg["privacy"], cfg["federated"]["client_sampling_q"], cfg["privacy"]["T"]
-    rows = []
-    for eps in pc["target_epsilons"]:
-        sigma, achieved = solve_sigma(eps, q, T, pc["delta"], pc["accountant"], tol=pc["solver_tolerance"])
-        rec = privacy_record({"noise_multiplier": sigma, "delta": pc["delta"], "clip_norm": None,
-                              "denominator": pc["denominator"]}, q, T, pc["accountant"], pc["cross_check_accountant"])
-        rows.append({"target_epsilon": eps, "noise_multiplier": sigma, "epsilon": rec["epsilon"],
-                     "accountant": pc["accountant"], "epsilon_cross_check": rec["epsilon_cross_check"],
-                     "cross_check_accountant": pc["cross_check_accountant"], "delta": pc["delta"], "q": q, "T": T})
-        print(f"target eps {eps}: sigma {sigma:.4f} -> {pc['accountant']} eps {rec['epsilon']:.4f}, "
-              f"{pc['cross_check_accountant']} eps {rec['epsilon_cross_check']:.4f}")
-    pd.DataFrame(rows).to_csv(RESULTS / "b2_accounting.csv", index=False, float_format="%.12g")   # full sigma precision
+    T = int(T or cfg["privacy"]["T"])
+    for eps in cfg["privacy"]["target_epsilons"]:
+        sigma = sigma_for(cfg, eps, T)
+        row = cached_accounting_row(cfg, eps, T)            # same full-key match as sigma_for
+        print(f"T {T} target eps {eps}: sigma {sigma:.4f} -> {row['accountant']} eps {row['epsilon']:.4f}, "
+              f"{row['cross_check_accountant']} eps {row['epsilon_cross_check']:.4f}")
 
 
 # --------------------------------------------------------------------------- B1 norm statistics
@@ -100,7 +144,7 @@ def norm_stats(seed=42):
     cfg, _, split, _ = load_all()
     c = copy.deepcopy(cfg)
     c["privacy"].update(clip_norm=None, noise_multiplier=0.0, denominator="realised")
-    T = cfg["privacy"]["T"]
+    T = 1000                                   # B1's regime (historical step that defined the C grid)
     _, _, _, norms = train_dp_federated(split, c, seed, T, eval_every=T, validate=False, keep_client_norms=True,
                                         log=lambda *_: None)
     df = pd.DataFrame(norms, columns=["round", "update_norm"])
@@ -167,45 +211,60 @@ def _diag_summary(rounds):
             "bytes_per_client_per_round": int(r["bytes_per_client"].max())}
 
 
-def run_one(args):
-    """Train one (epsilon, seed); evaluate the round-T model on validation and ONCE on test."""
-    epsilon, seed, clip, server_lr, evaluate_test = args
+def job(epsilon, seed, clip=None, server_lr=None, evaluate_test=False, T=None):
+    return {"epsilon": epsilon, "seed": seed, "clip": clip, "server_lr": server_lr, "evaluate_test": evaluate_test,
+            "T": T}
+
+
+def run_tag(c, epsilon, seed):
+    pc = c["privacy"]
+    return f"{label(epsilon)}_T{pc['T']}_C{pc['clip_norm']}_slr{float(c['federated']['server_lr'])}_seed{seed}"
+
+
+def run_one(j):
+    """Train one configuration for exactly T rounds; validation always, test ONCE only if the protocol is frozen."""
     cfg, data_cfg, split, fp = load_all()
-    c = run_cfg(cfg, epsilon, clip, server_lr)
-    k = c["evaluation"]["k"]
-    rec = privacy_record(c["privacy"], c["federated"]["client_sampling_q"], c["privacy"]["T"],
+    if j["evaluate_test"]:
+        require_frozen(cfg)
+    c = run_cfg(cfg, j["epsilon"], j["clip"], j["server_lr"], j["T"])
+    seed, k, T = j["seed"], c["evaluation"]["k"], c["privacy"]["T"]
+    rec = privacy_record(c["privacy"], c["federated"]["client_sampling_q"], T,
                          c["privacy"]["accountant"], c["privacy"]["cross_check_accountant"])
     sim, history, rounds, _ = train_one(c, split, seed)
+    assert sim.round == T == rec["T"]                    # the accountant composes exactly the rounds that ran
     val_summary, val_ranks = validation_metrics(sim, split, k)
     D = split["n_items"] * c["model"]["dim"]
     sc = rec["noise_multiplier"] * (rec["clip_norm"] or 0.0)
-    meta = {"model": "b2_dp_federated_bpr" if rec["dp"] else "b1_dpready_nodp", "privacy_level": label(epsilon),
-            "seed": seed, "noise_seed": sim.noise_seed, "rounds": sim.round, **rec,
-            "server_lr": c["federated"]["server_lr"], "shared_coordinates_D": D,
-            "expected_noise_sq_norm": D * sc ** 2, "typical_noise_norm": sc * np.sqrt(D),
+    slr = float(c["federated"]["server_lr"])
+    meta = {"model": "b2_dp_federated_bpr" if rec["dp"] else "b2_nodp_control", "privacy_level": label(j["epsilon"]),
+            "seed": seed, "noise_seed": sim.noise_seed, "rounds": sim.round, **rec, "server_lr": slr,
+            "shared_coordinates_D": D, "expected_noise_sq_norm": D * sc ** 2, "typical_noise_norm": sc * np.sqrt(D),
+            "final_item_norm_mean": float(np.linalg.norm(sim.Q, axis=1).mean()),
+            "pure_noise_item_norm_prediction": slr * sc * np.sqrt(T) / (c["federated"]["client_sampling_q"]
+                                                                       * split["n_users"]) * np.sqrt(c["model"]["dim"]),
+            "final_user_norm_mean": float(np.linalg.norm(sim.P, axis=1).mean()),
             **_diag_summary(rounds), "split_fingerprint": fp}
-    tag = f"{label(epsilon)}_C{rec['clip_norm']}_slr{c['federated']['server_lr']}_seed{seed}"
+    tag = run_tag(c, j["epsilon"], seed)
     out = RAW / "b2_runs"
     out.mkdir(parents=True, exist_ok=True)
     pd.DataFrame(history).to_csv(out / f"history_{tag}.csv", index=False, float_format="%.6f")
     pd.DataFrame(rounds).to_csv(out / f"rounds_{tag}.csv", index=False, float_format="%.6f")
     rows = [{**meta, **val_summary}]
-    if evaluate_test:
+    if j["evaluate_test"]:
         test_summary, test_ranks = evaluate(sim.full_scores, split, "test", k=k)   # the only test evaluation
         rows.append({**meta, **test_summary})
         per_user_table(split, "test", test_ranks, k).to_csv(out / f"per_user_test_{tag}.csv", index=False,
                                                             float_format="%.6f")
         CHECKPOINTS.mkdir(parents=True, exist_ok=True)
-        save_checkpoint(CHECKPOINTS / f"b2_{label(epsilon)}_seed{seed}.pt", sim, c, data_cfg, seed, fp, rec,
-                        val_summary, split)
+        save_checkpoint(CHECKPOINTS / f"b2_{tag}.pt", sim, c, data_cfg, seed, fp, rec, val_summary, split)
     per_user_table(split, "validation", val_ranks, k).to_csv(out / f"per_user_validation_{tag}.csv", index=False,
                                                              float_format="%.6f")
     df = pd.DataFrame(rows)
     df.to_csv(out / f"result_{tag}.csv", index=False, float_format="%.6f")
     print(f"{tag}: val ndcg@{k} {val_summary[f'ndcg@{k}']:.4f}"
-          + (f"  test ndcg@{k} {rows[1][f'ndcg@{k}']:.4f}" if evaluate_test else "")
-          + f"  eps {rec['epsilon']:.3f}  clipped {meta['frac_clipped_mean']:.2f}  snr {meta['signal_to_noise_mean']:.3f}",
-          flush=True)
+          + (f"  test ndcg@{k} {rows[1][f'ndcg@{k}']:.4f}" if j["evaluate_test"] else "")
+          + f"  eps {rec['epsilon']:.3f}  sigma {rec['noise_multiplier']:.3f}  clipped {meta['frac_clipped_mean']:.2f}"
+          + f"  snr {meta['signal_to_noise_mean']:.4f}", flush=True)
     return df
 
 
@@ -220,11 +279,11 @@ def sanity(clip):
     cfg, _, split, _ = load_all()
     eps = cfg["privacy"]["reference_epsilon"]
     c = run_cfg(cfg, eps, clip)
-    rec = privacy_record(c["privacy"], c["federated"]["client_sampling_q"], c["privacy"]["T"])
-    tab = sigma_table(cfg)
+    T = c["privacy"]["T"]
+    rec = privacy_record(c["privacy"], c["federated"]["client_sampling_q"], T)
+    tab_eps = float(cached_accounting_row(cfg, eps, T)["epsilon"])   # same full-key match as sigma_for
     sim, history, rounds, _ = train_one(c, split, cfg["seed"], log=print)
-    r = pd.DataFrame(rounds)
-    h = pd.DataFrame(history)
+    r, h = pd.DataFrame(rounds), pd.DataFrame(history)
     n_items, d = split["n_items"], c["model"]["dim"]
     checks = {
         "scores finite": bool(np.isfinite(sim.full_scores(np.arange(split["n_users"]))).all()),
@@ -233,52 +292,112 @@ def sanity(clip):
         "post-clip norms <= C": bool((r["post_clip_norm_mean"] <= rec["clip_norm"] * (1 + 1e-6)).all()),
         "noise non-zero, std = sigma*C": bool((r["noise_norm"] > 0).all() and
                                               np.allclose(r["noise_std"], rec["noise_multiplier"] * rec["clip_norm"])),
-        "accountant eps matches table": bool(abs(rec["epsilon"] - tab.loc[float(eps), "epsilon"]) < 1e-6),
-        "exactly T rounds": bool(sim.round == c["privacy"]["T"] and len(r) == c["privacy"]["T"]),
+        "accountant eps matches table": bool(abs(rec["epsilon"] - tab_eps) < 1e-6),
+        "exactly T rounds": bool(sim.round == T and len(r) == T),
         "comm = clients x 2 x M x d x 4 bytes": bool(((r["download_bytes"] + r["upload_bytes"]) ==
                                                       r["clients"] * 2 * n_items * d * 4).all()),
     }
     pd.DataFrame([{"check": k, "passed": v} for k, v in checks.items()]).to_csv(
         RESULTS / "b2_sanity_checks.csv", index=False)
-    pd.DataFrame(history).to_csv(RAW / "b2_sanity_history.csv", index=False, float_format="%.6f")
     for k, v in checks.items():
         print(f"[{'PASS' if v else 'FAIL'}] {k}")
-    print(f"final val ndcg@10 {h['val_ndcg@10'].iloc[-1]:.4f} (round 0: {h['val_ndcg@10'].iloc[0]:.4f}); "
+    print(f"T {T}: final val ndcg@10 {h['val_ndcg@10'].iloc[-1]:.4f} (round 0: {h['val_ndcg@10'].iloc[0]:.4f}); "
           f"eps {rec['epsilon']:.4f} sigma {rec['noise_multiplier']:.4f} C {rec['clip_norm']}")
     if not all(checks.values()):
         raise SystemExit("sanity checks failed")
 
 
-def clip_search(workers):
+STUDY_COLS = ["T", "seed", "clip_norm", "server_lr", "target_epsilon", "noise_multiplier", "epsilon",
+              "epsilon_cross_check", "ndcg@10", "hr@10", "recall@10", "mrr@10", "frac_clipped_mean",
+              "pre_clip_norm_median_mean", "clipped_aggregate_norm_mean", "noise_norm_mean", "signal_to_noise_mean",
+              "final_item_norm_mean", "pure_noise_item_norm_prediction"]
+
+
+def t_sweep(workers, run_fn=None):
+    """Privacy-aware horizon study at eps≈4 (validation only), with the declared boundary and seed rules.
+
+    run_fn(list_of_jobs) -> DataFrame of run results (default: parallel run_many); injectable for tests.
+    Returns (all rows, selected T, decision text). Rules (RESEARCH_LOG 2026-10-02):
+      * grid T in t_grid, seed 42; metric = final-round validation NDCG@10;
+      * ONE boundary expansion: best == min(grid) -> add t_boundary.low; best == max(grid) -> add t_boundary.high;
+      * if the top two T differ by < margin on seed 42: run both on t_seed_rule_seeds, select by the 3-seed mean.
+    """
     cfg = load_config(ROOT / CONFIG)
-    eps, seed = cfg["privacy"]["reference_epsilon"], cfg["seed"]
-    df = run_many([(eps, seed, C, None, False) for C in cfg["privacy"]["clip_grid"]], workers)
+    pc = cfg["privacy"]
+    eps, seed, margin = pc["reference_epsilon"], cfg["seed"], pc["t_seed_rule_margin"]
+    run_fn = run_fn or (lambda jobs: run_many(jobs, workers))
+    for T in list(pc["t_grid"]) + [pc["t_boundary"]["low"], pc["t_boundary"]["high"]]:
+        sigma_for(cfg, eps, T)                                        # solve sequentially (shared cache file)
+
+    def go(jobs, stage):
+        return run_fn(jobs).assign(stage=stage)
+
+    df = go([job(eps, seed, T=T) for T in pc["t_grid"]], "grid")
+    best_T = int(df.sort_values("ndcg@10", ascending=False, kind="mergesort").iloc[0]["T"])
+    boundary = None
+    if best_T == min(pc["t_grid"]):
+        boundary = int(pc["t_boundary"]["low"])
+    elif best_T == max(pc["t_grid"]):
+        boundary = int(pc["t_boundary"]["high"])
+    if boundary is not None:                                          # applied once; never extended further
+        df = pd.concat([df, go([job(eps, seed, T=boundary)], "boundary")], ignore_index=True)
+    s42 = df[df["seed"] == seed].sort_values("ndcg@10", ascending=False, kind="mergesort")
+    top = s42.head(2)
+    gap = float(top["ndcg@10"].iloc[0] - top["ndcg@10"].iloc[1]) if len(top) == 2 else float("inf")
+    if gap < margin:
+        extra = [job(eps, s, T=int(T)) for T in top["T"] for s in pc["t_seed_rule_seeds"]]
+        df = pd.concat([df, go(extra, "seed_rule")], ignore_index=True)
+        means = df[df["T"].isin(top["T"])].groupby("T")["ndcg@10"].mean()
+        selected = int(means.idxmax())
+        decision = (f"top two on seed {seed} (T={int(top['T'].iloc[0])}, T={int(top['T'].iloc[1])}) differ by "
+                    f"{gap:.4f} < {margin}: selected by mean over seeds {[seed] + list(pc['t_seed_rule_seeds'])} "
+                    f"({', '.join(f'T={int(t)}: {m:.4f}' for t, m in means.items())})")
+    else:
+        selected = int(top["T"].iloc[0])
+        decision = f"seed-{seed} winner; top-two gap {gap:.4f} >= {margin} (provisional single-seed selection)"
+    if boundary is not None:
+        decision += f"; boundary expansion to T={boundary} applied (best grid T={best_T})"
+    out = df[["stage"] + STUDY_COLS].sort_values(["stage", "T", "seed"])
+    out.to_csv(RESULTS / "b2_t_sweep.csv", index=False, float_format="%.6f")
+    pd.DataFrame([{"selected_T": selected, "decision": decision, "boundary_T": boundary, "top_two_gap_seed42": gap,
+                   "margin": margin}]).to_csv(RESULTS / "b2_t_selection.csv", index=False)
+    print(out.to_string(index=False, float_format=lambda v: f"{v:.4f}"))
+    print(f"selected T = {selected} ({decision})")
+    return df, selected, decision
+
+
+def clip_search(workers):
+    """Existing C grid at the configured T (validation only)."""
+    cfg = load_config(ROOT / CONFIG)
+    eps, seed, T = cfg["privacy"]["reference_epsilon"], cfg["seed"], cfg["privacy"]["T"]
+    df = run_many([job(eps, seed, clip=C) for C in cfg["privacy"]["clip_grid"]], workers)
     df = df.sort_values("ndcg@10", ascending=False, kind="mergesort")
-    keep = ["clip_norm", "noise_multiplier", "epsilon", "ndcg@10", "hr@10", "recall@10", "mrr@10",
-            "frac_clipped_mean", "shrinkage_mean", "signal_to_noise_mean"]
-    df[keep].to_csv(RESULTS / "b2_clip_search.csv", index=False, float_format="%.6f")
-    print(df[keep].to_string(index=False, float_format=lambda v: f"{v:.4f}"))
-    print(f"selected C (highest final-round validation NDCG@10 at eps≈{eps}): {df.iloc[0]['clip_norm']}")
+    df[STUDY_COLS].to_csv(RESULTS / f"b2_clip_search_T{T}.csv", index=False, float_format="%.6f")
+    print(df[STUDY_COLS].to_string(index=False, float_format=lambda v: f"{v:.4f}"))
+    print(f"selected C (highest final-round validation NDCG@10, T={T}, eps≈{eps}): {df.iloc[0]['clip_norm']}")
 
 
 def server_lr_check(workers):
     cfg = load_config(ROOT / CONFIG)
-    eps, seed = cfg["privacy"]["reference_epsilon"], cfg["seed"]
-    df = run_many([(eps, seed, None, s, False) for s in cfg["privacy"]["server_lr_grid"]], workers)
-    keep = ["server_lr", "clip_norm", "ndcg@10", "hr@10", "mrr@10", "signal_to_noise_mean"]
-    df[keep].sort_values("ndcg@10", ascending=False).to_csv(RESULTS / "b2_server_lr_check.csv", index=False,
-                                                              float_format="%.6f")
-    print(df[keep].to_string(index=False, float_format=lambda v: f"{v:.4f}"))
+    eps, seed, T = cfg["privacy"]["reference_epsilon"], cfg["seed"], cfg["privacy"]["T"]
+    df = run_many([job(eps, seed, server_lr=s) for s in cfg["privacy"]["server_lr_grid"]], workers)
+    df = df.sort_values("ndcg@10", ascending=False, kind="mergesort")
+    df[STUDY_COLS].to_csv(RESULTS / f"b2_server_lr_check_T{T}.csv", index=False, float_format="%.6f")
+    print(df[STUDY_COLS].to_string(index=False, float_format=lambda v: f"{v:.4f}"))
 
 
 # --------------------------------------------------------------------------- sweep + analysis
 
 def sweep(seeds, workers):
     cfg = load_config(ROOT / CONFIG)
+    require_frozen(cfg)
+    T = cfg["privacy"]["T"]
+    for e in cfg["privacy"]["target_epsilons"]:
+        sigma_for(cfg, e, T)                                          # solve sequentially before parallel runs
     levels = [None] + list(cfg["privacy"]["target_epsilons"])
-    jobs = [(e, s, None, None, True) for s in seeds for e in levels]
+    jobs = [job(e, s, evaluate_test=True) for s in seeds for e in levels]
     if float(cfg["federated"]["server_lr"]) != B1_SERVER_LR:      # B1-DPReady: the spec's control, B1's eta_s
-        jobs += [(None, s, None, B1_SERVER_LR, True) for s in seeds]
+        jobs += [job(None, s, server_lr=B1_SERVER_LR, evaluate_test=True) for s in seeds]
     run_many(jobs, workers)
     analyse(seeds)
 
@@ -297,9 +416,11 @@ def analyse(seeds):
     slr = float(cfg["federated"]["server_lr"])
     levels = [None] + list(cfg["privacy"]["target_epsilons"])
     k = cfg["evaluation"]["k"]
-    tags = {label(e): [f"{label(e)}_C{None if e is None else float(C)}_slr{slr}_seed{s}" for s in seeds] for e in levels}
+    T = int(cfg["privacy"]["T"])
+    tags = {label(e): [f"{label(e)}_T{T}_C{None if e is None else float(C)}_slr{slr}_seed{s}" for s in seeds]
+            for e in levels}
     if slr != B1_SERVER_LR:   # the spec's B1-DPReady control (B1's eta_s) is reported separately
-        tags["nodp_b1dpready"] = [f"nodp_CNone_slr{B1_SERVER_LR}_seed{s}" for s in seeds]
+        tags["nodp_b1dpready"] = [f"nodp_T{T}_CNone_slr{B1_SERVER_LR}_seed{s}" for s in seeds]
     runs = pd.concat([pd.read_csv(RAW / "b2_runs" / f"result_{t}.csv").assign(privacy_level=lvl)
                       for lvl, ts in tags.items() for t in ts], ignore_index=True)
     runs.to_csv(RESULTS / "b2_privacy_sweep.csv", index=False, float_format="%.6f")
@@ -310,10 +431,12 @@ def analyse(seeds):
                "target_epsilon": g["target_epsilon"].iloc[0], "epsilon": g["epsilon"].iloc[0],
                "epsilon_cross_check": g["epsilon_cross_check"].iloc[0],
                "noise_multiplier": g["noise_multiplier"].iloc[0], "clip_norm": g["clip_norm"].iloc[0],
-               "typical_noise_norm": g["typical_noise_norm"].iloc[0], "shared_coordinates_D": g["shared_coordinates_D"].iloc[0]}
+               "typical_noise_norm": g["typical_noise_norm"].iloc[0], "shared_coordinates_D": g["shared_coordinates_D"].iloc[0],
+               "T": int(g["T"].iloc[0])}
         for m in [f"{x}@{k}" for x in METRICS] + ["frac_clipped_mean", "signal_to_noise_mean", "noise_norm_mean",
                                                   "clipped_aggregate_norm_mean", "shrinkage_mean",
-                                                  "pre_clip_norm_median_mean", "comm_bytes_total"]:
+                                                  "pre_clip_norm_median_mean", "comm_bytes_total",
+                                                  "final_item_norm_mean", "pure_noise_item_norm_prediction"]:
             row[f"{m}_mean"], row[f"{m}_std"] = g[m].mean(), g[m].std(ddof=1) if len(g) > 1 else 0.0
         rows.append(row)
     summary = pd.DataFrame(rows)
@@ -331,7 +454,7 @@ def analyse(seeds):
     if "nodp_b1dpready" in tags:
         dpready = per("nodp_b1dpready")
         cols["nodp_b1dpready"] = dpready
-        pairs += [{"comparison": "B1-DPReady (eta_s=1, qN, T=1000) - B1 frozen  [protocol effect]", **paired(dpready - b1)},
+        pairs += [{"comparison": f"B1-DPReady (eta_s=1, qN, T={T}) - B1 frozen  [protocol effect]", **paired(dpready - b1)},
                   {"comparison": f"matched no-DP (eta_s={slr:g}) - B1-DPReady  [server-lr effect]", **paired(ref - dpready)}]
     else:
         pairs += [{"comparison": "matched no-DP (B1-DPReady) - B1 frozen  [protocol effect]", **paired(ref - b1)}]
@@ -386,7 +509,7 @@ def plots(summary, diag, k):
     ax.set_ylim(0, 1.1)
     ax.set_xlabel("ε")
     ax.set_ylabel("NDCG@10 retention vs matched no-DP")
-    fig.suptitle("B2: privacy–utility trade-off (q=0.1, T=1000, fixed C)")
+    fig.suptitle(f"B2: privacy–utility trade-off (q=0.1, T={int(t['T'].iloc[0])}, fixed C)")
     fig.tight_layout()
     fig.savefig(RESULTS / "plots" / "b2_privacy_utility.png", dpi=120)
     plt.close(fig)
@@ -417,6 +540,7 @@ def main():
     p.add_argument("--clip", type=float)
     p.add_argument("--clip-search", action="store_true")
     p.add_argument("--server-lr-check", action="store_true")
+    p.add_argument("--t-sweep", action="store_true")
     p.add_argument("--run", action="store_true")
     p.add_argument("--epsilon", default=None, help="target epsilon, or 'none' for the no-DP control")
     p.add_argument("--seed", type=int, default=42)
@@ -435,9 +559,11 @@ def main():
         clip_search(a.workers)
     elif a.server_lr_check:
         server_lr_check(a.workers)
+    elif a.t_sweep:
+        t_sweep(a.workers)
     elif a.run:
         eps = None if a.epsilon in (None, "none") else float(a.epsilon)
-        run_one((eps, a.seed, None, None, True))
+        run_one(job(eps, a.seed, evaluate_test=True))
     elif a.sweep:
         sweep(a.seeds, a.workers)
     elif a.analyse:

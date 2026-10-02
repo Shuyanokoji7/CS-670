@@ -1,0 +1,27 @@
+slrsearch_r8_eps4_T50_C1.0_lr10.0_slr2.0_seed42: training diverged at round 40 val ndcg nan
+slrsearch_r4_eps4_T50_C1.0_lr10.0_slr2.0_seed42: training diverged at round 33 val ndcg nan
+slrsearch_r4_eps4_T50_C1.0_lr10.0_slr0.5_seed42: ok val ndcg 0.0455
+slrsearch_r8_eps4_T50_C1.0_lr10.0_slr0.5_seed42: ok val ndcg 0.0503
+slrsearch_r16_eps4_T50_C1.0_lr5.0_slr0.5_seed42: ok val ndcg 0.0290
+slrsearch_r16_eps4_T50_C1.0_lr5.0_slr2.0_seed42: ok val ndcg 0.0359
+slrsearch_r32_eps4_T50_C1.0_lr5.0_slr0.5_seed42: ok val ndcg 0.0278
+slrsearch_r32_eps4_T50_C1.0_lr5.0_slr2.0_seed42: ok val ndcg 0.0256
+ rank  server_lr                        status  val_ndcg@10
+    4        1.0                            ok     0.042941
+    8        1.0                            ok     0.046523
+   16        1.0                            ok     0.048421
+   32        1.0                            ok     0.048652
+    4        0.5                            ok     0.045510
+    4        2.0 training diverged at round 33          NaN
+    8        0.5                            ok     0.050273
+    8        2.0 training diverged at round 40          NaN
+   16        0.5                            ok     0.029006
+   16        2.0                            ok     0.035899
+   32        0.5                            ok     0.027846
+   32        2.0                            ok     0.025584
+ rank  server_lr  val_ndcg@10  n_failed
+    4        0.5     0.045510         1
+    8        0.5     0.050273         1
+   16        1.0     0.048421         0
+   32        1.0     0.048652         0
+exit 0

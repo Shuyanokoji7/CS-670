@@ -1,0 +1,32 @@
+final-train r=32 seed=123: diverged best 170/226
+final-train r=4 seed=99: early_stopping best 990/1990
+final-train r=4 seed=42: early_stopping best 2880/3880
+final-train r=4 seed=2026: early_stopping best 2910/3910
+final-train r=4 seed=123: early_stopping best 3540/4540
+final-train r=4 seed=7: early_stopping best 4600/5600
+final-train r=32 seed=2026: early_stopping best 2890/3890
+final-train r=32 seed=7: early_stopping best 2950/3950
+final-train r=32 seed=99: early_stopping best 3160/4160
+final-train r=32 seed=42: early_stopping best 3290/4290
+ rank  seed  best_round  rounds_run     stopped_by  val_ndcg@10
+    4    42        2880        3880 early_stopping     0.072121
+    4   123        3540        4540 early_stopping     0.075203
+    4  2026        2910        3910 early_stopping     0.071605
+    4     7        4600        5600 early_stopping     0.075004
+    4    99         990        1990 early_stopping     0.059401
+    8    42        3330        4330 early_stopping     0.085215
+    8   123        3840        4840 early_stopping     0.087324
+    8  2026        3510        4510 early_stopping     0.082128
+    8     7        3580        4580 early_stopping     0.085006
+    8    99        1060        2060 early_stopping     0.072996
+   16    42        3920        4920 early_stopping     0.091296
+   16   123        2980        3980 early_stopping     0.084448
+   16  2026        4910        5910 early_stopping     0.086198
+   16     7        3670        4670 early_stopping     0.085686
+   16    99        2900        3900 early_stopping     0.088942
+   32    42        3290        4290 early_stopping     0.085414
+   32   123         170         226       diverged          NaN
+   32  2026        2890        3890 early_stopping     0.084841
+   32     7        2950        3950 early_stopping     0.086663
+   32    99        3160        4160 early_stopping     0.094624
+exit 0

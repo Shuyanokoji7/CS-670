@@ -1,0 +1,47 @@
+/home/ag/Amazon ML/fedrec-dp/.venv/lib/python3.10/site-packages/opacus/accountants/analysis/rdp.py:332: UserWarning: Optimal order is the largest alpha. Please consider expanding the range of alphas to get a tighter privacy bound.
+  warnings.warn(
+/home/ag/Amazon ML/fedrec-dp/.venv/lib/python3.10/site-packages/opacus/accountants/analysis/rdp.py:332: UserWarning: Optimal order is the largest alpha. Please consider expanding the range of alphas to get a tighter privacy bound.
+  warnings.warn(
+/home/ag/Amazon ML/fedrec-dp/.venv/lib/python3.10/site-packages/opacus/accountants/analysis/rdp.py:332: UserWarning: Optimal order is the largest alpha. Please consider expanding the range of alphas to get a tighter privacy bound.
+  warnings.warn(
+/home/ag/Amazon ML/fedrec-dp/.venv/lib/python3.10/site-packages/opacus/accountants/analysis/rdp.py:332: UserWarning: Optimal order is the smallest alpha. Please consider expanding the range of alphas to get a tighter privacy bound.
+  warnings.warn(
+/home/ag/Amazon ML/fedrec-dp/.venv/lib/python3.10/site-packages/opacus/accountants/analysis/rdp.py:332: UserWarning: Optimal order is the largest alpha. Please consider expanding the range of alphas to get a tighter privacy bound.
+  warnings.warn(
+/home/ag/Amazon ML/fedrec-dp/.venv/lib/python3.10/site-packages/opacus/accountants/analysis/rdp.py:332: UserWarning: Optimal order is the largest alpha. Please consider expanding the range of alphas to get a tighter privacy bound.
+  warnings.warn(
+/home/ag/Amazon ML/fedrec-dp/.venv/lib/python3.10/site-packages/opacus/accountants/analysis/rdp.py:332: UserWarning: Optimal order is the smallest alpha. Please consider expanding the range of alphas to get a tighter privacy bound.
+  warnings.warn(
+/home/ag/Amazon ML/fedrec-dp/.venv/lib/python3.10/site-packages/opacus/accountants/analysis/prv/prvs.py:67: RuntimeWarning: overflow encountered in exp
+  z = np.log(np.where(t > np.log(1 - q), (np.exp(t) + q - 1) / q, 1))
+/home/ag/Amazon ML/fedrec-dp/.venv/lib/python3.10/site-packages/opacus/accountants/analysis/prv/prvs.py:67: RuntimeWarning: overflow encountered in divide
+  z = np.log(np.where(t > np.log(1 - q), (np.exp(t) + q - 1) / q, 1))
+/home/ag/Amazon ML/fedrec-dp/.venv/lib/python3.10/site-packages/opacus/accountants/analysis/prv/prvs.py:160: RuntimeWarning: overflow encountered in exp
+  d2 = np.flip(np.flip(p * np.exp(-t)).cumsum())
+/home/ag/Amazon ML/fedrec-dp/.venv/lib/python3.10/site-packages/opacus/accountants/analysis/prv/prvs.py:160: RuntimeWarning: invalid value encountered in accumulate
+  d2 = np.flip(np.flip(p * np.exp(-t)).cumsum())
+/home/ag/Amazon ML/fedrec-dp/.venv/lib/python3.10/site-packages/opacus/accountants/analysis/prv/prvs.py:161: RuntimeWarning: overflow encountered in exp
+  ndelta = np.exp(t) * d2 - d1
+/home/ag/Amazon ML/fedrec-dp/.venv/lib/python3.10/site-packages/opacus/accountants/analysis/prv/prvs.py:161: RuntimeWarning: invalid value encountered in multiply
+  ndelta = np.exp(t) * d2 - d1
+eps4_T100_C1.5_slr2.0_seed42: val ndcg@10 0.0229  eps 3.968  sigma 1.395  clipped 0.44  snr 0.0212
+eps4_T250_C1.5_slr2.0_seed42: val ndcg@10 0.0158  eps 3.983  sigma 1.931  clipped 0.62  snr 0.0154
+eps4_T500_C1.5_slr2.0_seed42: val ndcg@10 0.0202  eps 3.980  sigma 2.588  clipped 0.78  snr 0.0118
+eps4_T1000_C1.5_slr2.0_seed42: val ndcg@10 0.0124  eps 3.968  sigma 3.562  clipped 0.85  snr 0.0086
+eps4_T50_C1.5_slr2.0_seed42: val ndcg@10 0.0230  eps 3.964  sigma 1.152  clipped 0.36  snr 0.0241
+eps4_T50_C1.5_slr2.0_seed123: val ndcg@10 0.0370  eps 3.964  sigma 1.152  clipped 0.34  snr 0.0244
+eps4_T50_C1.5_slr2.0_seed2026: val ndcg@10 0.0271  eps 3.964  sigma 1.152  clipped 0.36  snr 0.0242
+eps4_T100_C1.5_slr2.0_seed123: val ndcg@10 0.0261  eps 3.968  sigma 1.395  clipped 0.41  snr 0.0211
+eps4_T100_C1.5_slr2.0_seed2026: val ndcg@10 0.0232  eps 3.968  sigma 1.395  clipped 0.45  snr 0.0213
+    stage    T  seed  clip_norm  server_lr  target_epsilon  noise_multiplier  epsilon  epsilon_cross_check  ndcg@10  hr@10  recall@10  mrr@10  frac_clipped_mean  pre_clip_norm_median_mean  clipped_aggregate_norm_mean  noise_norm_mean  signal_to_noise_mean  final_item_norm_mean  pure_noise_item_norm_prediction
+ boundary   50    42     1.5000     2.0000          4.0000            1.1519   3.9639               4.4973   0.0230 0.0488     0.0488  0.0154             0.3602                     1.1045                      13.6486         566.9623                0.0241                2.0956                           2.0753
+     grid  100    42     1.5000     2.0000          4.0000            1.3953   3.9678               4.3990   0.0229 0.0520     0.0520  0.0142             0.4389                     1.3295                      14.5244         686.7056                0.0212                3.5623                           3.5550
+     grid  250    42     1.5000     2.0000          4.0000            1.9308   3.9830               4.3421   0.0158 0.0340     0.0340  0.0104             0.6164                     1.9683                      14.6230         950.1122                0.0154                7.6951                           7.7781
+     grid  500    42     1.5000     2.0000          4.0000            2.5880   3.9804               4.3151   0.0202 0.0361     0.0361  0.0153             0.7825                     4.1011                      15.0682        1273.6401                0.0118               14.5329                          14.7440
+     grid 1000    42     1.5000     2.0000          4.0000            3.5617   3.9684               4.2904   0.0124 0.0276     0.0276  0.0078             0.8490                     8.7317                      15.0281        1752.8226                0.0086               28.3677                          28.6955
+seed_rule   50   123     1.5000     2.0000          4.0000            1.1519   3.9639               4.4973   0.0370 0.0637     0.0637  0.0290             0.3431                     1.0905                      13.8019         566.7465                0.0244                2.0814                           2.0753
+seed_rule   50  2026     1.5000     2.0000          4.0000            1.1519   3.9639               4.4973   0.0271 0.0467     0.0467  0.0212             0.3623                     1.1207                      13.7067         566.8440                0.0242                2.0867                           2.0753
+seed_rule  100   123     1.5000     2.0000          4.0000            1.3953   3.9678               4.3990   0.0261 0.0510     0.0510  0.0187             0.4126                     1.2937                      14.4858         686.7352                0.0211                3.5545                           3.5550
+seed_rule  100  2026     1.5000     2.0000          4.0000            1.3953   3.9678               4.3990   0.0232 0.0446     0.0446  0.0170             0.4476                     1.3426                      14.6555         686.5289                0.0213                3.5463                           3.5550
+selected T = 50 (top two on seed 42 (T=50, T=100) differ by 0.0002 < 0.003: selected by mean over seeds [42, 123, 2026] (T=50: 0.0291, T=100: 0.0241); boundary expansion to T=50 applied (best grid T=100))
+exit 0

@@ -1,0 +1,29 @@
+eps4_T50_C1.0_slr1.0_seed42: val ndcg@10 0.0344  test ndcg@10 0.0446  eps 3.964  sigma 1.152  clipped 0.37  snr 0.0242
+eps1_T50_C1.0_slr1.0_seed2026: val ndcg@10 0.0101  test ndcg@10 0.0109  eps 0.990  sigma 2.977  clipped 0.54  snr 0.0104
+eps8_T50_C1.0_slr1.0_seed123: val ndcg@10 0.0491  test ndcg@10 0.0537  eps 7.968  sigma 0.805  clipped 0.32  snr 0.0341
+nodp_T50_CNone_slr1.0_seed123: val ndcg@10 0.0547  test ndcg@10 0.0562  eps inf  sigma 0.000  clipped 0.00  snr nan
+eps4_T50_C1.0_slr1.0_seed2026: val ndcg@10 0.0406  test ndcg@10 0.0465  eps 3.964  sigma 1.152  clipped 0.38  snr 0.0247
+eps4_T50_C1.0_slr1.0_seed123: val ndcg@10 0.0436  test ndcg@10 0.0457  eps 3.964  sigma 1.152  clipped 0.38  snr 0.0251
+nodp_T50_CNone_slr1.0_seed42: val ndcg@10 0.0496  test ndcg@10 0.0579  eps inf  sigma 0.000  clipped 0.00  snr nan
+nodp_T50_CNone_slr1.0_seed2026: val ndcg@10 0.0563  test ndcg@10 0.0604  eps inf  sigma 0.000  clipped 0.00  snr nan
+eps1_T50_C1.0_slr1.0_seed123: val ndcg@10 0.0141  test ndcg@10 0.0113  eps 0.990  sigma 2.977  clipped 0.54  snr 0.0107
+eps2_T50_C1.0_slr1.0_seed123: val ndcg@10 0.0288  test ndcg@10 0.0281  eps 1.993  sigma 1.760  clipped 0.45  snr 0.0173
+eps1_T50_C1.0_slr1.0_seed42: val ndcg@10 0.0067  test ndcg@10 0.0124  eps 0.990  sigma 2.977  clipped 0.54  snr 0.0104
+eps8_T50_C1.0_slr1.0_seed42: val ndcg@10 0.0451  test ndcg@10 0.0552  eps 7.968  sigma 0.805  clipped 0.32  snr 0.0327
+eps2_T50_C1.0_slr1.0_seed42: val ndcg@10 0.0178  test ndcg@10 0.0260  eps 1.993  sigma 1.760  clipped 0.45  snr 0.0168
+eps2_T50_C1.0_slr1.0_seed2026: val ndcg@10 0.0212  test ndcg@10 0.0281  eps 1.993  sigma 1.760  clipped 0.45  snr 0.0170
+eps8_T50_C1.0_slr1.0_seed2026: val ndcg@10 0.0498  test ndcg@10 0.0543  eps 7.968  sigma 0.805  clipped 0.33  snr 0.0339
+/home/ag/Amazon ML/fedrec-dp/experiments/run_b2.py:273: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  return pd.concat(list(ex.map(run_one, jobs)), ignore_index=True)
+privacy_level  server_lr  epsilon  noise_multiplier  ndcg@10_mean  ndcg@10_std  hr@10_mean  mrr@10_mean  ndcg_retention_vs_matched_nodp  frac_clipped_mean_mean  signal_to_noise_mean_mean
+         nodp     1.0000      inf            0.0000        0.0582       0.0021      0.1090       0.0429                          1.0000                  0.0000                        NaN
+         eps8     1.0000   7.9675            0.8051        0.0544       0.0007      0.1030       0.0397                          0.9350                  0.3214                     0.0335
+         eps4     1.0000   3.9639            1.1519        0.0456       0.0010      0.0839       0.0340                          0.7834                  0.3751                     0.0247
+         eps2     1.0000   1.9933            1.7604        0.0274       0.0012      0.0502       0.0205                          0.4704                  0.4514                     0.0170
+         eps1     1.0000   0.9901            2.9775        0.0115       0.0008      0.0226       0.0082                          0.1980                  0.5402                     0.0105
+                                               comparison  mean_diff  ci_low  ci_high  frac_improved  frac_degraded  frac_tied
+matched no-DP (B1-DPReady) - B1 frozen  [protocol effect]    -0.0293 -0.0443  -0.0143         0.0998         0.2123     0.6879
+                     B2 eps8 - matched no-DP  [DP effect]    -0.0038 -0.0094   0.0017         0.0998         0.1030     0.7972
+                     B2 eps4 - matched no-DP  [DP effect]    -0.0126 -0.0201  -0.0056         0.0934         0.1125     0.7941
+                     B2 eps2 - matched no-DP  [DP effect]    -0.0308 -0.0407  -0.0216         0.0679         0.1242     0.8079
+                     B2 eps1 - matched no-DP  [DP effect]    -0.0467 -0.0582  -0.0360         0.0414         0.1327     0.8259

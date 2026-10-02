@@ -1,0 +1,23 @@
+final-train r=32 seed=123: early_stopping best 8350/9350
+ rank  seed  best_round  rounds_run     stopped_by  val_ndcg@10
+    4    42        2880        3880 early_stopping     0.072121
+    4   123        3540        4540 early_stopping     0.075203
+    4  2026        2910        3910 early_stopping     0.071605
+    4     7        4600        5600 early_stopping     0.075004
+    4    99         990        1990 early_stopping     0.059401
+    8    42        3330        4330 early_stopping     0.085215
+    8   123        3840        4840 early_stopping     0.087324
+    8  2026        3510        4510 early_stopping     0.082128
+    8     7        3580        4580 early_stopping     0.085006
+    8    99        1060        2060 early_stopping     0.072996
+   16    42        3920        4920 early_stopping     0.091296
+   16   123        2980        3980 early_stopping     0.084448
+   16  2026        4910        5910 early_stopping     0.086198
+   16     7        3670        4670 early_stopping     0.085686
+   16    99        2900        3900 early_stopping     0.088942
+   32    42        5640        6640 early_stopping     0.085950
+   32   123        8350        9350 early_stopping     0.095752
+   32  2026         620        1620 early_stopping     0.057679
+   32     7         800        1800 early_stopping     0.059187
+   32    99        6010        7010 early_stopping     0.093934
+exit 0

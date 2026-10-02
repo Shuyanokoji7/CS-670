@@ -1,0 +1,42 @@
+final-train r=4 seed=2026: diverged best 150/210
+final-train r=4 seed=7: diverged best 140/156
+final-train r=4 seed=99: early_stopping best 2620/3620
+final-train r=4 seed=123: early_stopping best 1520/2520
+final-train r=8 seed=99: early_stopping best 1060/2060
+final-train r=4 seed=42: early_stopping best 1430/2430
+final-train r=8 seed=2026: early_stopping best 3510/4510
+final-train r=16 seed=123: early_stopping best 2980/3980
+final-train r=8 seed=7: early_stopping best 3580/4580
+final-train r=8 seed=42: early_stopping best 3330/4330
+final-train r=8 seed=123: early_stopping best 3840/4840
+final-train r=32 seed=2026: early_stopping best 620/1620
+final-train r=32 seed=7: early_stopping best 800/1800
+final-train r=16 seed=2026: early_stopping best 4910/5910
+final-train r=16 seed=42: early_stopping best 3920/4920
+final-train r=16 seed=7: early_stopping best 3670/4670
+final-train r=16 seed=99: early_stopping best 2900/3900
+final-train r=32 seed=42: early_stopping best 5640/6640
+final-train r=32 seed=99: early_stopping best 6010/7010
+final-train r=32 seed=123: max_rounds best 7910/8000
+ rank  seed  best_round  rounds_run     stopped_by  val_ndcg@10
+    4    42        1430        2430 early_stopping     0.072908
+    4   123        1520        2520 early_stopping     0.071847
+    4  2026         150         210       diverged          NaN
+    4     7         140         156       diverged          NaN
+    4    99        2620        3620 early_stopping     0.074843
+    8    42        3330        4330 early_stopping     0.085215
+    8   123        3840        4840 early_stopping     0.087324
+    8  2026        3510        4510 early_stopping     0.082128
+    8     7        3580        4580 early_stopping     0.085006
+    8    99        1060        2060 early_stopping     0.072996
+   16    42        3920        4920 early_stopping     0.091296
+   16   123        2980        3980 early_stopping     0.084448
+   16  2026        4910        5910 early_stopping     0.086198
+   16     7        3670        4670 early_stopping     0.085686
+   16    99        2900        3900 early_stopping     0.088942
+   32    42        5640        6640 early_stopping     0.085950
+   32   123        7910        8000     max_rounds     0.093876
+   32  2026         620        1620 early_stopping     0.057679
+   32     7         800        1800 early_stopping     0.059187
+   32    99        6010        7010 early_stopping     0.093934
+exit 0

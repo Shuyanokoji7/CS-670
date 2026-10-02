@@ -1,0 +1,133 @@
+lrcsearch_r4_eps4_T50_C1.5_lr1.25_slr1.0_seed42: ok val ndcg 0.0114
+lrcsearch_r4_eps4_T50_C1.0_lr2.5_slr1.0_seed42: ok val ndcg 0.0329
+lrcsearch_r4_eps4_T50_C2.4_lr1.25_slr1.0_seed42: ok val ndcg 0.0182
+lrcsearch_r4_eps4_T50_C1.5_lr2.5_slr1.0_seed42: ok val ndcg 0.0382
+lrcsearch_r4_eps4_T50_C2.4_lr2.5_slr1.0_seed42: ok val ndcg 0.0230
+lrcsearch_r4_eps4_T50_C1.0_lr1.25_slr1.0_seed42: ok val ndcg 0.0029
+lrcsearch_r4_eps4_T50_C1.0_lr5.0_slr1.0_seed42: ok val ndcg 0.0406
+lrcsearch_r4_eps4_T50_C1.5_lr5.0_slr1.0_seed42: ok val ndcg 0.0414
+lrcsearch_r4_eps4_T50_C1.0_lr20.0_slr1.0_seed42: training diverged at round 24 val ndcg nan
+lrcsearch_r4_eps4_T50_C1.5_lr20.0_slr1.0_seed42: training diverged at round 22 val ndcg nan
+lrcsearch_r4_eps4_T50_C1.5_lr10.0_slr1.0_seed42: training diverged at round 33 val ndcg nan
+lrcsearch_r4_eps4_T50_C2.4_lr10.0_slr1.0_seed42: training diverged at round 32 val ndcg nan
+lrcsearch_r4_eps4_T50_C2.4_lr20.0_slr1.0_seed42: training diverged at round 18 val ndcg nan
+lrcsearch_r4_eps4_T50_C2.4_lr5.0_slr1.0_seed42: ok val ndcg 0.0294
+lrcsearch_r4_eps4_T50_C1.0_lr10.0_slr1.0_seed42: ok val ndcg 0.0429
+lrcsearch_r8_eps4_T50_C1.0_lr1.25_slr1.0_seed42: ok val ndcg 0.0043
+lrcsearch_r8_eps4_T50_C1.0_lr2.5_slr1.0_seed42: ok val ndcg 0.0319
+lrcsearch_r8_eps4_T50_C1.5_lr1.25_slr1.0_seed42: ok val ndcg 0.0119
+lrcsearch_r8_eps4_T50_C1.0_lr5.0_slr1.0_seed42: ok val ndcg 0.0434
+lrcsearch_r8_eps4_T50_C2.4_lr1.25_slr1.0_seed42: ok val ndcg 0.0203
+lrcsearch_r8_eps4_T50_C1.5_lr2.5_slr1.0_seed42: ok val ndcg 0.0369
+lrcsearch_r8_eps4_T50_C2.4_lr2.5_slr1.0_seed42: ok val ndcg 0.0282
+lrcsearch_r8_eps4_T50_C1.5_lr5.0_slr1.0_seed42: ok val ndcg 0.0404
+lrcsearch_r8_eps4_T50_C1.0_lr10.0_slr1.0_seed42: ok val ndcg 0.0465
+lrcsearch_r8_eps4_T50_C1.5_lr20.0_slr1.0_seed42: training diverged at round 31 val ndcg nan
+lrcsearch_r8_eps4_T50_C1.0_lr20.0_slr1.0_seed42: training diverged at round 31 val ndcg nan
+lrcsearch_r8_eps4_T50_C1.5_lr10.0_slr1.0_seed42: training diverged at round 40 val ndcg nan
+lrcsearch_r8_eps4_T50_C2.4_lr20.0_slr1.0_seed42: training diverged at round 31 val ndcg nan
+lrcsearch_r8_eps4_T50_C2.4_lr10.0_slr1.0_seed42: training diverged at round 36 val ndcg nan
+lrcsearch_r8_eps4_T50_C2.4_lr5.0_slr1.0_seed42: ok val ndcg 0.0338
+lrcsearch_r16_eps4_T50_C1.0_lr1.25_slr1.0_seed42: ok val ndcg 0.0047
+lrcsearch_r16_eps4_T50_C1.0_lr2.5_slr1.0_seed42: ok val ndcg 0.0274
+lrcsearch_r16_eps4_T50_C1.5_lr1.25_slr1.0_seed42: ok val ndcg 0.0077
+lrcsearch_r16_eps4_T50_C1.5_lr2.5_slr1.0_seed42: ok val ndcg 0.0341
+lrcsearch_r16_eps4_T50_C2.4_lr1.25_slr1.0_seed42: ok val ndcg 0.0045
+lrcsearch_r16_eps4_T50_C2.4_lr2.5_slr1.0_seed42: ok val ndcg 0.0295
+lrcsearch_r16_eps4_T50_C1.0_lr5.0_slr1.0_seed42: ok val ndcg 0.0484
+lrcsearch_r16_eps4_T50_C1.5_lr5.0_slr1.0_seed42: ok val ndcg 0.0411
+lrcsearch_r16_eps4_T50_C1.5_lr20.0_slr1.0_seed42: training diverged at round 24 val ndcg nan
+lrcsearch_r16_eps4_T50_C1.0_lr20.0_slr1.0_seed42: training diverged at round 24 val ndcg nan
+lrcsearch_r16_eps4_T50_C2.4_lr20.0_slr1.0_seed42: training diverged at round 22 val ndcg nan
+lrcsearch_r16_eps4_T50_C1.5_lr10.0_slr1.0_seed42: ok val ndcg 0.0352
+lrcsearch_r16_eps4_T50_C2.4_lr5.0_slr1.0_seed42: ok val ndcg 0.0298
+lrcsearch_r16_eps4_T50_C1.0_lr10.0_slr1.0_seed42: ok val ndcg 0.0455
+lrcsearch_r16_eps4_T50_C2.4_lr10.0_slr1.0_seed42: ok val ndcg 0.0247
+lrcsearch_r32_eps4_T50_C1.5_lr0.625_slr1.0_seed42: ok val ndcg 0.0008
+lrcsearch_r32_eps4_T50_C2.4_lr0.625_slr1.0_seed42: ok val ndcg 0.0046
+lrcsearch_r32_eps4_T50_C1.0_lr0.625_slr1.0_seed42: ok val ndcg 0.0039
+lrcsearch_r32_eps4_T50_C1.0_lr1.25_slr1.0_seed42: ok val ndcg 0.0072
+lrcsearch_r32_eps4_T50_C1.5_lr1.25_slr1.0_seed42: ok val ndcg 0.0083
+lrcsearch_r32_eps4_T50_C1.0_lr2.5_slr1.0_seed42: ok val ndcg 0.0374
+lrcsearch_r32_eps4_T50_C1.5_lr2.5_slr1.0_seed42: ok val ndcg 0.0414
+lrcsearch_r32_eps4_T50_C2.4_lr1.25_slr1.0_seed42: ok val ndcg 0.0066
+lrcsearch_r32_eps4_T50_C1.0_lr5.0_slr1.0_seed42: ok val ndcg 0.0487
+lrcsearch_r32_eps4_T50_C2.4_lr2.5_slr1.0_seed42: ok val ndcg 0.0182
+lrcsearch_r32_eps4_T50_C1.0_lr10.0_slr1.0_seed42: ok val ndcg 0.0415
+lrcsearch_r32_eps4_T50_C2.4_lr5.0_slr1.0_seed42: ok val ndcg 0.0208
+lrcsearch_r32_eps4_T50_C1.5_lr5.0_slr1.0_seed42: ok val ndcg 0.0323
+lrcsearch_r32_eps4_T50_C1.5_lr20.0_slr1.0_seed42: training diverged at round 31 val ndcg nan
+lrcsearch_r32_eps4_T50_C1.5_lr10.0_slr1.0_seed42: ok val ndcg 0.0326
+lrcsearch_r32_eps4_T50_C2.4_lr10.0_slr1.0_seed42: training diverged at round 49 val ndcg nan
+lrcsearch_r32_eps4_T50_C2.4_lr20.0_slr1.0_seed42: training diverged at round 28 val ndcg nan
+lrcsearch_r32_eps4_T50_C1.0_lr20.0_slr1.0_seed42: training diverged at round 49 val ndcg nan
+ rank  local_lr  privacy_clip_norm                        status  val_ndcg@10  frac_clipped_mean  signal_to_noise_mean
+    4     1.250                1.0                            ok     0.002887           0.010845              0.018416
+    4     1.250                1.5                            ok     0.011397           0.012640              0.027451
+    4     1.250                2.4                            ok     0.018167           0.010112              0.032137
+    4     2.500                1.0                            ok     0.032853           0.177037              0.066459
+    4     2.500                1.5                            ok     0.038179           0.218773              0.072812
+    4     2.500                2.4                            ok     0.022960           0.209645              0.068480
+    4     5.000                1.0                            ok     0.040603           0.554499              0.120282
+    4     5.000                1.5                            ok     0.041386           0.590508              0.111474
+    4     5.000                2.4                            ok     0.029377           0.630207              0.108084
+    4    10.000                1.0                            ok     0.042941           0.789600              0.136907
+    4    10.000                1.5 training diverged at round 33          NaN                NaN                   NaN
+    4    10.000                2.4 training diverged at round 32          NaN                NaN                   NaN
+    4    20.000                1.0 training diverged at round 24          NaN                NaN                   NaN
+    4    20.000                1.5 training diverged at round 22          NaN                NaN                   NaN
+    4    20.000                2.4 training diverged at round 18          NaN                NaN                   NaN
+    8     1.250                1.0                            ok     0.004298           0.013614              0.015855
+    8     1.250                1.5                            ok     0.011942           0.017812              0.020255
+    8     1.250                2.4                            ok     0.020265           0.013730              0.024968
+    8     2.500                1.0                            ok     0.031926           0.185310              0.048181
+    8     2.500                1.5                            ok     0.036883           0.239014              0.052273
+    8     2.500                2.4                            ok     0.028196           0.227926              0.052498
+    8     5.000                1.0                            ok     0.043378           0.563547              0.087986
+    8     5.000                1.5                            ok     0.040350           0.622700              0.082363
+    8     5.000                2.4                            ok     0.033795           0.646707              0.077578
+    8    10.000                1.0                            ok     0.046523           0.797468              0.099684
+    8    10.000                1.5 training diverged at round 40          NaN                NaN                   NaN
+    8    10.000                2.4 training diverged at round 36          NaN                NaN                   NaN
+    8    20.000                1.0 training diverged at round 31          NaN                NaN                   NaN
+    8    20.000                1.5 training diverged at round 31          NaN                NaN                   NaN
+    8    20.000                2.4 training diverged at round 31          NaN                NaN                   NaN
+   16     1.250                1.0                            ok     0.004718           0.019032              0.011667
+   16     1.250                1.5                            ok     0.007657           0.014777              0.015983
+   16     1.250                2.4                            ok     0.004459           0.018753              0.018724
+   16     2.500                1.0                            ok     0.027409           0.193122              0.033142
+   16     2.500                1.5                            ok     0.034141           0.260089              0.038873
+   16     2.500                2.4                            ok     0.029524           0.233225              0.038737
+   16     5.000                1.0                            ok     0.048421           0.542849              0.059340
+   16     5.000                1.5                            ok     0.041146           0.625656              0.058079
+   16     5.000                2.4                            ok     0.029832           0.669720              0.054828
+   16    10.000                1.0                            ok     0.045478           0.785488              0.069650
+   16    10.000                1.5                            ok     0.035218           0.811501              0.063784
+   16    10.000                2.4                            ok     0.024685           0.843539              0.059567
+   16    20.000                1.0 training diverged at round 24          NaN                NaN                   NaN
+   16    20.000                1.5 training diverged at round 24          NaN                NaN                   NaN
+   16    20.000                2.4 training diverged at round 22          NaN                NaN                   NaN
+   32     0.625                1.0                            ok     0.003927           0.000685              0.003156
+   32     0.625                1.5                            ok     0.000835           0.000000              0.004132
+   32     0.625                2.4                            ok     0.004625           0.000247              0.005021
+   32     1.250                1.0                            ok     0.007189           0.028435              0.010668
+   32     1.250                1.5                            ok     0.008304           0.015218              0.012590
+   32     1.250                2.4                            ok     0.006561           0.017024              0.013732
+   32     2.500                1.0                            ok     0.037420           0.231206              0.026697
+   32     2.500                1.5                            ok     0.041358           0.295735              0.028924
+   32     2.500                2.4                            ok     0.018199           0.266004              0.028169
+   32     5.000                1.0                            ok     0.048652           0.573961              0.042879
+   32     5.000                1.5                            ok     0.032321           0.630157              0.039461
+   32     5.000                2.4                            ok     0.020757           0.689447              0.037849
+   32    10.000                1.0                            ok     0.041492           0.788879              0.048390
+   32    10.000                1.5                            ok     0.032625           0.818469              0.043678
+   32    10.000                2.4 training diverged at round 49          NaN                NaN                   NaN
+   32    20.000                1.0 training diverged at round 49          NaN                NaN                   NaN
+   32    20.000                1.5 training diverged at round 31          NaN                NaN                   NaN
+   32    20.000                2.4 training diverged at round 28          NaN                NaN                   NaN
+ rank  n_cells  n_failed  local_lr  clip_norm  val_ndcg@10                                             tag
+    4       15         5      10.0        1.0     0.042941 lrcsearch_r4_eps4_T50_C1.0_lr10.0_slr1.0_seed42
+    8       15         5      10.0        1.0     0.046523 lrcsearch_r8_eps4_T50_C1.0_lr10.0_slr1.0_seed42
+   16       15         3       5.0        1.0     0.048421 lrcsearch_r16_eps4_T50_C1.0_lr5.0_slr1.0_seed42
+   32       18         4       5.0        1.0     0.048652 lrcsearch_r32_eps4_T50_C1.0_lr5.0_slr1.0_seed42
+exit 0

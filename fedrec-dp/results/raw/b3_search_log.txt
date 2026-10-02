@@ -1,0 +1,55 @@
+grid r=4 lr=20.0: best 10/14 (diverged) val ndcg nan  1s
+grid r=8 lr=20.0: best 0/10 (diverged) val ndcg nan  1s
+grid r=16 lr=20.0: best 10/13 (diverged) val ndcg nan  1s
+grid r=4 lr=10.0: best 10/19 (diverged) val ndcg nan  1s
+grid r=8 lr=10.0: best 10/24 (diverged) val ndcg nan  2s
+grid r=16 lr=10.0: best 20/26 (diverged) val ndcg nan  2s
+grid r=32 lr=20.0: best 0/10 (diverged) val ndcg nan  1s
+grid r=8 lr=5.0: best 30/48 (diverged) val ndcg nan  3s
+grid r=4 lr=5.0: best 40/56 (diverged) val ndcg nan  4s
+grid r=32 lr=10.0: best 20/25 (diverged) val ndcg nan  3s
+grid r=16 lr=5.0: best 50/59 (diverged) val ndcg nan  4s
+grid r=8 lr=2.5: best 70/78 (diverged) val ndcg nan  5s
+grid r=16 lr=2.5: best 80/99 (diverged) val ndcg nan  5s
+grid r=4 lr=2.5: best 80/118 (diverged) val ndcg nan  6s
+grid r=32 lr=5.0: best 40/60 (diverged) val ndcg nan  5s
+grid r=32 lr=2.5: best 70/142 (diverged) val ndcg nan  9s
+grid r=4 lr=1.25: best 1430/2430 (early_stopping) val ndcg 0.0729  90s
+grid r=8 lr=1.25: best 3330/4330 (early_stopping) val ndcg 0.0852  167s
+grid r=16 lr=1.25: best 3920/4920 (early_stopping) val ndcg 0.0913  211s
+grid r=32 lr=1.25: best 3290/4290 (early_stopping) val ndcg 0.0854  230s
+edge r=4 lr=0.625: best 2880/3880 (early_stopping) val ndcg 0.0721  139s
+edge r=8 lr=0.625: best 4280/5280 (early_stopping) val ndcg 0.0843  203s
+edge r=16 lr=0.625: best 4880/5880 (early_stopping) val ndcg 0.0827  251s
+edge r=32 lr=0.625: best 5640/6640 (early_stopping) val ndcg 0.0859  349s
+stage  rank  local_lr  seed  best_round  rounds_run     stopped_by  val_ndcg@10  val_hr@10  val_recall@10  val_mrr@10  comm_bytes_to_best_round  comm_bytes_total_run  wall_time_s  peak_rss_mb  A_fro_best  B_fro_best  item_norm_mean_best
+ edge     4    0.6250    42        2880        3880 early_stopping       0.0721     0.1380         0.1380      0.0524               15125220864           20407639104     139.3192     257.7383     11.0450     11.0450               1.5028
+ grid     4    1.2500    42        1430        2430 early_stopping       0.0729     0.1476         0.1476      0.0508                7498692864           12752560512      90.4405     256.4766     10.8246     10.8246               1.4285
+ grid     4    2.5000    42          80         118       diverged          NaN        NaN            NaN         NaN                 415184832             607831488       5.5846     252.3086      5.4275      5.4275               0.3589
+ grid     4    5.0000    42          40          56       diverged          NaN        NaN            NaN         NaN                 206670528             285561792       3.5853     253.0898      5.4746      5.4746               0.3684
+ grid     4   10.0000    42          10          19       diverged          NaN        NaN            NaN         NaN                  51122880              91518336       1.3556     251.3828      3.0344      3.0344               0.1034
+ grid     4   20.0000    42          10          14       diverged          NaN        NaN            NaN         NaN                  51122880              66822912       0.7443     253.4141      4.9463      4.9463               0.2940
+ edge     8    0.6250    42        4280        5280 early_stopping       0.0843     0.1656         0.1656      0.0602               45031155840           55509055488     203.3699     264.7500     13.3232     13.3232               1.7315
+ grid     8    1.2500    42        3330        4330 early_stopping       0.0852     0.1624         0.1624      0.0620               35006154624           45543055104     167.4530     264.6523     14.2279     14.2279               1.8694
+ grid     8    2.5000    42          70          78       diverged          NaN        NaN            NaN         NaN                 725218560             799751808       4.8437     254.5312      5.4435      5.4435               0.3426
+ grid     8    5.0000    42          30          48       diverged          NaN        NaN            NaN         NaN                 307184256             489326976       2.9449     254.4648      4.7046      4.7046               0.2186
+ grid     8   10.0000    42          10          24       diverged          NaN        NaN            NaN         NaN                 102245760             236897280       1.9268     253.2578      3.5037      3.5037               0.1038
+ grid     8   20.0000    42           0          10       diverged          NaN        NaN            NaN         NaN                         0              92300544       0.7705     248.1016      3.1104      3.1104               0.0819
+ edge    16    0.6250    42        4880        5880 early_stopping       0.0827     0.1656         0.1656      0.0583              102625019136          123681611520     250.5985     267.6055     14.2502     14.2502               1.7902
+ grid    16    1.2500    42        3920        4920 early_stopping       0.0913     0.1752         0.1752      0.0662               82479140352          103480531200     211.0318     264.8984     16.0429     16.0429               1.9604
+ grid    16    2.5000    42          80          99       diverged          NaN        NaN            NaN         NaN                1660739328            2037763584       5.0514     258.6133      5.0628      5.0628               0.1944
+ grid    16    5.0000    42          50          59       diverged          NaN        NaN            NaN         NaN                1037654784            1203482880       4.1225     259.8867      6.0914      6.0914               0.3777
+ grid    16   10.0000    42          20          26       diverged          NaN        NaN            NaN         NaN                 409206528             513798912       2.1845     258.0117      5.1651      5.1651               0.1975
+ grid    16   20.0000    42          10          13       diverged          NaN        NaN            NaN         NaN                 204491520             246730752       1.1056     257.4023      6.0095      6.0095               0.2927
+ edge    32    0.6250    42        5640        6640 early_stopping       0.0859     0.1677         0.1677      0.0617              237274974720          279060973056     349.2349     306.8047     15.2855     15.2855               1.8528
+ grid    32    1.2500    42        3290        4290 early_stopping       0.0854     0.1624         0.1624      0.0624              138361420800          180549250560     229.8435     297.0664     15.6231     15.6231               1.8205
+ grid    32    2.5000    42          70         142       diverged          NaN        NaN            NaN         NaN                2900874240            5880863232       8.6265     300.6484      4.8095      4.8095               0.1168
+ grid    32    5.0000    42          40          60       diverged          NaN        NaN            NaN         NaN                1653364224            2495467008       4.7033     286.7500      5.8361      5.8361               0.2557
+ grid    32   10.0000    42          20          25       diverged          NaN        NaN            NaN         NaN                 818413056             986476032       2.5232     296.6680      5.8993      5.8993               0.2775
+ grid    32   20.0000    42           0          10       diverged          NaN        NaN            NaN         NaN                         0             408983040       1.1304     276.0391      4.1432      4.1432               0.0788
+ rank  selected_lr  val_ndcg@10  best_round     stopped_by  edge_expanded  n_diverged flag
+    4        1.250     0.072908        1430 early_stopping           True           4     
+    8        1.250     0.085215        3330 early_stopping           True           4     
+   16        1.250     0.091296        3920 early_stopping           True           4     
+   32        0.625     0.085950        5640 early_stopping           True           4     
+exit 0

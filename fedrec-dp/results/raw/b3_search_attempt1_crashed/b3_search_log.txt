@@ -1,0 +1,63 @@
+grid r=16 lr=20.0: best 10/13 (diverged) val ndcg nan  1s
+grid r=8 lr=20.0: best 0/10 (diverged) val ndcg nan  1s
+grid r=4 lr=20.0: best 10/14 (diverged) val ndcg nan  1s
+grid r=4 lr=10.0: best 10/19 (diverged) val ndcg nan  1s
+grid r=8 lr=10.0: best 10/24 (diverged) val ndcg nan  1s
+grid r=16 lr=10.0: best 20/26 (diverged) val ndcg nan  2s
+grid r=32 lr=10.0: best 20/25 (diverged) val ndcg nan  2s
+grid r=8 lr=5.0: best 30/48 (diverged) val ndcg nan  3s
+grid r=4 lr=5.0: best 40/56 (diverged) val ndcg nan  3s
+grid r=8 lr=2.5: best 70/78 (diverged) val ndcg nan  4s
+grid r=16 lr=5.0: best 50/59 (diverged) val ndcg nan  4s
+grid r=4 lr=2.5: best 80/118 (diverged) val ndcg nan  6s
+grid r=16 lr=2.5: best 80/99 (diverged) val ndcg nan  6s
+grid r=32 lr=2.5: best 70/142 (diverged) val ndcg nan  8s
+grid r=4 lr=1.25: best 1430/2430 (early_stopping) val ndcg 0.0729  89s
+grid r=8 lr=1.25: best 3330/4330 (early_stopping) val ndcg 0.0852  166s
+grid r=16 lr=1.25: best 3920/4920 (early_stopping) val ndcg 0.0913  211s
+grid r=32 lr=1.25: best 3290/4290 (early_stopping) val ndcg 0.0854  231s
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 246, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 205, in _process_chunk
+    return [fn(*args) for args in chunk]
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 205, in <listcomp>
+    return [fn(*args) for args in chunk]
+  File "/home/ag/Amazon ML/fedrec-dp/experiments/run_b3.py", line 108, in _search_one
+    sim, history, rounds, best = train_lowrank_converge(split, c, cfg["search"]["seed"], log=lambda *_: None)
+  File "/home/ag/Amazon ML/fedrec-dp/src/train_lowrank.py", line 56, in train_lowrank_converge
+    row = _eval_row(sim, t0, split, k, True)
+  File "/home/ag/Amazon ML/fedrec-dp/src/train_lowrank.py", line 30, in _eval_row
+    m = validation_metrics(sim, split, k)[0]
+  File "/home/ag/Amazon ML/fedrec-dp/src/train_federated.py", line 18, in validation_metrics
+    summary, ranks = evaluate(sim.full_scores, split, "validation", k=k)
+  File "/home/ag/Amazon ML/fedrec-dp/src/evaluate.py", line 78, in evaluate
+    ranks[users] = rank_targets(scores, targets[users], [excluded[u] for u in users], tie_policy)
+  File "/home/ag/Amazon ML/fedrec-dp/src/evaluate.py", line 49, in rank_targets
+    raise ValueError("scores must be finite")
+ValueError: scores must be finite
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ag/Amazon ML/fedrec-dp/experiments/run_b3.py", line 196, in <module>
+    main()
+  File "/home/ag/Amazon ML/fedrec-dp/experiments/run_b3.py", line 190, in main
+    search(a.workers)
+  File "/home/ag/Amazon ML/fedrec-dp/experiments/run_b3.py", line 152, in search
+    rows = list(ex.map(_search_one, jobs))
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 575, in _chain_from_iterable_of_lists
+    for element in iterable:
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 621, in result_iterator
+    yield _result_or_cancel(fs.pop())
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 319, in _result_or_cancel
+    return fut.result(timeout)
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 451, in result
+    return self.__get_result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+ValueError: scores must be finite
+exit 1

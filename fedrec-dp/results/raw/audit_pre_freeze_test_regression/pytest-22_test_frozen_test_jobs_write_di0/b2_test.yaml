@@ -1,0 +1,57 @@
+dataset_config: /home/ag/Amazon ML/fedrec-dp/configs/dataset.yaml
+evaluation:
+  k: 10
+federated:
+  aggregation: fedavg
+  client_sampling_q: 0.1
+  eval_every: 10
+  l2_reg: 1.0e-05
+  local_epochs: 2
+  local_lr: 5.0
+  local_optimizer: sgd
+  max_rounds: 1000
+  patience_evals: 100
+  server_lr: 2.0
+model:
+  dim: 64
+  init_std: 0.01
+name: b2_dp_federated_bpr
+privacy:
+  T: 1000
+  accountant: rdp
+  clip_grid:
+  - 1.0
+  - 1.5
+  - 2.4
+  clip_norm: 1.5
+  cross_check_accountant: rdp
+  delta: 1.0e-05
+  denominator: expected
+  noise_multiplier: 0.0
+  protocol_frozen: true
+  reference_epsilon: 4
+  server_lr_grid:
+  - 0.5
+  - 1.0
+  - 2.0
+  solver_tolerance: 0.01
+  t_boundary:
+    high: 1500
+    low: 50
+  t_grid:
+  - 100
+  - 250
+  - 500
+  - 1000
+  t_seed_rule_margin: 0.003
+  t_seed_rule_seeds:
+  - 123
+  - 2026
+  target_epsilon: null
+  target_epsilons:
+  - 8
+  - 4
+  - 2
+  - 1
+  unit: user
+seed: 42
