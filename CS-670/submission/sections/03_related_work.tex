@@ -1,0 +1,106 @@
+\section{Related work and contribution boundaries}
+\label{sec:related}
+\subsection{Ranking, federation, and private collaborative learning}
+BPR learns implicit-feedback rankings by favoring observed items over sampled
+unobserved items \citep{rendle2009bpr}. This project uses its pairwise objective
+with matrix-factorization scores because the shared item and local user
+components are easy to identify and audit. It is a diagnostic baseline rather
+than a claim to represent the strongest contemporary recommender. Federated
+averaging motivates repeated local optimization and aggregation of client
+updates \citep{mcmahan2017fedavg}. Here clients represent users and hold persistent
+personalization vectors; the implementation is a centralized simulator of the
+federated training protocol.
+
+Gaussian perturbation of bounded contributions is a standard DP construction.
+DP-SGD and user-level federated mechanisms establish the relevant methodological
+background \citep{abadi2016dp,mcmahan2017userdp}. Privacy accounting in this work
+uses numerical privacy-random-variable (PRV) composition, with R\'enyi DP (RDP)
+as a separate cross-check \citep{gopi2021composition,mironov2017rdp,mironov2019sampled}.
+The single-release popularity baseline uses analytic Gaussian calibration
+\citep{balle2018gaussian}. The role of client clipping is itself established:
+its effects on convergence and privacy cannot be inferred from the noise norm
+alone \citep{zhang2022clipping}.
+
+Private matrix-factorization research predates this project. Private alternating
+least squares (ALS) perturbs sufficient statistics for matrix completion
+\citep{chien2021privateals}; privacy-preserving federated matrix factorization
+has also been developed explicitly \citep{li2022federatedmf}. PrivateRec studies
+private training and serving in federated news recommendation
+\citep{liu2023privaterec}. These methods differ in objectives, privacy units,
+trust assumptions, and evaluation tasks. They motivate stronger published
+comparators, but they were not implemented in the completed experiments.
+Consequently this report makes no state-of-the-art comparison against them.
+
+\subsection{Personalization and public information}
+Local/global personalization has an existing theoretical foundation under
+user-level joint DP \citep{bietti2022personalization}. Keeping a user-specific
+vector local is therefore neither a new privacy principle nor evidence that
+every associated research output is private. The global release, information
+used for local prediction, and outputs visible to other users must have the
+appropriate scope. Detailed diagnostic access to local vectors falls outside
+the training release analyzed here.
+
+Public item features can reduce reliance on private collaborative observations
+\citep{curmei2023publicfeatures}. That work is directly relevant to a possible
+metadata-plus-private-residual extension. However, E1-FixedB uses an interaction-
+independent random basis; it contains no genres or semantic movie information.
+It must not be described as an implementation of a public-content recommender.
+Work on multi-task privacy under distribution skew also establishes precedents
+for heterogeneous task weighting and privacy allocation
+\citep{krichene2023skew}. A future activity-aware method would need to account for
+that literature and the privacy of any statistics used to choose its weights.
+
+\subsection{Low-rank geometry and fixed-factor methods}
+FFA-LoRA already studies a fixed-factor strategy in privacy-preserving federated
+low-rank adaptation \citep{sun2024ffalora}. FedASK also addresses limitations of
+fixed-matrix approaches and factor-noise amplification \citep{wen2025fedask}.
+These are close methodological precedents for E1, even though their application
+and privacy settings are not identical to whole-user BPR recommendation. The
+algebraic identity involving $AZ_B$, $Z_AB$, and $Z_AZ_B$ cannot supply novelty
+by itself. Nor can simply fixing one factor.
+
+The geometry of DP perturbations has wider precedents
+\citep{duan2025geodp}. PRISM explicitly studies gauge-dependent low-rank noise
+and an intrinsic private mechanism \citep{wang2026prism}. FLoRG uses Procrustes
+alignment to address decomposition drift \citep{meng2026florg}; FedRot-LoRA and
+FedGSA provide additional neighboring work on rotational alignment and
+geometry-consistent federated aggregation
+\citep{zhang2026fedrot,zheng2026fedgsa}. The report's alignment control therefore
+does not claim a new alignment algorithm. Its empirical role is to test how a
+chosen paired-noise construction affects personalized recommendation diagnostics.
+
+\subsection{Noise propagation and ranking stability}
+Earlier noise influences later gradients, so a sequence of noisy optimization
+steps cannot generally be reduced to independent final-weight perturbations.
+NoiseCurve studies cross-iteration noise using model curvature
+\citep{gu2025noisecurve}; DiSK develops noise-reduction ideas for private
+optimization \citep{zhang2025disk}. These precedents rule out the broad claim
+that studying how DP noise changes weights is itself an unexplored direction.
+The more specific question here concerns persistent local user state and the
+interpretation of paired, factorized trajectories.
+
+Likewise, ranking stability under noisy scores is already an active topic
+\citep{urmian2026slate}. Products of Gaussian variables and their relationship
+to differences of noncentral chi-square variables have established
+distributional theory \citep{gaunt2024product}. E4 applies that theory to a
+conditional BPR margin and checks practical relevance. It does not derive a
+new distributional theorem or contradict results proved under explicit
+sub-Gaussian assumptions.
+
+\subsection{How the literature was used}
+The literature review is a targeted primary-source audit, not a systematic
+review with an exhaustive search guarantee. The research record distinguishes
+full method reading from abstract-level screening. The main audit was completed
+through 3 October 2026, with selected bibliographic checks on 5 October. Formal
+citation metadata uses 27 retained references. A further screened title with
+an unresolved date inconsistency remains in the research search log and is
+excluded from the submission bibliography. Preprints are cited as preprints
+unless a proceedings source is recorded.
+
+This positioning matters for the interpretation of the whole project. The
+established components are BPR, federated aggregation, Gaussian DP, fixed-factor
+training, factor alignment, and product-normal mathematics. The completed
+project combines them into a controlled recommendation study and a documented
+diagnostic audit. Whether the narrower measurement finding supports a research
+paper depends on demonstrating a consequence beyond this particular simulator
+and comparing it carefully with the closest geometry and alignment work.

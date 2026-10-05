@@ -1,0 +1,170 @@
+\section{E1: effective noise and fixed-factor training}
+\label{sec:e1}
+\subsection{Why the effective matrix matters}
+Condition on the signal-updated factors and the just-updated user matrix.
+Let $Z_A$ and $Z_B$ have independent, identically distributed Gaussian entries
+with SD $\tau=\eta_s\sigma C/(qN)$. The immediate effective-matrix shock is
+\begin{equation}
+ D=(A+Z_A)(B+Z_B)-AB=AZ_B+Z_AB+Z_AZ_B.
+ \label{eq:productshock}
+\end{equation}
+The three terms have zero mean and zero expected pairwise Frobenius inner
+products, but they do not all need to be independent. Their expected energies
+give
+\begin{align}
+ \E\norm{D}_F^2
+ &=\tau^2\bigl(M\norm{B}_F^2+d\norm{A}_F^2\bigr)+Mdr\tau^4,
+ \label{eq:qmoment}\\
+ \E\norm{PD^T}_F^2
+ &=\tau^2\bigl(M\norm{PB^T}_F^2+\norm{A}_F^2\norm{P}_F^2\bigr)
+   +Mr\tau^4\norm{P}_F^2.
+ \label{eq:smoment}
+\end{align}
+Thus coordinate dimension is only one determinant of prediction disturbance.
+A method with modest effective item noise can still have a large score shock
+if its local user vectors grow. Conversely, multiplying all of a user's
+scores by a positive constant changes their scale without changing their
+ranking. Norms, score RMS, margins, and ranking outcomes must be interpreted
+together. These conditional calculations do not describe the full distribution
+after many rounds of state-dependent learning.
+
+FixedB removes the two terms involving a noisy $B$. With $BB^T=I_r$,
+$D=Z_AB$ and $\norm{D}_F=\norm{Z_A}_F$. This is a clean linear diagnostic
+baseline. It also changes clipping geometry and aggregation behavior, so
+better conditional noise moments do not guarantee better trained utility.
+Eight synthetic Monte Carlo checks corroborate the implemented moment
+calculations; derivations and assumptions are in \cref{app:theory}.
+
+\subsection{Controlled utility comparison}
+\input{tables/e1_main}
+The primary family compares FixedB with Two at each matched rank and privacy
+level. None of the sixteen adjusted comparisons favors FixedB. Eight favor
+Two and eight include zero. At target two, FixedB is worse at all four ranks.
+The rank-8 difference is $-0.018662$, with adjusted interval
+$[-0.027695,-0.010368]$. This is stronger evidence against the proposed
+standalone fixed-factor improvement than an informal comparison of two
+selected example runs.
+
+The validation-selected presentation in \cref{tab:e1} leads to the same
+practical conclusion, while answering a different question. Two chooses
+ranks 32/32/8/4 at privacy targets 8/4/2/1; FixedB chooses 32/32/16/16.
+Two reaches $0.040841$ at target two and $0.025136$ at target one, whereas
+FixedB reaches $0.025286$ and $0.011958$. These selected-rank curves should
+not be described as the matched-rank primary statistical family.
+
+FixedB can perform well in no-noise controls, and it often has smaller
+immediate effective noise. Its poorer private utility therefore does not
+show that the implementation lacks all ranking capacity. It shows that
+removing one noise source, with these transferred clipping and search choices,
+does not overcome the remaining optimization and learning limitations.
+The grid boundary, parameterization-dependent clipping, and different selected
+server rates remain qualifications on any broader statement about optimal
+fixed-factor performance.
+
+\reportfigure{03_effective_noise_utility.pdf}{Controlled E1 utility}
+{Full, Two, FixedB, and private popularity test NDCG@10 with five-seed SD.
+Ranks for Two and FixedB are selected separately on validation at each level.
+The primary tests instead compare matched ranks. Collaboration uses 50
+rounds and popularity one separately calibrated bounded release. Every
+collaborative point mean at target epsilon at most four is below private
+popularity; this is not a family-wide significance claim against popularity.}
+{fig:e1}
+
+\subsection{The private popularity baseline changes the reference point}
+The bounded no-noise popularity model obtains $0.049885$ test NDCG@10.
+Its private mean at target one is $0.048389\pm0.001125$, retaining about
+97\% of that bounded reference. The corresponding means at targets 8, 4,
+and 2 are $0.049548$, $0.049428$, and $0.049507$. All E1 collaborative
+point means at targets at most four lie below the corresponding private
+popularity mean. This is a descriptive statement covering the retained
+settings, not a multiplicity-adjusted superiority theorem.
+
+The comparison is useful even though the mechanisms allocate their budgets
+differently. Both protect an entire user's bounded contribution at the
+reported target, but popularity uses one full-population release and does
+not attempt personalized collaborative representation learning. Its strength
+suggests that the useful private signal in these settings is not exhausted
+by the iterative methods' current optimization. It does not prove that
+personalization is fundamentally impossible under the same privacy target.
+
+\subsection{Measured geometry, clipping, and numerical behavior}
+\reportfigure{04_noise_and_clipping.pdf}{Effective noise, score scale, and clipping}
+{E1 diagnostics at target epsilon one. Left: mean over seeds of each run's
+root-mean-squared Frobenius norm of the immediate effective item shock.
+Center: mean score-shock RMSE, on a logarithmic axis retaining the large finite
+Two-r32 outlier. Right: selected-client clipping fraction. These aggregates
+are diagnostics, not direct causal measures of NDCG loss. Source:
+\texttt{geometry\_means.csv}; per-run evidence remains available.}{fig:geometry}
+At target one, the Full effective-noise norm is approximately $10.369$.
+FixedB ranks 4/8/16/32 have norms $2.592$, $3.667$, $5.186$, and $7.333$;
+the corresponding Two values are approximately $3.602$, $4.817$, $6.542$,
+and $33.788$. These are averages of per-run RMS Frobenius norms over rounds,
+not per-entry noise standard deviations. Different selected server rates
+also affect the comparison.
+
+The expected bilinear term accounts for only about $0.2$--$0.3$\% of total
+effective-matrix noise energy in the selected Two settings at target one.
+Its presence is algebraically important, but its measured energy does not
+support calling it the dominant cause of the observed utility failures.
+First-order terms, factor scales, clipping, and local learning remain relevant.
+
+Clipping at the same coordinate threshold affects the methods differently.
+At target one, approximately $54.1$\% of selected Full updates are clipped;
+FixedB fractions range from $25.6$\% to $46.9$\%; Two fractions range from
+$54.6$\% to $82.5$\%. These fractions accompany different effective signal
+steps, not just different noise counts. Equal $C$ across parameterizations
+does not mean equal effective-$Q$ sensitivity or equal retained signal.
+
+Some Two trajectories have very large but finite local user norms. The mean
+score-shock RMSE for Two-r32 at target one is approximately
+$9.846\times10^{16}$, dominated by extreme state scale. An original float32
+norm summary overflowed even though stored vectors were finite; analysis
+was corrected by reading those vectors in float64. Original logs, training,
+and held-out ranks were preserved. The large values are reported rather
+than excluded, but a mean dominated by such an outlier is not a typical-user
+effect. Ranking diagnostics and seed-level distributions are necessary
+companions to the RMS summary.
+
+\subsection{Activity groups and personalization ablations}
+At target two, validation-selected Two-r8 obtains test NDCG@10 of
+$0.048722$, $0.027027$, and $0.046489$ in the low-, medium-, and
+high-activity groups. Private popularity gives $0.055746$, $0.036872$,
+and $0.055662$. Thus the aggregate gap in this comparison is not explained
+solely by one activity group. These are descriptive group means, without
+an adjusted subgroup test. The cold-target group is too small for a reliable
+comparison: Two-r8 and popularity both score zero there at target two,
+while Full has a small nonzero value from very few top-ten outcomes.
+
+Local-vector ablations expose a further distinction between storing a user
+vector and obtaining useful personalization from it. In the Full no-DP
+control, validation NDCG is $0.053136$ using the user's own vector,
+$0.042725$ with permuted vectors, and $0.047421$ with the mean vector.
+At target one the corresponding values are $0.008883$, $0.011147$,
+and $0.030485$. FixedB-r8 likewise has little own-versus-permuted difference
+at target one ($0.008580$ versus $0.008481$), while its mean-vector
+diagnostic is $0.018912$. These contrasts show that local parameter
+persistence alone does not guarantee a personalization benefit under noise.
+
+The mean-vector calculation uses the collection of private local states
+and is evaluated retrospectively. It is not a free public statistic,
+a deployable private method, or a new selected baseline. There is no
+confirmatory ablation significance claim. Its role is to motivate further
+investigation of how local user learning interacts with the noisy item
+representation, which E2 studies through explicit interventions.
+
+\subsection{Recommendation-specific implications}
+The item factor is strongly rectangular: $A$ has $1682r$ entries and $B$
+only $64r$. Fixing $B$ therefore saves $64/(1682+64)=3.67\%$ of repeatedly
+shared coordinates relative to Two at the same rank, not half the payload.
+At rank 8 the FixedB payload is 107,648 bytes versus Two's 111,744. Most
+savings relative to Full come from low rank, which both methods already use.
+
+The activity, cold-target, and local-vector ablation results are retained in
+the supplement. They provide descriptive information about heterogeneous
+personalization, but they do not establish a subgroup-specific improvement.
+In particular, a random public basis supplies no semantic information for
+an unobserved item. A metadata-only personalizer and a small private residual
+remain distinct future comparisons. E1's substantive outcome is the failure
+of a plausible fixed-factor improvement under controlled testing, together
+with a clearer set of measurements for investigating why.
+\FloatBarrier

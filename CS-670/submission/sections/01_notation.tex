@@ -1,0 +1,33 @@
+\section*{Notation and reading conventions}
+\addcontentsline{toc}{section}{Notation and reading conventions}
+\begin{longtable}{L{.16\linewidth}L{.77\linewidth}}
+\toprule Symbol or label & Meaning \\
+\midrule\endhead
+$N,M$ & Numbers of eligible users and catalog items. \\
+$d,r$ & Full embedding dimension ($64$) and factor rank ($4,8,16,32$). \\
+$p_u,P$ & Local user vector and matrix whose rows are user vectors. \\
+$q_i,Q$ & Effective item vector and shared effective item matrix. \\
+$A,B$ & Item factors, $A\in\R^{M\times r}$ and $B\in\R^{r\times d}$, with $Q=AB$. \\
+$s_{ui},m_{uij}$ & Score $p_u^Tq_i$ and pairwise margin $s_{ui}-s_{uj}$. \\
+$q,E,T$ & Independent client inclusion probability, local epochs, and federated rounds. \\
+$C,\sigma$ & Whole-user clipping threshold and Gaussian noise multiplier on the sum. \\
+$\eta_\ell,\eta_s$ & Local and server learning rates. \\
+$\tau$ & Per-coordinate noise SD after server scaling, $\eta_s\sigma C/(qN)$. \\
+$(\epsilon,\delta)$ & User-level DP parameters for one fixed-setting mechanism. \\
+B0 / B0-UW & Centralized interaction-weighted / user-weighted references. \\
+B1 / B2 & Federated full-matrix models without / with DP. \\
+B3 / B4 & Federated two-factor low-rank models without / with DP. \\
+Full / Two / FixedB & Separately named E1 full, two-factor, and fixed-public-factor methods. \\
+\texttt{nodp} / \texttt{clip} & Matched no-clipping/no-noise and clipping-only E1 controls. \\
+Seed SD & Sample standard deviation across retained training or noise seeds. \\
+Adjusted interval & A Bonferroni-adjusted paired-user bootstrap interval for its declared family. \\
+Top-10 churn & One minus top-10 set overlap divided by ten, averaged over observer users. \\
+\bottomrule
+\end{longtable}
+Throughout, a number reported as mean $\pm$ SD describes seed variation, not a
+confidence interval. Smaller $\epsilon$ means stronger privacy at fixed $\delta$.
+The labels $\epsilon=1,2,4,8$ denote targets; actual accountant bounds are reported
+separately. E2--E4 checkpoint labels refer to the original training mechanism,
+not to the privacy cost of additional diagnostic operations. A ``cold target''
+has no training-positive interaction anywhere in the retained population; it
+is still present in the public evaluation catalog.

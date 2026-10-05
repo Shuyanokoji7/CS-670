@@ -1,0 +1,17 @@
+{
+  "created_utc": "2026-10-02T21:57:27.380808+00:00",
+  "held_out_scoring": false,
+  "input_manifest_sha256": "d003f554ea96ebf96e634cd805aa9542be029429544088211314a9b8a8df946e",
+  "privacy_claim": "diagnostics only; no DP release claim",
+  "probes": 120,
+  "sources": {
+    "docs/extensions/NOISE_MEMORY_PROTOCOL.md": "a92ef70d19a4dca10e566fa5832a87a31eb0a280aff621edebf10078953978a5",
+    "experiments/probe_noise_memory.py": "525da9d09258198a905c0fa48208750225c0bb1caf67f0db5193da2668d341de",
+    "src/effective_noise.py": "98985a26a10a46fe4abb68041b09ef26868971d0af7280a5ed0aafb9db12886a",
+    "src/federated.py": "73e8d8219c19b04d8fdc6f7caef47ae2be6e3f973b0618b89ec053217e38f899",
+    "src/lowrank.py": "2e30bf223c52a5e202d4a7af703a442604d562dc66e395f71836190897373c24",
+    "src/privacy.py": "0a5a295a7b1e4dc146ebca9427a4d2358dd04e5b56f42a8dd4c4b550f77d6deb",
+    "src/threads.py": "e4c6fc048e7aecdcf32039cb6bf7a6c98fce8b281b434f153976045e6d645361"
+  },
+  "train_sha256": "80383f456a6458f5a8ee10da7408cfaf69afb2f755286575f691ccfef27c845a"
+}

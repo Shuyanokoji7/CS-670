@@ -1,0 +1,15 @@
+{
+  "advancement_gate_passed": false,
+  "created_utc": "2026-10-03T17:49:50.472946+00:00",
+  "flagged_pairs": 0,
+  "max_absolute_error_matched": 7.668588919929054e-06,
+  "pairs": 3200,
+  "primary_fraction_error_over_01": {
+    "ml100k": 0.0,
+    "ml1m": 0.0
+  },
+  "states": 50,
+  "tests_scored": false,
+  "training_executed": false,
+  "validation_labels_used": false
+}

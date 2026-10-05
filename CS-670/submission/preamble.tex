@@ -1,0 +1,55 @@
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=25mm,headheight=15pt]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx,booktabs,longtable,array,tabularx,multirow}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{caption,subcaption}
+\usepackage{placeins}
+\usepackage{fancyhdr}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\definecolor{ReportBlue}{RGB}{22,57,84}
+\hypersetup{colorlinks=true,linkcolor=ReportBlue,citecolor=ReportBlue,urlcolor=ReportBlue,
+  pdftitle={Privacy, Representation, and Noise Propagation in Federated Recommendation},
+  pdfsubject={CS-670 Undergraduate Project Report},bookmarksnumbered=true}
+\graphicspath{{figures/}}
+\setlength{\parindent}{1.3em}
+\setlength{\parskip}{3pt}
+\setlength{\emergencystretch}{2em}
+\linespread{1.08}
+\setlist{itemsep=3pt,topsep=5pt,leftmargin=*}
+\captionsetup{font=small,labelfont=bf,justification=justified}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textsc{CS-670 Undergraduate Project}}
+\fancyhead[R]{\small Privacy and federated recommendation}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\sectionmark}[1]{\markboth{\thesection\quad #1}{}}
+\renewcommand{\arraystretch}{1.12}
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{3}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\ip}[2]{\left\langle #1,#2\right\rangle}
+\newcommand{\source}[1]{\par\vspace{2pt}{\footnotesize\textit{Source:} #1\par}}
+\newcommand{\tabnote}[1]{\par\vspace{3pt}{\footnotesize #1\par}}
+\newcommand{\artifact}[1]{\path{#1}}
+\newcommand{\optionalfield}[2]{\if\relax\detokenize{#2}\relax\else #1: #2\\[4pt]\fi}
+\newcommand{\reportfigure}[4]{%
+  \begin{figure}[tbp]\centering
+  \includegraphics[width=\linewidth,height=.65\textheight,keepaspectratio]{#1}
+  \caption[#2]{#3}\label{#4}\end{figure}}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}{Remark}[section]
+\input{metadata}

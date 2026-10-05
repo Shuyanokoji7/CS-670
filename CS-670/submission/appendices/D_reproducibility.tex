@@ -1,0 +1,81 @@
+\section{Artifact provenance and reproduction guide}
+\label{app:repro}
+\subsection{Separation of evidence, report source, and generated output}
+The sibling \artifact{fedrec-dp} repository contains experiment implementations,
+configuration files, chronological research notes, raw run logs, and frozen
+checkpoints. The \artifact{CS-670} directory curates material relevant to the
+course report. Within it, \artifact{submission} contains the portable LaTeX
+project: main report, supplement, chapter files, vector figures, bibliography,
+copied numerical evidence, and a table-generation script. The earlier
+\artifact{report/UGP_REPORT_DRAFT.md} is a working narrative record; this
+LaTeX document is the formal submission version.
+
+Copied source records have explicit source paths and SHA-256 hashes. The
+report does not obtain its numbers by re-evaluating saved models. Tables
+are formatted from retained CSVs, and the generator records hashes of
+every input. Figures are the nine existing audited vector exports. Their
+data sources, SD conventions, and transformations are stated in captions.
+Extra digits in the supplement support traceability and should not be
+interpreted as additional inferential precision.
+
+\subsection{Data fingerprints}
+The ML-100K raw ratings SHA-256 is
+\begin{quote}\small\nolinkurl{06416e597f82b7342361e41163890c81036900f418ad91315590814211dca490}.\end{quote}
+Its frozen split fingerprint is
+\begin{quote}\small\nolinkurl{6faed6fc3d47b5b6fa638adfeea83cd7409d50c39fa01f85c10379d0daef6989}.\end{quote}
+The ML-1M split fingerprint is
+\begin{quote}\small\nolinkurl{e68ef765cc661f5db1864f9f8b2843bee70c7ad261c116421d2c7102ec71bd54}.\end{quote}
+Its downloaded archive MD5 is
+\nolinkurl{c4d9eecfca2ab87c1945afe126590906}. The E3 provenance file
+contains the additional archive SHA-256, individual raw/processed hashes,
+and selected observer IDs. Raw datasets are research inputs outside the
+portable writing package; the GroupLens distribution terms apply.
+
+\subsection{Evidence checks}
+The retained bundle audit verifies 3,932 protected historical artifacts,
+the E1 manifest and snapshots, copied-source provenance, frozen diagnostic
+sources, and checkpoint hashes. It recomputes pilot summaries, checks reset
+and score-energy identities, and verifies E3/E4 summaries against original
+observations when the sibling archive is available. E1 records a completed
+203-test suite with 26 warnings. E2/E2b, E3, and E4 add their own declared
+synthetic checks; these are not described as a new run of that full suite.
+
+Useful archive-relative entry points are
+\begin{itemize}
+\item \artifact{src/data.py} and \artifact{src/evaluate.py}: canonical split and ranking;
+\item \artifact{src/federated.py} and \artifact{src/effective_noise.py}: federated and E1 mechanisms;
+\item \artifact{experiments/run_effective_noise.py}: controlled E1 runs;
+\item \artifact{experiments/probe_noise_memory.py} and
+\artifact{experiments/probe_noise_memory_aligned.py}: E2/E2b;
+\item \artifact{experiments/run_noise_replication.py}: E3;
+\item \artifact{experiments/probe_ranking_tails.py}: E4;
+\item \artifact{experiments/summarize_noise_followup.py}: saved-evidence E3/E4 analysis.
+\end{itemize}
+The full research log records exact original commands. Reproduction should
+use a separate output root; frozen historical files must not be overwritten.
+
+\subsection{Rebuilding the submission}
+From the submission directory, run the table generator with a Python
+environment containing pandas, then compile \artifact{main.tex} and
+\artifact{supplement.tex} with a standard LaTeX distribution. The supplied
+Makefile supports \artifact{latexmk}; the build script also supports
+Tectonic. BibTeX uses the included \artifact{references.bib}. The source
+archive includes all figure PDFs and table fragments, so compiling alone
+does not require rerunning Python or obtaining the research datasets.
+No shell-escape feature or remote figure URL is required.
+
+Author, student ID, supervisor, department, and institution are optional
+fields in \artifact{metadata.tex}. They are omitted while unspecified;
+the course code and report date are supplied. Institutional certification,
+signatures, and declarations are not fabricated. A department-specific
+cover page can be substituted without changing the scientific content.
+
+\subsection{Supplementary material and source map}
+The companion supplement provides all 34 historical five-seed utility rows,
+all 59 E1 utility rows, all 53 historical and 117 E1 paired contrasts,
+complete E1 geometry summaries, activity/cold-target tables, personalization
+ablations, diagnostic endpoints, privacy calibration, and rank selections.
+Machine-readable CSVs retain full saved precision. Source hashes and an
+evidence map connect each table family to the corresponding retained
+experiment, preventing a report editor from inadvertently substituting an
+older, superseded result with a similar filename.

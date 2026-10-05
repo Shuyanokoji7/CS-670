@@ -1,0 +1,12 @@
+\contentsline {table}{\numberline {1}{\ignorespaces Final iterative privacy calibration at $q=0.1$, $T=50$, $\delta =10^{-5}$.\relax }}{6}{table.caption.7}%
+\contentsline {table}{\numberline {2}{\ignorespaces Dataset sizes under the frozen chronological implicit-feedback protocol.\relax }}{7}{table.caption.8}%
+\contentsline {table}{\numberline {3}{\ignorespaces Experimental stages and their evidence units.\relax }}{11}{table.caption.9}%
+\contentsline {table}{\numberline {4}{\ignorespaces Matched centralized and federated controls (three seeds).\relax }}{13}{table.caption.10}%
+\contentsline {table}{\numberline {5}{\ignorespaces Converged nonprivate federated utility (five seeds).\relax }}{13}{table.caption.11}%
+\contentsline {table}{\numberline {6}{\ignorespaces Historical private and matched no-DP test NDCG@10 (five-seed means).\relax }}{14}{table.caption.13}%
+\contentsline {table}{\numberline {7}{\ignorespaces E1 test utility with ranks selected on validation at each privacy level.\relax }}{16}{table.caption.15}%
+\contentsline {table}{\numberline {8}{\ignorespaces Transferred MovieLens-1M validation NDCG@10.\relax }}{23}{table.caption.20}%
+\contentsline {table}{\numberline {9}{\ignorespaces E3 shared-reset top-10 disagreement at lag ten (percent of set entries).\relax }}{24}{table.caption.22}%
+\contentsline {table}{\numberline {10}{\ignorespaces Final retained configurations and stopping rules.\relax }}{37}{table.10}%
+\contentsline {table}{\numberline {11}{\ignorespaces Modeled dense tensor communication for retained historical methods.\relax }}{38}{table.11}%
+\contentsline {table}{\numberline {12}{\ignorespaces Material research iterations and their consequences.\relax }}{39}{table.12}%

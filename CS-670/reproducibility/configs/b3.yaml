@@ -1,0 +1,39 @@
+# B3 — low-rank federated BPR (no DP): shared Q = A B (A: 1682 x r, B: r x 64), local p_u in R^64.
+# Everything except the shared parameterisation and the per-rank local lr is B1's frozen protocol.
+# Protocol: RESEARCH_LOG "B3/B4 protocol (low-rank shared item matrix)" (2026-10-02).
+
+name: b3_lowrank_federated_bpr
+dataset_config: configs/dataset.yaml
+
+model:
+  dim: 64
+  init_std: 0.01            # p_u init (as B1); A, B use s_r = (1e-4/r)^(1/4) so Var(q_ij) = 1e-4 (src/lowrank.py)
+  ranks: [4, 8, 16, 32]
+  rank: null                # set per run
+
+federated:                  # B1 frozen settings (configs/b1.yaml)
+  client_sampling_q: 0.1
+  local_optimizer: sgd
+  local_lr: null            # PENDING: per-rank validation selection (lr grid below)
+  local_epochs: 2
+  l2_reg: 0.00001           # B1's L2 on p and effective touched q rows (chained through A, B); no factor-only penalty
+  server_lr: 1.0
+  aggregation: fedavg       # equal-user mean of [dA, dB] / realised |S_t|; empty rounds skipped; balanced after each step
+  max_rounds: 8000
+  eval_every: 10
+  patience_evals: 100       # = 1000 rounds (common stopping protocol)
+
+evaluation:
+  k: 10
+
+search:
+  seed: 42
+  lr_grid: [1.25, 2.5, 5.0, 10.0, 20.0]
+  edge_factor: 2.0          # single edge rule: one x2 / /2 extension if the argmax is at a grid edge
+  # selection: argmax best-round validation NDCG@10 among non-diverged runs; ties -> lr closer to 5 (log scale).
+  # a selected run that ends at max_rounds is REPORTED (no extra search is invented).
+
+seeds: [42, 123, 2026, 7, 99]
+protocol_frozen: true        # FROZEN 2026-10-02 (see RESEARCH_LOG "Freeze B3")
+selected_lr: {4: 0.625, 8: 1.25, 16: 1.25, 32: 0.625}   # REVISION 2: r32 back to original 0.625 (1.25 unstable, seed123); r4 0.625 (correction 1)
+max_rounds_override: {"32_123": 16000}   # REVISION 2: single FINAL convergence diagnostic, own tagged paths

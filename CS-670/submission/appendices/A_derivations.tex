@@ -1,0 +1,157 @@
+\section{Mathematical derivations and diagnostic identities}
+\label{app:theory}
+\subsection{Conditional effective-matrix moments}
+Let $A,B,P$ be fixed conditional states after the deterministic signal part
+of a round. Assume independent entries of $Z_A\in\R^{M\times r}$ and
+$Z_B\in\R^{r\times d}$ have mean zero and variance $\tau^2$, with the
+two matrices independent. In the implemented mechanism they are Gaussian.
+Write $D_1=AZ_B$, $D_2=Z_AB$, and $D_3=Z_AZ_B$.
+
+Using $\E[Z_BZ_B^T]=d\tau^2I_r$ gives
+\begin{equation}
+ \E\norm{D_1}_F^2=d\tau^2\norm{A}_F^2,
+ \qquad \E\norm{D_2}_F^2=M\tau^2\norm{B}_F^2.
+\end{equation}
+Every entry of $Z_AZ_B$ is a sum of $r$ products of independent centered
+variables, with variance $r\tau^4$. Summing over its $Md$ entries gives
+$\E\norm{D_3}_F^2=Mdr\tau^4$. Each cross expectation vanishes by
+conditioning on one centered noise matrix. For example, conditional on
+$Z_B$, the inner product $\ip{AZ_B}{Z_AZ_B}_F$ is linear in $Z_A$ and
+has expectation zero. Expanding the squared norm proves
+\cref{eq:qmoment}; mutual independence of all three products is unnecessary.
+
+\subsection{Score moments and pairwise margins}
+For the first score term, $PD_1^T=PZ_B^TA^T$, the identity
+$\E[Z_B^TA^TAZ_B]=\tau^2\norm{A}_F^2I_d$ yields
+\begin{equation}
+ \E\norm{PD_1^T}_F^2=\tau^2\norm{A}_F^2\norm{P}_F^2.
+\end{equation}
+For $PD_2^T=PB^TZ_A^T$ the expectation is
+$M\tau^2\norm{PB^T}_F^2$. Conditioning successively on both noises
+gives $Mr\tau^4\norm{P}_F^2$ for $PD_3^T$. Cross expectations again
+vanish, giving \cref{eq:smoment}.
+
+For distinct items $i,j$ and fixed user $p$, the noisy difference between
+their scores has a centered shock with variance
+\begin{equation}
+ V_{ij}=2\tau^2\norm{Bp}^2+
+ \tau^2\norm{A_i-A_j}^2\norm{p}^2+
+ 2r\tau^4\norm{p}^2.
+ \label{eq:marginvar}
+\end{equation}
+The factor two arises because the two independent rows of $Z_A$ are
+subtracted. Shared $Z_B$ affects both items through their factor difference.
+The full shock is not generally Gaussian. For clean nonzero margin $m$,
+Chebyshev's inequality supplies the weak bound
+\begin{equation}
+ \Pr(\text{sign flip})\leq
+ \Pr(|\text{shock}|\geq |m|)\leq \min(1,V_{ij}/m^2).
+\end{equation}
+A variance alone does not justify a Gaussian tail formula for Two.
+
+For FixedB the shock is $(Z_{A,i}-Z_{A,j})Bp$, exactly Gaussian with
+variance $2\tau^2\norm{Bp}^2$. Its fixed-margin sign-flip probability is
+$\Phi(-|m|/(\sqrt{2}\tau\norm{Bp}))$ when the denominator is positive.
+This formula conditions on the current factors and user state; it is not
+an expression for full-catalog NDCG or for accumulated training loss.
+
+\subsection{Scale changes, balancing, and clipping}
+The transformation $(A,B)\mapsto(cA,B/c)$ preserves $Q$ for positive $c$.
+The linear portion of expected matrix-noise energy becomes
+\begin{equation}
+ \tau^2\left(\frac{M\norm{B}_F^2}{c^2}
+                       +dc^2\norm{A}_F^2\right).
+\end{equation}
+Differentiating gives the minimizer
+$c^4=M\norm{B}_F^2/(d\norm{A}_F^2)$ when both factors are nonzero.
+For scores, the corresponding minimizer satisfies
+$c^4=M\norm{PB^T}_F^2/(\norm{A}_F^2\norm{P}_F^2)$.
+An equal-factor-norm convention need not minimize either rectangular or
+user-weighted expression. The bilinear $\tau^4$ term is unchanged by
+this scalar gauge transformation.
+
+These conditional optima are not a training prescription. Changing factor
+scale also changes client gradients and which updates are clipped. A rule
+chosen from private $P$ would require a privacy treatment of that information.
+Balancing after the noisy update preserves its already-noisy $AB$ and
+cannot remove the realized effective shock. The formulas explain an
+interpretation problem, not a free improvement of the privacy mechanism.
+
+Separate factor averaging has an additional distinction. With client means
+$\bar A,\bar B$,
+\begin{equation}
+ \frac1K\sum_{u=1}^K A_uB_u
+ =\bar A\bar B+\frac1K\sum_{u=1}^K(A_u-\bar A)(B_u-\bar B).
+\end{equation}
+Thus averaging factors and averaging products generally differ by a
+cross-client covariance term. FixedB removes this discrepancy, but E1
+does not independently intervene on it. It cannot be isolated as the
+reason for a utility difference from the existing comparisons.
+
+\subsection{FixedB score capacity and regularization}
+If $BB^T=I_r$, define $v_u=Bp_u$. The scores are $A_iv_u$, with a score
+matrix of rank at most $r$. Conversely any desired $v_u\in\R^r$ has
+preimage $p_u=B^Tv_u$, and every other preimage adds a vector in the null
+space of $B$. Orthogonality implies
+\begin{equation}
+ \min_{p:Bp=v}\norm{p}^2=\norm{v}^2,
+ \qquad \norm{A_iB}^2=\norm{A_i}^2.
+\end{equation}
+Projecting the local gradient through $B$ therefore gives ordinary rank-$r$
+BPR dynamics for the score-relevant vector, under the same effective-row
+penalty, up to floating-point behavior. A null-space component does not
+change scores. FixedB does not encode public item semantics; it defines
+a public coordinate map for private collaborative factors.
+
+\subsection{A product-preserving coupling null example}
+The pairs $(A,B)$ and $(-A,-B)$ represent exactly the same matrix. Applying
+identical raw-coordinate Gaussian draws to both gives noisy products whose
+difference is
+\begin{equation}
+ (A+Z_A)(B+Z_B)-(-A+Z_A)(-B+Z_B)
+ =2(AZ_B+Z_AB).
+\end{equation}
+The expected squared distance is
+$4\tau^2(d\norm{A}_F^2+M\norm{B}_F^2)$, although the two noisy products
+have the same marginal distribution. Coupling the second draw as
+$(-Z_A,-Z_B)$ instead makes the products identical. A retained 10,000-draw
+synthetic check gives measured energy $6.341142$ against theoretical
+$6.345313$, with Monte Carlo SE $0.012443$; aligned distance is exactly zero.
+This elementary example makes the coupling issue explicit without claiming
+a new theorem or an accuracy gain.
+
+\subsection{Exact conditional margin law and numerical evaluation}
+Let $\tilde X=X+a$, $\tilde Y=Y+b$ in \cref{eq:tailmargin}. Then
+$(\tilde X+\tilde Y)/\sqrt2$ and $(\tilde X-\tilde Y)/\sqrt2$ are independent
+normal vectors with identity covariance and means $(a+b)/\sqrt2$ and
+$(a-b)/\sqrt2$. The identity
+$\tilde X^T\tilde Y=(\norm{\tilde X+\tilde Y}^2-
+\norm{\tilde X-\tilde Y}^2)/4$ proves \cref{eq:chisquare}. The first
+three cumulants are
+\begin{equation}
+ \E L=m,\qquad \Var(L)=V_{\mathrm{lin}}+rk,
+ \qquad \kappa_3(L)=6km.
+\end{equation}
+For positive $m$, the sign probability can be evaluated as
+$\int_0^\infty F_U(v)f_V(v)\,dv$. The implementation controls omitted
+tails, uses a square-root variable near zero, and compares against direct
+Monte Carlo in synthetic cases. Positive rescaling of $p$ multiplies both
+margin and shock by the same positive amount, leaving sign-flip probability
+unchanged. The real-state calculation normalizes this scale for numerical
+stability; it does not change the ranking question.
+
+\subsection{Analytic Gaussian calibration for popularity}
+Under add/remove adjacency, \cref{eq:pop} changes the unnoised sum by a
+vector of norm at most $\sqrt{20}$. For noise SD equal to sensitivity times
+$\sigma_{\mathrm{pop}}$, the analytic Gaussian condition is
+\begin{equation}
+ \delta=\Phi\left(\frac{1}{2\sigma_{\mathrm{pop}}}
+                           -\epsilon\sigma_{\mathrm{pop}}\right)
+ -e^\epsilon\Phi\left(-\frac{1}{2\sigma_{\mathrm{pop}}}
+                           -\epsilon\sigma_{\mathrm{pop}}\right).
+\end{equation}
+Solving numerically yields multipliers approximately $0.600229$, $1.081162$,
+$1.993812$, and $3.730632$ for targets 8, 4, 2, and 1. This is one release
+with $q=1$, not 50 compositions of a subsampled update. Releasing all
+noise-seed versions would require additional accounting. The derivation
+uses the established analytic Gaussian mechanism \citep{balle2018gaussian}.

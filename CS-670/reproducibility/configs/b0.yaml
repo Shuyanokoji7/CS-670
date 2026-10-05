@@ -1,0 +1,38 @@
+# B0 — centralised BPR matrix factorisation (non-federated, non-private reference).
+# Data split / candidates / metrics come from configs/dataset.yaml (frozen) and are not set here.
+
+name: b0_centralized_bpr
+dataset_config: configs/dataset.yaml
+
+model:
+  dim: 64             # full-rank reference dimension for B1-B4; do not change
+  init_std: 0.01      # N(0, 0.01^2) initialisation of user and item embeddings
+
+training:
+  optimizer: adam
+  learning_rate: 0.001   # FROZEN 2026-10-02: revised-protocol validation search (results/b0_hyperparameter_search.csv)
+  l2_reg: 0.01           # FROZEN 2026-10-02: revised-protocol validation search
+  batch_size: 1024
+  max_epochs: 1000       # revised stopping protocol 2026-10-02 (was 600)
+  patience: 100          # validation checks (epochs) without improvement; revised protocol 2026-10-02 (was 30)
+  negatives_per_positive: 1
+  num_threads: 4         # fixed for bit-reproducibility on CPU
+
+evaluation:
+  k: 10
+  selection_metric: ndcg@10   # validation only
+
+seed: 42                  # model-training seed; cannot change the data split
+
+search:
+  seed: 42
+  # Selection: highest validation NDCG@10; exact ties -> larger l2_reg (simpler model).
+  # If the winner hits max_epochs the search fails (raise the budget) instead of skipping it.
+  # Test is never evaluated during the search.
+  stages:
+    - name: stage1_initial_grid          # pre-declared 3x3 grid
+      learning_rate: [0.01, 0.005, 0.001]
+      l2_reg: [0.0001, 0.00001, 0.0]
+    - name: stage2_l2_scale_and_lr_edge  # added after stage 1 (see RESEARCH_LOG): l2 <= 1e-4 had no
+      learning_rate: [0.001, 0.0005]     # measurable effect and the best lr was at the grid edge.
+      l2_reg: [0.01, 0.001, 0.00001]     # Final stage; duplicates of stage 1 are not re-run.

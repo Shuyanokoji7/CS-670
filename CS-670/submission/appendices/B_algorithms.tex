@@ -1,0 +1,108 @@
+\section{Implementation details and algorithm record}
+\label{app:algorithms}
+\subsection{Client update and shared aggregation}
+Each federated local epoch is a full-batch SGD step over that client's
+training positives, using one fresh uniform negative per positive. This
+normalizes the loss within a user. Repeated item indices in positive and
+negative samples accumulate their gradients. Only touched item rows receive
+local loss gradients, but private aggregation subsequently adds noise to
+every shared coordinate. Item rows not touched by any user therefore can
+still change in a private round.
+
+\begin{enumerate}[label=\arabic*.]
+\item Sample each eligible user independently with public inclusion probability
+$q$. Preserve the selected cohort for all shared and local computations.
+\item For each selected user, copy the common shared state and retrieve its
+local vector. Repeat $E=2$ times: draw negatives from the training-only mask,
+compute the within-user mean BPR loss and explicit regularizer, and update
+both the local vector and the client's shared copy.
+\item Persist the new local vector. Form the difference between the client's
+shared copy and the round's starting state. For a private run, jointly clip
+that whole difference to norm $C$.
+\item Sum the contributions. In private runs, add an independent Gaussian
+vector with SD $\sigma C$, even when no user was selected. Divide by fixed
+$qN$ and multiply by $\eta_s$. Nonprivate B1 instead averages over realized
+participants and skips an empty round.
+\item Update the server's shared state. Where specified, rebalance the two
+factors without changing their product. Record communication and diagnostics
+at the protocol's declared observation points.
+\end{enumerate}
+This procedure describes the simulator's semantics. It does not specify
+a network protocol, secure-aggregation implementation, or availability model.
+
+\subsection{Final parameter register}
+\begin{longtable}{L{.19\linewidth}L{.73\linewidth}}
+\caption{Final retained configurations and stopping rules.}\label{tab:settings}\\
+\toprule Model & Settings \\\midrule\endfirsthead
+\multicolumn{2}{l}{\small\itshape Table \thetable\ (continued)}\\
+\toprule Model & Settings \\\midrule\endhead
+B0 / B0-UW & $d=64$, initialization SD 0.01; Adam $10^{-3}$; L2 $10^{-2}$;
+batch 1,024; maximum 1,000 epochs; patience 100. Uniform interactions / uniform
+users then positives, respectively. \\
+B1 & $q=0.1$, $E=2$, local rate 5, L2 $10^{-5}$, server rate 1; validation
+every ten rounds; patience 100 validations; maximum 8,000 rounds. \\
+B2 & B1 local settings; $T=50$, $C=1$, fixed $qN$, final-round checkpoint,
+PRV-calibrated noise and $\delta=10^{-5}$. \\
+B3 & Ranks 4/8/16/32; local rates 0.625/1.25/1.25/0.625; effective-row L2;
+QR/core-SVD balancing; B1 stopping with the disclosed r32/seed123 ceiling exception. \\
+B4 & $T=50$, $C=1$, same private calibration as B2; r4 local/server 2.5/1;
+r8/r16/r32 local/server 5/0.5; joint factor clipping and full-coordinate noise. \\
+E1 Full & Local/server 5/1, six levels including no-clipping/no-noise and
+clipping-only controls; same final iterative calibration. \\
+E1 Two & Local 5; server 0.5 for r4/r8/r16 and 1 for r32; initial effective
+matrix matched to FixedB; both factors trained and balanced. \\
+E1 FixedB & Local/server 5/1; orthonormal public basis seed 314159; private
+$A$ only; $64$-dimensional local vectors; no semantic metadata. \\
+E1 popularity & Binary distinct-training-item contributions; norm bound
+$\sqrt{20}$; full population; one analytic-Gaussian release. \\
+E3 transfer & E1 Full, FixedB-r8, and Two-r8 settings without retuning;
+two privacy targets, five seeds, 50 rounds, ML-1M normalization. \\
+\bottomrule
+\end{longtable}
+
+\subsection{Diagnostic random streams and identity checks}
+E2 pulse streams use the tuple (training seed, 6702, pulse replicate).
+Future client, negative, and Gaussian streams use identifiers 6703, 6704,
+and 6705 respectively. Common streams are retained across branches and
+pulse amplitudes. E3 uses separately declared dataset-coded streams with
+identifiers 6710--6713 and observer selection identifier 6708. E4 uses
+its own fixed observer selection. Exact seed tuples are part of the
+frozen protocols and saved records, so a report rerender does not generate
+new diagnostic observations.
+
+Synthetic checks compare zero-pulse branches with their references and
+both-reset branches over continued rounds. Shared resets enforce identical
+$Q$; local resets enforce identical $P$. The score decomposition includes
+all cross inner products. Alignment checks measure relative product error
+instead of assuming exact equality in float32. E4 checks moment formulas
+within Monte Carlo uncertainty and audits quadrature diagnostics separately.
+These checks support the implemented experiments; they do not prove an
+unrestricted mathematical correctness claim for every numerical state.
+
+\subsection{Numerical environment and reproducibility precision}
+The pinned research environment records NumPy 2.2.6, pandas 2.3.3, SciPy
+1.15.3, PyTorch 2.14.0+cpu, Opacus 1.6.0, matplotlib 3.10.9, and the
+remaining versions in the curated requirements file. Opacus is used for
+accountants, not a PrivacyEngine wrapping these models. Training and
+diagnostic observer precision are distinguished: model updates retain
+float32, while relevant diagnostic norms and closures use float64.
+E1 enforces one numerical worker thread; older centralized runs used
+their recorded CPU/thread configuration.
+
+A fresh-environment historical B0 reproduction was identical to reported
+metric precision but not byte-identical for seed 42. Relative weight
+difference was approximately $7.8\times10^{-6}$, and one validation
+rank changed from 596 to 595 without changing reported six-decimal
+metrics. A floating-point kernel explanation was plausible but unverified.
+Accordingly the report promises recorded seeds, environments, artifacts,
+and numerical audits, not universal bitwise identity on different systems.
+
+\subsection{Communication ledger}
+\input{tables/communication}
+Totals in \cref{tab:communication} distinguish the selected checkpoint from
+the complete run, including patience rounds. B2/B4 have identical selected
+and completed horizons; B1/B3 do not. The historical column comparing every
+model to B1 is not used to claim a like-for-like private communication
+advantage: B2/B4 should be compared at their matched 50-round horizon.
+Decimal gigabytes and dense float32 counting are used throughout.
+\FloatBarrier

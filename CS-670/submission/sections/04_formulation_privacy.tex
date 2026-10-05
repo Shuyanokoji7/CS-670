@@ -1,0 +1,106 @@
+\section{Problem formulation and privacy model}
+\label{sec:privacy}
+\subsection{Personalized implicit-feedback ranking}
+Let $\mathcal I_u^+$ be user $u$'s set of training-positive items. A local vector
+$p_u\in\R^d$ and shared item row $q_i\in\R^d$ produce score
+\begin{equation}
+ s_{ui}=p_u^Tq_i,\qquad S=PQ^T.
+ \label{eq:score}
+\end{equation}
+The model has no item biases, content features, attention layers, or temporal
+features. For a sampled triplet $(u,i,j)$ with $i\in\mathcal I_u^+$ and
+$j\notin\mathcal I_u^+$, the implemented BPR loss is
+\begin{equation}
+ \ell(u,i,j)=\log(1+\exp(s_{uj}-s_{ui}))+
+ \lambda\bigl(\norm{p_u}^2+\norm{q_i}^2+\norm{q_j}^2\bigr).
+ \label{eq:bpr}
+\end{equation}
+The softplus implementation is numerically stable for extreme margins. The
+penalty applies to embeddings touched by the sampled loss, not to a separate
+factor-only penalty or an optimizer's implicit weight decay. In a factorized
+model, $q_i=A_iB$ and gradients propagate through this effective row.
+
+There are two relevant population objectives. Interaction-weighted centralized
+training gives more weight to users with more positives. User-weighted training
+first averages within each user and then across users. Uniform client inclusion
+and equally weighted client updates are closer to the latter, although local
+multi-step optimization is not exactly the gradient of a single centralized
+objective. The B0-UW control makes the weighting difference visible without
+claiming that it eliminates all optimizer differences.
+
+\subsection{Protected information and adjacency}
+The privacy unit is one user's complete interaction record under add/remove
+adjacency. For neighboring datasets $D,D'$ differing in one user's contribution,
+a mechanism $\mathcal M$ is $(\epsilon,\delta)$-DP when, for each measurable
+output set $\mathcal O$,
+\begin{equation}
+ \Pr[\mathcal M(D)\in\mathcal O]
+ \leq e^\epsilon\Pr[\mathcal M(D')\in\mathcal O]+\delta.
+ \label{eq:dp}
+\end{equation}
+The catalog, eligible population size used for normalization, configurations,
+and random public basis are treated as fixed public inputs. Eligibility filtering
+and catalog construction in the research data pipeline are not themselves
+privatized. Thus the reported mechanism is conditional on these inputs; it is
+not an end-to-end private data-ingestion and model-selection system.
+
+User vectors persist locally and are never included in the shared update.
+The trust model assumes a server that sees only a noised aggregate, as would
+be supported by suitable secure aggregation and noise generation. The simulator
+does not implement a cryptographic secure-aggregation protocol. Raw client
+updates or local checkpoints visible to an untrusted server would not be
+protected merely by calling the training procedure federated.
+
+\subsection{Private aggregation mechanism}
+Write $\theta_t$ for the shared parameter vector: vectorized $Q$, $(A,B)$, or
+$A$ alone. At round $t$, each client is independently sampled with probability
+$q$. A selected client starts from $\theta_t$, performs local updates using its
+own data and local $p_u$, and returns shared difference $\Delta_{u,t}$. Clip
+the whole shared contribution once:
+\begin{equation}
+ \bar\Delta_{u,t}=\Delta_{u,t}
+ \min\left(1,\frac{C}{\norm{\Delta_{u,t}}_2}\right),\qquad
+ \theta_{t+1}=\theta_t+
+ \frac{\eta_s}{qN}\left(\sum_{u\in\mathcal U_t}\bar\Delta_{u,t}
+            +\xi_t\right),
+ \quad\xi_t\sim\mathcal N(0,\sigma^2C^2I).
+ \label{eq:aggregate}
+\end{equation}
+For Two, the norm is over the concatenated factor update. Clipping each factor
+independently at $C$ would define a different sensitivity bound. Noise is added
+to every shared coordinate, including item rows untouched by sampled users.
+The denominator is the fixed expectation $qN$, not the realized number of
+participants. Empty private rounds still release a noised update and count
+toward composition. Local states are retained only by their respective users.
+
+At the ML-100K population size, $qN=94.2$. At ML-1M, $qN=603.5$. The primary
+accountant depends on $q,T,\sigma,\delta$, so transferring these parameters
+preserves the accountant bound while changing the post-normalization noise SD.
+Changing dimension alone does not reduce $\epsilon$. Neither does changing
+$C$ while scaling Gaussian noise by the same multiplier. Utility can change
+substantially in both cases.
+
+\input{tables/privacy_main}
+All final private collaborative experiments use $T=50$, $q=0.1$, $C=1$, and
+$\delta=10^{-5}$. \Cref{tab:privacy} reports the exact retained calibration.
+PRV is the declared primary bound. The RDP column is a distinct upper bound
+for the same mechanism, not an extra privacy charge and not a replacement
+selected after inspecting utility.
+
+\subsection{Release scope and local personalization}
+The guarantee describes one fixed-hyperparameter training mechanism. Publishing
+multiple runs requires composition; selecting a configuration from private
+validation results is not free; reporting user-level diagnostics is not covered
+by the final aggregate's guarantee. The research process uses nonprivate
+validation, evaluation, and access to internal states. Reproducible random
+seeds are useful for auditing but do not constitute production-grade secure
+randomness.
+
+Local personalization can be interpreted through the established joint-DP
+framework when a user's output depends on that user's own records and an
+appropriately private shared transcript. This does not authorize publishing
+the entire local matrix $P$. E2 and E3 use oracle reset and alignment operations
+on private states for diagnosis; E4 conditions on private checkpoints. They
+are research measurements, not releases justified by the starting checkpoint's
+privacy label. These distinctions prevent the formal accountant from being
+mistaken for an end-to-end privacy claim about the report itself.

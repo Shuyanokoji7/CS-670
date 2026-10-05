@@ -1,0 +1,83 @@
+\section{E4: a conditional ranking-tail screen}
+\label{sec:e4}
+\subsection{Candidate explanation and established mathematics}
+The bilinear term's small average energy in E1 does not logically guarantee
+accurate Gaussian tail probabilities. Ranking changes can depend on small
+margins, and rare-event probabilities may differ even when a variance
+component is modest. E4 tests this narrower possibility rather than assuming
+the energy result has settled all consequences of non-Gaussian noise.
+
+For a fixed user vector $p$, item pair $i,j$, and signal factors, let
+$v=A_i-A_j$, $u=Bp$, $s_x=\sqrt{2}\tau$, and $s_y=\tau\norm{p}$.
+The noisy margin has the conditional distribution
+\begin{equation}
+ L=(v+s_xX)^T(u+s_yY),\qquad X,Y\stackrel{\mathrm{ind}}{\sim}\mathcal N(0,I_r).
+ \label{eq:tailmargin}
+\end{equation}
+Set $a=v/s_x$, $b=u/s_y$, and $k=s_x^2s_y^2$. With independent
+noncentral chi-square variables $U,V$ having $r$ degrees of freedom and
+noncentralities $\norm{a+b}^2/2$, $\norm{a-b}^2/2$,
+\begin{equation}
+ L\ \overset{d}{=}\ \frac{\sqrt{k}}{2}(U-V).
+ \label{eq:chisquare}
+\end{equation}
+This is an application of known distributional results
+\citep{gaunt2024product}. For a positive clean margin $m=v^Tu$, numerical
+integration evaluates $\Pr(U\leq V)$. It is compared with
+$\Phi(-m/\sqrt{V_{\mathrm{lin}}+rk})$, where
+$V_{\mathrm{lin}}=s_x^2\norm{u}^2+s_y^2\norm{v}^2$, and with the
+linearized approximation $\Phi(-m/\sqrt{V_{\mathrm{lin}}})$.
+
+\subsection{Synthetic checks and real-state selection}
+Six synthetic cases use 200,000 direct draws each to check moments and
+numerical integration, along with rank-one closed forms, symmetry, and
+rotation/positive-user-scale invariance. A declared rank-one example with
+$a=b=4$ has bilinear variance share $1/33=3.03$\%. Its sign-flip probability
+is approximately $0.0000633405$, versus $0.0026743853$ for the variance-
+matched Gaussian, a factor of about 42.2. This construction shows why a
+tail check is worthwhile; it is not fitted evidence about the trained models.
+
+The real-state screen uses 40 E1 ML-100K Two checkpoints (four ranks, two
+privacy labels, five seeds) and ten E3 ML-1M Two-r8 checkpoints. Sixteen
+preselected users per dataset and four training-unseen score-rank pairs,
+$(10,11),(1,11),(10,100),(1,100)$, yield 3,200 records. The first two pair
+types are primary, giving 1,600 primary records. No model is trained and
+no held-out relevance label is read. The declared gate requires matched-
+Gaussian absolute error above $0.01$ on at least 5\% of primary records
+in both datasets.
+
+\subsection{Outcome and numerical scope}
+The maximum absolute matched-Gaussian error over all 3,200 records is
+$7.66859\times10^{-6}$; the maximum linearized-Gaussian error is
+$7.26162\times10^{-5}$. Neither dataset has a primary record above the
+$0.01$ threshold. The largest matched error is less than $0.000767$
+percentage points. The proposed advancement gate therefore fails.
+Group-mean pairwise bilinear variance shares range from approximately
+$0.0011$\% to $0.0750$\%, much smaller than the constructed example.
+These shares concern a particular user's item-pair margin and are not
+the whole-matrix energy fractions reported in E1.
+
+\reportfigure{09_ranking_tail_screen.pdf}{The rejected ranking-tail candidate}
+{Maximum absolute flip-probability error for variance-matched and linearized
+Gaussian approximations against numerical evaluation of the known conditional
+law. Each bar covers 320 state-user-pair records. The logarithmic axis marks
+the 0.01 per-pair gate. Even maxima over all four pair types are far below
+the threshold. This is a one-step, label-free stability diagnostic, not a
+measurement of cumulative recommendation accuracy.}{fig:tails}
+
+There are no tied, zero-user, or numerical-failure records. The largest
+reported quadrature error estimate is $2.64884\times10^{-9}$ and the omitted
+tail mass is at most approximately $2\times10^{-12}$. A square-root
+integration variable avoids the rank-one density singularity. These are
+numerical diagnostics, not a rigorous certified error bound for every
+possible parameter state. No expanded amplitudes, checkpoints, users,
+or pair types were added after inspecting the screen.
+
+The result rejects practically consequential non-Gaussian approximation
+error for the sampled one-step round-50 states. It does not prove that all
+earlier iterates, all ranks, or multi-round training have Gaussian behavior.
+Nor does it refute noisy-score stability results with explicit distributional
+assumptions \citep{urmian2026slate}. The correct decision is to retain the
+negative result and decline to build a new method around an effect that
+was negligible in the tested regime.
+\FloatBarrier

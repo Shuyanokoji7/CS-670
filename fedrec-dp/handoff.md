@@ -1,5 +1,14 @@
 # Handoff for the next research agent
 
+**Update 2026-10-03:** E1 is complete, and a later independent continuation
+completed E2/E2b/E3/E4 and created the curated `../CS-670/` UGP report folder.
+E3 adds MovieLens-1M and a balancing control; E4 rejects a ranking-tail
+candidate. ML-1M validation is exposed, but its test has not been scored.
+Read [the latest continuation handoff](docs/extensions/RESEARCH_CONTINUATION_HANDOFF.md)
+and [the report entry point](../CS-670/README.md) first. The research direction
+is flexible; paper-level novelty remains unconfirmed. The remainder of this
+file preserves the earlier 2026-10-02 baseline handoff.
+
 Prepared 2026-10-02. Repository: `/home/ag/Amazon ML/fedrec-dp/`.
 Git root: `/home/ag/Amazon ML/`. This is an ongoing CS670 research project.
 

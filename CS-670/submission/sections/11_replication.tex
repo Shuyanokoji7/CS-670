@@ -1,0 +1,92 @@
+\section{E3: larger-data replication and balancing controls}
+\label{sec:e3}
+\subsection{Transferred training and factorial diagnostic}
+E3 freezes its protocol on 3 October 2026 and trains 30 ML-1M models using
+the selected E1 settings without retuning: Full, FixedB-r8, and Two-r8;
+targets one and two; five seeds; 50 rounds. Local rate $5$, two local epochs,
+$C=1$, and $q=0.1$ are unchanged. Full and FixedB retain server rate $1$,
+while Two-r8 retains $0.5$. The same noise multipliers give the same
+accountant bounds, but the larger $qN$ reduces coordinate noise after
+normalization. Dataset size also changes the task, so differences in NDCG
+across datasets are not directly interpretable as a population-size effect.
+
+The principal diagnostic crosses two datasets, two privacy labels, five
+seeds, two pulse draws, two noise couplings, and two continuation-balancing
+choices for Two-r8: 160 probes. Forty ML-1M Full/FixedB reference probes
+bring the total to 200. Pulse amplitude is one. Observer sets contain 128
+users selected before outcomes are inspected. All users remain eligible
+for local updates. These streams and observer sets differ from E2, so
+their means need not reproduce E2's numerical values exactly.
+
+The no-balancing condition starts from the same balanced round-50 checkpoint
+and disables balancing only during the pulse/continuation experiment. It
+is not a model independently trained without balancing from initialization.
+Unlike merely changing a joint coupling, this changes the continuation
+algorithm itself. That distinction is central to its interpretation.
+
+\subsection{Validation utility}
+\input{tables/e3_validation_main}
+\Cref{tab:e3validation} reports full-population validation. All collaborative
+point means are below the separately calibrated private popularity reference.
+For example, at target two Full reaches $0.024624$, FixedB-r8 $0.016482$,
+and Two-r8 $0.015440$, against popularity's $0.026161$. The fixed settings
+and short horizon may undertrain the larger problem; these numbers do not
+establish that tuned collaborative models cannot win. There is no paired
+superiority test or ML-1M test score in this stage.
+
+\reportfigure{08_ml1m_validation.pdf}{Transferred ML-1M validation utility}
+{Full-population ML-1M validation NDCG@10 under frozen transferred settings.
+Bars and whiskers give five-seed means and SDs; dots show each seed.
+Collaborative models use 50 rounds and popularity uses one separately
+calibrated release. Point differences are descriptive. ML-1M test targets
+have not been scored.}{fig:ml1m}
+
+\subsection{Main diagnostic result}
+\input{tables/e3_churn_main}
+With SVD balancing, raw-coordinate coupling produces much larger shared-reset
+top-10 disagreement than aligned coupling on both datasets and privacy
+labels (\cref{tab:e3churn}). On ML-1M, for example, target-one means are
+$5.2344$\% versus $0.0625$\%. Without continuation balancing, raw and
+aligned churn are identical at saved precision for every seed. Small score
+RMS differences remain through float32 arithmetic.
+
+These controls support a dependence on balancing-induced factor-basis changes.
+The initial large Two-r8 signal is not evidence for a general intrinsic
+failure of persistent local personalization. The result also does not mean
+balancing should simply be removed from a deployed optimizer: this stage
+does not compare independently trained balanced and unbalanced methods at
+equal privacy, utility, and convergence budgets.
+
+\reportfigure{07_balancing_replication.pdf}{Replication with and without continuation balancing}
+{Two-r8 shared-reset disagreement after ten rounds on two datasets. Open
+circles show five seed values, diamonds means, and whiskers seed SD after
+averaging two draws. The symmetric-log axis is linear below 0.02 percentage
+points so exact zeros remain visible. Raw/aligned churn differs with SVD
+balancing and matches without it. Disabling balancing applies only to the
+continuation from the common balanced state.}{fig:replication}
+
+The aligned diagnostic is small in ranking terms. ML-1M Full and FixedB at
+target one have mean shared-reset churn $0.1328$\% and $0.0859$\%, while
+aligned Two retains a score RMS about $3.6$\% of its initial pulse. In the
+128-user observer sample, mean validation-NDCG changes under SVD/aligned
+Two are approximately $0.000040$ and $0.000226$ on ML-100K, and
+$0.000018$ and $0$ on ML-1M at targets one and two. These discrete, small-
+sample values do not establish equivalence, improvement, or absence of
+effects below their resolution.
+
+\subsection{Checks and research decision}
+All 30 training runs and 200 probes complete without failures. Twelve
+synthetic cases cover balanced-round identity, reset identities, zero
+pulses, and matching random streams. Maximum relative alignment product
+error is $3.9127\times10^{-8}$. The saved-evidence audit recomputes seed
+summaries from 2,800 observations and validation means from 181,050 saved
+user ranks, without scoring additional models.
+
+The broad instability interpretation is rejected. A narrower empirical
+conclusion survives: representation-dependent coupling can dominate a
+particular paired noise-attribution diagnostic. Its scientific value is
+that it changes how the preceding experiment should be interpreted.
+Establishing a paper-level contribution would require showing that this
+issue materially changes conclusions or design decisions beyond the
+present simulator, in relation to existing gauge and alignment methods.
+\FloatBarrier

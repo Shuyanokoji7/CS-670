@@ -1,0 +1,49 @@
+\section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
+Federated recommendation separates shared item learning from local user personalization,
+but useful recommendations can deteriorate when whole-user differential privacy (DP)
+requires clipping and noisy aggregation. This project studies whether a smaller shared
+representation improves that trade-off and, more broadly, how injected noise becomes
+disturbance to item matrices, personalized scores, and rankings. A reproducible
+MovieLens-100K pipeline compares centralized Bayesian Personalized Ranking (BPR), a
+user-weighted centralized control, and federated full-matrix and low-rank models with
+and without DP. Five-seed historical comparisons find low-rank private models better
+than the private full-matrix reference in four of sixteen multiplicity-adjusted
+comparisons; all four nonprivate low-rank variants underperform the converged full
+model. These results motivate a separately frozen, equal-budget comparison of full,
+jointly trained two-factor, and fixed-public-factor parameterizations.
+
+The fixed-factor extension obtains no positive adjusted primary comparison and loses
+eight of sixteen comparisons to joint factor training. A user-level private popularity
+baseline exceeds every collaborative point estimate at target $\epsilon\leq4$ in
+that extension. Conditional moment calculations and measured perturbations show why
+factor-coordinate noise norms are inadequate proxies for recommendation damage:
+effective noise depends on factor geometry, local user scale, clipping, and pairwise
+margins. Pulse-and-reset studies initially reveal large two-factor trajectory
+differences, but an orthogonal alignment control substantially reduces them. Thirty
+transferred MovieLens-1M training runs and 200 further probes reproduce the dependence
+on the way noise is coupled across rebalanced factor trajectories. A separate screen
+of 3,200 item-pair records finds a maximum absolute sign-flip probability error of
+$7.67\times10^{-6}$ for a variance-matched Gaussian approximation and rejects
+non-Gaussian tails as a practically consequential explanation in the sampled states.
+
+The completed contribution is an audited experimental study and a more precise
+interpretation of noise diagnostics in personalized low-rank recommendation. It
+does not establish a new state-of-the-art algorithm or a confirmed claim of
+paper-level novelty. The report includes the full methodological progression,
+unfavorable findings, privacy scope, statistical qualifications, mathematical
+derivations, and a separately generated supplementary results document.
+
+\medskip
+\noindent\textbf{Keywords:} federated recommendation; user-level differential privacy;
+matrix factorization; BPR; effective noise; personalization; factor alignment;
+reproducible evaluation.
+
+\subsection*{Scope of this submission}
+The main report explains the completed research and includes essential tables and
+all nine curated figures. The companion \emph{Supplementary Results and Experimental
+Record} provides complete retained utility tables, primary and secondary contrasts,
+diagnostic summaries, and source mappings. Numerical results come from frozen saved
+outputs; preparation of this report did not retrain models or score additional test
+targets. MovieLens-100K is a repeatedly used development benchmark. MovieLens-1M
+validation has been evaluated; its test targets remain unscored.

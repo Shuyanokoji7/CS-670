@@ -1,0 +1,61 @@
+{
+  "checkpoint": "checkpoints/extensions/noise_replication_v1/ml1m_full_eps2_seed99.npz",
+  "checkpoint_sha256": "62ec8e178286bd906e5b51f1d9cb8799c0eba0fba534c360d69e205ec4321774",
+  "created_utc": "2026-10-03T17:38:17.979803+00:00",
+  "dataset": "ml1m",
+  "final_user_norm_max": 4.893400972929423,
+  "level": "eps2",
+  "round": 50,
+  "seed": 99,
+  "settings": {
+    "T": 50,
+    "clip_norm": 1.0,
+    "delta": 1e-05,
+    "dim": 64,
+    "init_std": 0.01,
+    "k": 10,
+    "level": "eps2",
+    "local_epochs": 2,
+    "local_lr": 5.0,
+    "method": "full",
+    "pair_count": 256,
+    "public_basis_seed": 314159,
+    "q": 0.1,
+    "rank": 64,
+    "reg": 1e-05,
+    "score_rounds": [],
+    "seed": 99,
+    "server_lr": 1.0,
+    "sigma": 1.76044921875
+  },
+  "status": "ok",
+  "tag": "ml1m_full_eps2_seed99",
+  "threads": {
+    "env": {
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "numpy_openblas_threads": 1,
+    "torch_threads": 1
+  },
+  "total_bytes": 57087342592,
+  "unit": "full",
+  "validation": {
+    "hr@10": 0.05484672742336371,
+    "hr@10_se": 0.0029310540557527433,
+    "mean_rank": 1153.4545153272577,
+    "median_rank": 860.0,
+    "mrr@10": 0.01901724069909654,
+    "mrr@10_se": 0.0013447197872077249,
+    "n_users": 6035,
+    "ndcg@10": 0.027309830283881648,
+    "ndcg@10_se": 0.0016142408662128752,
+    "recall@10": 0.05484672742336371,
+    "recall@10_se": 0.0029310540557527433,
+    "split": "validation"
+  },
+  "wall_time_s": 45.859742942266166
+}

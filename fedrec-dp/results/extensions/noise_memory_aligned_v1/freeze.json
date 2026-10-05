@@ -1,0 +1,9 @@
+{
+  "code_sha256": "41d1c7f19f8812d923fe364154d5c26ec9ab148a3896c546fb02ad3f81079562",
+  "created_utc": "2026-10-02T22:04:59.108231+00:00",
+  "e2_code_sha256": "525da9d09258198a905c0fa48208750225c0bb1caf67f0db5193da2668d341de",
+  "held_out_scoring": false,
+  "privacy_claim": "diagnostic coupling only; not a new DP mechanism",
+  "probes": 40,
+  "protocol_sha256": "3278e5dea3e7ba80ea9702bd1d37f89beb246054d073bccefbe6ed7c39e811a5"
+}

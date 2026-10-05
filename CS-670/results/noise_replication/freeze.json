@@ -1,0 +1,22 @@
+{
+  "created_utc": "2026-10-03T17:36:48.117886+00:00",
+  "dataset_sha256": "634d6b4b8271e29cdaa2ec54ad2dc96cad7e6a15a957fc0a7f85b0738a64e493",
+  "input_e1_manifest_sha256": "d003f554ea96ebf96e634cd805aa9542be029429544088211314a9b8a8df946e",
+  "probes": 200,
+  "sources": {
+    "docs/extensions/NOISE_REPLICATION_PROTOCOL.md": "b8176ebdd3d8063da7c5fb39932b01c52f8457e381af0f7af1868dc2bf511329",
+    "experiments/probe_noise_memory.py": "525da9d09258198a905c0fa48208750225c0bb1caf67f0db5193da2668d341de",
+    "experiments/probe_noise_memory_aligned.py": "41d1c7f19f8812d923fe364154d5c26ec9ab148a3896c546fb02ad3f81079562",
+    "experiments/run_noise_replication.py": "bf655a65e8d31f1d456213e996b783384c3afadec49c67e4da40be5b9c9a6d99",
+    "src/data.py": "f6ace3b9f43a3fefbd24a20a1c45689de66cffdce89ad62e2ff328750651287c",
+    "src/effective_noise.py": "98985a26a10a46fe4abb68041b09ef26868971d0af7280a5ed0aafb9db12886a",
+    "src/evaluate.py": "bbe04a18af4ba22548e63a25fbe680993f41b3b1c4d51ade5b5df433acaa5116",
+    "src/federated.py": "73e8d8219c19b04d8fdc6f7caef47ae2be6e3f973b0618b89ec053217e38f899",
+    "src/lowrank.py": "2e30bf223c52a5e202d4a7af703a442604d562dc66e395f71836190897373c24",
+    "src/metrics.py": "79606c1add8eed6a6322cbd7628970096c9e2e8eee18de48519dd06daf3295af",
+    "src/privacy.py": "0a5a295a7b1e4dc146ebca9427a4d2358dd04e5b56f42a8dd4c4b550f77d6deb",
+    "src/threads.py": "e4c6fc048e7aecdcf32039cb6bf7a6c98fce8b281b434f153976045e6d645361"
+  },
+  "test_scored": false,
+  "training_runs": 30
+}

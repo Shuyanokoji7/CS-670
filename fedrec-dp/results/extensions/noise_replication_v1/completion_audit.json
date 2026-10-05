@@ -1,0 +1,36 @@
+{
+  "created_utc": "2026-10-03T17:54:07.210097+00:00",
+  "training_executed": false,
+  "model_scores_computed": false,
+  "summary_script_sha256": "37b8986ed3734d5d94abb5ea733e85cac46c78ee13bc561c53cc275e7948089d",
+  "frozen_source_hashes": {
+    "E3": 12,
+    "E4": 10
+  },
+  "e3": {
+    "training_runs": 30,
+    "probes": 200,
+    "observations": 2800,
+    "failures": 0,
+    "validation_ranks_recomputed": 181050,
+    "alignment_product_relative_error_max": 3.912685417431955e-08,
+    "all_synthetic_checks_passed": true
+  },
+  "e4": {
+    "states": 50,
+    "pairs": 3200,
+    "flagged_pairs": 0,
+    "synthetic_cases_passed": 6,
+    "primary_pairs": 1600,
+    "primary_fraction_error_over_01": {
+      "ml100k": 0.0,
+      "ml1m": 0.0
+    },
+    "max_absolute_error_matched": 7.668588919929054e-06,
+    "max_absolute_error_linear": 7.261620866655383e-05,
+    "max_quadrature_error_estimate": 2.6488357484079267e-09,
+    "max_omitted_tail_mass": 2.0000000000229223e-12,
+    "advancement_gate_passed": false
+  },
+  "all_checks_passed": true
+}

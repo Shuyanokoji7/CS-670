@@ -1,0 +1,47 @@
+{
+  "created_utc": "2026-10-02T21:56:53.540294+00:00",
+  "records": [
+    {
+      "alpha": 0.0,
+      "max_closure": 0.0,
+      "method": "full",
+      "observations": 14,
+      "passed": true
+    },
+    {
+      "alpha": 1.0,
+      "max_closure": 1.0842021724855044e-19,
+      "method": "full",
+      "observations": 14,
+      "passed": true
+    },
+    {
+      "alpha": 0.0,
+      "max_closure": 0.0,
+      "method": "fixed",
+      "observations": 14,
+      "passed": true
+    },
+    {
+      "alpha": 1.0,
+      "max_closure": 1.6263032587282567e-19,
+      "method": "fixed",
+      "observations": 14,
+      "passed": true
+    },
+    {
+      "alpha": 0.0,
+      "max_closure": 0.0,
+      "method": "two",
+      "observations": 14,
+      "passed": true
+    },
+    {
+      "alpha": 1.0,
+      "max_closure": 1.3552527156068805e-19,
+      "method": "two",
+      "observations": 14,
+      "passed": true
+    }
+  ]
+}

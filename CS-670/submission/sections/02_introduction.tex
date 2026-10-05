@@ -1,0 +1,102 @@
+\section{Introduction}
+\label{sec:introduction}
+\subsection{Problem and motivation}
+Recommendation systems use interaction histories to predict which items a person
+will find useful. Those histories can reveal preferences and behavior that users
+may not want to disclose. Federated learning changes where training occurs: user
+records remain on clients, while a server coordinates the shared model. This
+separation is useful, but transmitted updates can still depend strongly on an
+individual's records. Differential privacy adds a formal constraint on that
+dependence. In this project the protected unit is an entire user, so protecting
+one rating while exposing the rest of the user's history would be insufficient.
+
+The practical difficulty is that privacy-preserving aggregation also changes the
+learning problem. A client update is clipped before contributing to an aggregate,
+and random noise is added to that aggregate. Clipping can suppress informative
+directions; noise can obscure weak collaborative signals. These effects interact
+with client sampling, local training, the representation of items, and persistent
+user embeddings. A useful experimental study must distinguish these mechanisms
+instead of treating every difference from a centralized model as a privacy cost.
+
+The project's starting hypothesis was that reducing the number of shared item
+parameters could improve the privacy--utility--communication trade-off. A full
+item matrix $Q\in\R^{M\times d}$ can be written approximately through factors
+$A\in\R^{M\times r}$ and $B\in\R^{r\times d}$, with $r<d$. Sharing the factors
+reduces the number of communicated scalars from $Md$ to $r(M+d)$. Under isotropic
+Gaussian perturbation, fewer coordinates also reduce the expected squared norm
+of noise in those coordinates. Neither observation establishes that recommendation
+scores become less disturbed. The model uses the product $AB$, not the separate
+factor coordinates, and its predictions multiply that product by a local user
+vector whose scale can itself change during noisy training.
+
+The investigation consequently developed in stages. The initial baselines
+separated centralized learning, user weighting, federation, privacy, and low rank.
+Their mixed outcomes motivated controlled comparisons of parameterizations and
+direct measurement of effective noise. Later experiments asked whether noise
+persists through local personalization and whether diagnostic trajectory
+differences depend on arbitrary factor coordinates. A final candidate examined
+whether non-Gaussian margin tails matter in the saved trained states. This report
+presents those stages as a connected study, including the hypotheses that failed.
+
+\subsection{Research questions}
+Five questions organize the completed work.
+\begin{enumerate}[label=RQ\arabic*.]
+\item \textbf{Representation and utility.} At matched privacy targets and a fixed
+private training horizon, when does a low-rank shared representation outperform
+a full shared matrix, and what utility is lost before privacy is introduced?
+\item \textbf{Parameterization and effective noise.} Does fixing one public
+factor improve prediction quality once initialization, tuning opportunity,
+clipping controls, and a private popularity reference are included?
+\item \textbf{Persistent personalization.} After an injected shared-model
+perturbation has influenced local user states, how much prediction disturbance
+remains when the shared state is restored?
+\item \textbf{Validity of trajectory comparisons.} How much of a paired
+two-factor trajectory difference depends on rebalancing and on the rule used to
+couple random noise between equivalent factor representations?
+\item \textbf{Ranking-tail relevance.} In the trained states, does the exact
+conditional law of a noisy item-pair margin differ enough from Gaussian
+approximations to motivate a different ranking method?
+\end{enumerate}
+These questions concern related but distinct quantities. A difference in score
+RMS does not automatically imply a difference in ranking relevance; a rank-set
+change need not lower NDCG; and a smaller transmitted tensor does not establish
+lower communication to convergence. Each stage therefore uses a measurement
+appropriate to the claim it can support.
+
+\subsection{Completed contributions}
+The first contribution is a reproducible experimental framework: deterministic
+data preparation, full-catalog ranking, explicit user-level aggregation and
+accounting, matched controls, repeated training seeds, and an immutable evidence
+trail. This framework supports a qualified empirical result: low rank is useful
+in some strong-privacy comparisons, but it is not a general remedy for private
+collaborative recommendation.
+
+The second contribution is a controlled recommendation-specific evaluation of
+effective noise. The study relates factor-space noise to the item product, local
+user state, clipping, ranking, and communication. The fixed-factor method is a
+baseline based on established ideas, not a newly invented algorithm. A separately
+calibrated user-level private popularity method exposes the weakness of several
+apparently promising comparisons against a deteriorating collaborative reference.
+
+The third contribution is an audited diagnostic finding. Large paired distances
+in rebalanced two-factor trajectories can depend strongly on coordinate coupling.
+Alignment and continuation-without-balancing controls substantially narrow the
+interpretation of the initial local-memory observation. This finding reproduces
+on a second MovieLens dataset, although that does not establish independent user
+populations or generalization to a different service.
+
+Finally, the project documents a rejected mechanistic candidate. A correct
+non-Gaussian conditional margin law produces negligible practical approximation
+error in the selected real checkpoints. Retaining this result prevents a
+mathematically interesting construction from being presented as an explanation
+for utility loss without empirical support. Together, these contributions form
+a substantial undergraduate research study. Establishing a distinct publishable
+algorithm or a novel general theorem remains future work.
+
+\subsection{Organization}
+\Cref{sec:related,sec:privacy,sec:data} establish prior work, the threat model, and
+the evaluation protocol. \Cref{sec:methods,sec:design} describe model variants and
+experimental controls. \Cref{sec:baselines,sec:e1,sec:e2,sec:e3,sec:e4} report the
+completed stages. \Cref{sec:discussion} synthesizes the evidence and limitations.
+The appendices contain derivations, algorithm details, material revisions, and
+reproduction instructions. The supplement retains the expanded numerical record.

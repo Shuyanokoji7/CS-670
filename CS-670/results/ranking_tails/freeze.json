@@ -1,0 +1,18 @@
+{
+  "created_utc": "2026-10-03T17:49:38.350289+00:00",
+  "expected_pairs": 3200,
+  "expected_states": 50,
+  "sources": {
+    "data/extensions/ml-1m_noise_v1/processed/meta.json": "9d838e796eeb94203eb135a21cd3d19e7025b6ecfa315b01816dcab0a8832db2",
+    "data/extensions/ml-1m_noise_v1/processed/train.csv": "e7377a9b4ec466b937938355e67f0ecaa787d65f2ad3a400366bd94b6d11e567",
+    "data/processed/ml-100k/meta.json": "ba981b768332daf742f68a81c9c191a4000789480e425a5816e98a3c44537af7",
+    "data/processed/ml-100k/train.csv": "80383f456a6458f5a8ee10da7408cfaf69afb2f755286575f691ccfef27c845a",
+    "docs/extensions/RANKING_TAIL_PROTOCOL.md": "06a74fec668bcd69080b31c067cc143f8fb686f58579876f6e39dc685a6b45e0",
+    "experiments/probe_ranking_tails.py": "ea56492170f9ccd53c2627ff6c861b04505d271c7f4dc6d45982e111ae4ba3a3",
+    "results/extensions/effective_noise_v1/MANIFEST.sha256": "d003f554ea96ebf96e634cd805aa9542be029429544088211314a9b8a8df946e",
+    "results/extensions/noise_replication_v1/freeze.json": "fde07dc8d1abcc19b0b48eac3dfb58862efbdb14bed35a2dd14ab7db0ecd80a9",
+    "results/extensions/ranking_tails_v1/synthetic_checks.json": "9be2dc91c795af7de8c0f93cb840ecc4ba316fcb0545915e31d8943e67b1da01",
+    "src/threads.py": "e4c6fc048e7aecdcf32039cb6bf7a6c98fce8b281b434f153976045e6d645361"
+  },
+  "test_scored": false
+}

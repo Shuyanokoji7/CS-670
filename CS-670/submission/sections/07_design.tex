@@ -1,0 +1,90 @@
+\section{Experimental design and statistical analysis}
+\label{sec:design}
+\subsection{Sequential controls and preserved stages}
+The historical ladder changes one broad design component at a time, while
+explicit controls expose remaining differences. B0-UW addresses weighting;
+50-round no-noise controls address undertraining; E1 clipping-only controls
+separate clipping from additional perturbation; and the private popularity
+reference tests whether iterative personalization is competitive at all.
+No single comparison isolates every causal mechanism. In particular,
+parameterization changes optimization and sensitivity geometry together.
+
+\begin{table}[tbp]\centering\small
+\caption{Experimental stages and their evidence units.}
+\label{tab:stages}
+\begin{tabularx}{\linewidth}{lYY}\toprule
+Stage & Question & Retained evidence \\\midrule
+Phase 0 & Can the ranking protocol be reproduced? & Data fingerprints, evaluator checks, random and raw-popularity references. \\
+B0--B4 & How do weighting, federation, privacy, and rank interact? & Three-seed weighting control; five-seed final federated comparisons. \\
+E1 & Does a fixed public factor help under equal tuning? & 648 search jobs; 270 final collaborative states; 21 popularity arrays. \\
+E2/E2b & Is local-state disturbance persistent and coupling-sensitive? & 120 pulse/reset probes and 40 aligned follow-up probes from 30 checkpoints. \\
+E3 & Does the diagnostic replicate and depend on balancing? & 30 ML-1M training runs; 200 controlled probes across two datasets. \\
+E4 & Do non-Gaussian margins matter in trained states? & 50 states; 3,200 prescribed item pairs; six synthetic cases. \\
+\bottomrule\end{tabularx}
+\tabnote{A probe is not an independently trained model. Some E1 final states reuse
+eligible search runs, and E2--E4 deliberately reuse frozen checkpoints.}
+\end{table}
+
+E1's grid has $9\times4\times3\times6=648$ search jobs, including eleven
+retained failures. The selected units, six levels, and five seeds yield
+$9\times6\times5=270$ finite final states. Reuse of eligible search cells
+gives 756 unique training records rather than 918. Twenty noisy popularity
+arrays and one deterministic bounded no-noise array bring one-time extension
+test scoring to 291 models. Selections and validation-chosen ranks were frozen
+at 15:37:41 UTC on 2 October 2026, before the first extension test scoring.
+This freeze is a stage-specific safeguard, not evidence that the dataset had
+never been examined earlier.
+
+\subsection{Seeds and paired uncertainty}
+The centralized weighting comparison uses seeds 42, 123, and 2026. Final
+B1--B4 and E1 use those plus 7 and 99. Utility tables give the arithmetic mean
+and sample SD across the retained seeds. To compare two methods on NDCG@10,
+first average the metric over seeds separately for each user, then form the
+paired user difference. A bootstrap samples users with replacement from
+these paired differences 100,000 times with bootstrap seed 2026.
+
+The primary B3 family contains four comparisons against B1; B4 contains
+sixteen rank-by-privacy comparisons against B2; E1 contains sixteen matched-
+rank FixedB-minus-Two comparisons. Bonferroni-adjusted interval levels are
+98.75\% for B3 and 99.6875\% for each sixteen-comparison family. These are
+family-wise interval constructions conditional on the saved training runs
+and population represented by the benchmark. They do not jointly quantify
+uncertainty over new datasets and independently sampled training procedures.
+
+An adjusted interval entirely above zero supports a positive comparison within
+its family. An interval containing zero is recorded as ``includes zero,''
+not as proof of equivalence. Ordinary 95\% intervals for secondary comparisons
+are retained in the supplement but do not inherit the primary multiplicity
+interpretation. Figure error bars are seed SDs, and their overlap is not the
+criterion used for primary decisions.
+
+\subsection{Rank selection, groups, and personalization diagnostics}
+For presentation of a single low-rank curve, each method's rank is selected
+from validation at the relevant noise level. That curve is different from
+the matched-rank primary comparison. A test-best rank never replaces a
+validation-selected rank because it happens to look better in the final table.
+The historical B4 and E1 selections differ and are retained separately.
+
+Activity and cold-target tables are descriptive. Their groups are not
+independent discoveries, and the fourteen cold targets are too few for a
+strong cold-item claim. E1 also compares validation predictions using each
+user's own vector, permuted vectors, and a mean vector. These 810 retained
+rows diagnose the contribution of local personalization. They are oracle
+analyses of stored states, not alternative serving procedures with analyzed
+privacy guarantees.
+
+\subsection{Diagnostic replication and advancement criteria}
+E2 averages two pulse replicates within a checkpoint seed before summarizing
+across five seeds. E2b follows the same rule. Their means, medians, ranges,
+and SDs are descriptive; correlated users, intervention branches, and draws
+are not treated as independent training runs. E3 keeps transferred training
+settings fixed and uses a preselected observer population. E4 declares its
+checkpoint set, pair types, and practical-error gate before examining outputs.
+The gate requires absolute matched-Gaussian probability error greater than
+$0.01$ on at least 5\% of primary pairs in both datasets. It is a research
+screening criterion, not a significance threshold.
+
+Protocols, source hashes, checkpoint identities, failure inventories, and
+observations are retained. This separation of initial evidence, adaptive
+follow-ups, and final decisions makes the chronological research process
+auditable without pretending every later question was specified at the outset.

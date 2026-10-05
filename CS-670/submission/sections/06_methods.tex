@@ -1,0 +1,135 @@
+\section{Models and implementation}
+\label{sec:methods}
+\subsection{B0 and B0-UW: centralized controls}
+B0 learns full $64$-dimensional user and item embeddings centrally using BPR,
+with Gaussian initialization of SD $0.01$. Its final retained configuration is
+Adam learning rate $10^{-3}$, explicit L2 coefficient $10^{-2}$, batch size
+1,024, at most 1,000 epochs, and patience of 100 validation checks. B0-UW uses
+the same modeling and optimization settings but samples a user uniformly and
+then a positive uniformly within that user. B0 samples interactions uniformly.
+The matched three-seed experiment separates the change in user weighting from
+the change to federated optimization more clearly than B0--B1 alone.
+
+Earlier B0 documents retain superseded learning rates and stopping rules.
+The report uses the later common-stopping-protocol results as the final
+reference. Historical search tables remain part of the audit trail rather
+than being blended into a new average.
+
+\subsection{B1: federated full matrix without DP}
+In each B1 round, users are independently included with $q=0.1$. A selected
+user starts from the current shared $Q$ and its persistent local vector,
+then performs two local epochs on its own positives. The local SGD learning
+rate is $5$, regularization is $10^{-5}$, and the server learning rate is $1$.
+The large numerical difference from B0's Adam rate reflects a different
+optimizer and the normalization of each local loss; it is not a directly
+comparable step-size scale. Selected users' item differences are averaged
+with equal client weight. B1 divides by realized participation and skips
+empty rounds because it has no private-release requirement.
+
+Validation occurs every ten rounds. Patience is 100 validation checks, with
+an 8,000-round maximum, and the best validation checkpoint is restored for
+evaluation. B1 is the converged nonprivate federated reference. Local user
+vectors are not transmitted, but neither federation nor local storage supplies
+an additional formal guarantee in this nonprivate baseline.
+
+\subsection{B2: private full matrix}
+B2 applies \cref{eq:aggregate} to the complete shared item update while retaining
+B1's local training settings. Its final private horizon is 50 rounds with
+$C=1$ and server rate $1$. It always evaluates the final round, without
+privacy-dependent early stopping. The fixed denominator, full-coordinate
+noise, and empty-round accounting distinguish it from a simple ``add noise
+to B1'' implementation.
+
+The earlier B2 protocol used 1,000 rounds, $C=1.5$, and server rate $2$.
+Validation studies motivated the final 50-round protocol. Three settings
+changed together, so the improvement cannot be attributed uniquely to
+shorter training. The retained no-DP control at the 50-round horizon is
+necessary: the gap from a converged B1 includes a training-budget effect
+even when no noise is present.
+
+\subsection{B3 and B4: jointly trained item factors}
+B3 represents $Q=AB$ at ranks $4,8,16,32$ and trains both factors without DP.
+User vectors retain dimension $64$. Regularization is applied to $p_u$ and
+the effective item rows $A_iB$, with gradients through both factors. Adding
+independent L2 penalties on $A$ and $B$ would change the objective and the
+role of scale, so that is not done.
+
+QR decompositions and a core SVD rebalance the factors while preserving their
+product up to floating-point tolerance. This avoids an extreme reciprocal
+scaling of $A$ and $B$, but it does not remove a perturbation already present
+in $AB$. It also introduces a changing orthogonal coordinate convention,
+which becomes important in the later trajectory probes. The final B3 local
+rates are $0.625,1.25,1.25,0.625$ in increasing rank order. B3 follows B1's
+convergence rule with one disclosed exception: rank 32, seed 123 uses a
+predeclared 16,000-round diagnostic ceiling and stops at 9,350, with best
+checkpoint 8,350. All other final runs stop below the original ceiling.
+
+B4 applies a single joint clip to $(\Delta A,\Delta B)$, then independent
+Gaussian coordinates across that concatenated vector. It uses the same
+$q,T,C,\sigma,\delta$ as final B2. Its final rank-4 local/server rates are
+$2.5/1$; the other ranks use $5/0.5$. Historical B4 received more validation
+tuning than B2, including a bounded fallback after unstable candidate
+trajectories. The B2--B4 comparison is therefore a comparison of retained
+methods, not a clean intervention on coordinate count alone.
+
+\subsection{E1: a separately controlled comparison}
+E1 preserves B0--B4 and creates three explicit families: Full, Two, and FixedB.
+Full repeats the final full-matrix mechanism; Two trains both factors; FixedB
+holds a public row-orthonormal $B$ fixed and privately trains only $A$.
+The basis is seeded independently of interactions (public seed 314159).
+At each rank, Two and FixedB begin with the same effective $Q$. This removes
+an avoidable initialization discrepancy between the two factorized methods.
+
+Each of nine units (Full and two methods at four ranks) receives four
+local/server learning-rate candidates: $(1.25,1)$, $(2.5,1)$, $(5,0.5)$,
+and $(5,1)$. Selection uses three seeds at reference privacy target four,
+subject to finite behavior across six levels: no clipping/no noise,
+clipping only, and the four private targets. The selected local rate is
+$5$ throughout. The server rate is $1$ for Full and FixedB, $0.5$ for
+Two ranks 4/8/16, and $1$ for Two rank 32. FixedB's local rate reaches the
+upper grid boundary, a limitation on claims about its optimal attainable utility.
+
+The fixed public basis is useful analytically. Let $v_u=Bp_u$. Then
+$s_{ui}=A_i^Tv_u$, and every $v_u\in\R^r$ can be realized by
+$p_u=B^Tv_u$ when $BB^T=I_r$. Thus FixedB retains the same hard score-rank
+bound as Two at rank $r$; its failure cannot be attributed simply to a
+smaller maximum score rank. Jointly learning $B$ changes the latent metric,
+gradient dynamics, clipping, and aggregation behavior. It does not increase
+the maximum rank beyond $r$. \Cref{app:theory} gives the equivalence precisely.
+
+\subsection{User-level private popularity}
+For each user define a binary indicator $h_u\in\{0,1\}^M$ for distinct
+training-positive items, and bound its contribution by
+\begin{equation}
+ x_u=h_u\min\left(1,\frac{\sqrt{20}}{\norm{h_u}_2}\right),\qquad
+ z=\sum_u x_u+\mathcal N(0,20\sigma_{\mathrm{pop}}^2I).
+ \label{eq:pop}
+\end{equation}
+The sum has add/remove user sensitivity $\sqrt{20}$. A single full-population
+release is calibrated analytically at the same target $(\epsilon,\delta)$
+as the iterative models, using its own multiplier. Items are ranked by $z_i$,
+with the same user-specific held-out candidate filter. This is a useful
+nonpersonalized collaborative reference because it spends its budget on one
+bounded statistic instead of repeated iterative updates.
+
+The no-noise bounded-popularity score is not the same as raw item counts:
+high-activity users are downweighted by the norm bound. The historical raw
+popularity, bounded no-noise popularity, and private popularity must therefore
+be named separately. A local metadata-only model and a public-features-plus-
+private-residual model were proposed as future directions but were not trained.
+
+\subsection{Communication accounting}
+The simulator counts dense float32 uploads and downloads for participating
+clients, excluding local $P$. At a client-round, the modeled payload is
+\begin{equation}
+ b_{\mathrm{Full}}=8Md,\qquad
+ b_{\mathrm{Two}}=8r(M+d),\qquad
+ b_{\mathrm{FixedB}}=8Mr\quad\text{bytes}.
+ \label{eq:comm}
+\end{equation}
+The factor eight is four bytes per scalar in each direction. FixedB can
+reconstruct its public basis from a seed; explicit provision would add a
+one-time $4rd$ bytes per client. Network framing, compression, cryptographic
+overhead, failures, and real device latency are not measured. Total modeled
+traffic accumulates the payload over realized selected clients and rounds.
+It is distinct from payload size and from utility under a fixed total budget.

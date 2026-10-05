@@ -1,0 +1,29 @@
+{
+  "bibliography_entries": 27,
+  "citation_keys_used": 27,
+  "missing_citations": [],
+  "missing_inputs": [],
+  "unresolved_source_references": [],
+  "vector_figures": 9,
+  "csv_sources": 21,
+  "original_copy_identities_checked": true,
+  "narrative_source_words": 14664,
+  "compiled_documents": {
+    "main": {
+      "pages": 49,
+      "bytes": 387200,
+      "sha256": "686d38159a3c869837e19d579e0280684f538cf99f9dc18d889def597addb88e",
+      "undefined_references_or_citations": 0,
+      "overfull_boxes": []
+    },
+    "supplement": {
+      "pages": 25,
+      "bytes": 110708,
+      "sha256": "da6cf59930fc4a3873210bf1d23c231c3655a56e5200e7c3ee75461309da0c1d",
+      "undefined_references_or_citations": 0,
+      "overfull_boxes": []
+    }
+  },
+  "training_executed": false,
+  "test_scoring_executed": false
+}

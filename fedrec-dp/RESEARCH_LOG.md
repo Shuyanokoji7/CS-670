@@ -2022,3 +2022,145 @@ expansions and no second fallback:
 - Every retained training record reports one numpy OpenBLAS and one torch thread. All frozen snapshot manifests and local documentation links verify.
 - Final machine-readable audit: `results/extensions/effective_noise_v1/audit/final_audit.json`. E1 root manifest has 2148 entries, excluding MANIFEST files themselves, and verifies.
 - E1 is finalized locally. Original B0–B4 remain frozen; no commit or push made. Follow-up priorities are documented in `docs/extensions/E1_HANDOFF.md`, with independent replication and controlled update-scale/communication studies still pending.
+
+## 2026-10-03 — flexible research continuation, E2/E2b and curated UGP materials
+
+- User objective: pursue a defensible paper contribution independently; the
+  research direction is explicitly not fixed. Create an organized sibling
+  `CS-670/` report base with selected evidence, not the entire iteration archive.
+- Expanded primary-literature review. PRISM, FLoRG, FedRot-LoRA, FedGSA,
+  NoiseCurve, GeoDP, DiSK and established private recommendation/personalization
+  constrain novelty. Record source links and actual reading depth in
+  `../CS-670/references/PRIOR_ART_AUDIT.md`; 25 core citations and issued search
+  families are saved. No general fixed-factor, alignment or noise-dynamics
+  novelty is claimed. Exact overlap for the narrower diagnostic is still open.
+- Declared `NOISE_MEMORY_PROTOCOL.md` before outputs. Added the separate
+  `experiments/probe_noise_memory.py`, reusing frozen E1 round updates and
+  thirty hash-checked final checkpoints. Full/FixedB-r8/Two-r8, epsilon 1/2,
+  five checkpoint seeds, two pulse draws and amplitudes .25/1 yield 120 probes.
+  All completed, no exclusions, 1680 observations. No validation/test targets
+  scored, no historical model retrained or rescored. Additional rounds are
+  diagnostic counterfactuals, outside the starting model's DP release claim.
+- E2's large delayed Two-factor distances motivated a disclosed adaptive
+  follow-up. Declared `NOISE_MEMORY_ALIGNMENT_PROTOCOL.md` before E2b outputs;
+  `probe_noise_memory_aligned.py` repeated all forty Two-r8 probes with
+  orthogonal Procrustes alignment to each reference pre-round state. All
+  completed, 560 observations. This changes the cross-branch noise coupling,
+  not the marginal private mechanism in exact arithmetic. Maximum real-probe
+  relative product-preservation error is 3.913264641762453e-8.
+- At alpha1, lag10 after shared reset, raw Two-r8 mean top-10 disagreement is
+  17.8546% / 9.3960% at starting epsilon1 / epsilon2, versus .4204% / .1083%
+  under aligned coupling. Full/FixedB-r8 at epsilon1 retain .5212% / .3747%.
+  Each summary averages two draws within checkpoint seed before five-seed
+  aggregation. Seed dispersion, finite score-scale outliers, all amplitudes
+  and branches remain retained. These are label-free ranking differences,
+  not NDCG loss, independent samples, or a causal percentage decomposition.
+- Six E2 and two E2b synthetic check cases passed: zero-pulse equality,
+  both-reset equality through ten rounds, RNG matching, exact score-decomposition
+  closure and product-preserving alignment. Real probes additionally check
+  reset equality, RNG streams, input hashes, finiteness and decomposition.
+- Added a separate post-pilot synthetic null example in the report bundle:
+  equivalent (A,B) and (-A,-B) have positive raw-common-noise distance, zero
+  consistently transformed distance. Ten thousand float64 draws give expected
+  / observed matrix squared distance 6.345313 / 6.341142 (MC SE .012443).
+  This verifies elementary algebra; it is not a new theorem or training method.
+- Created `CS-670/`: integrated UGP draft, 45 explicitly whitelisted source
+  copies, six figures in PNG/PDF/SVG, methods, material iteration history,
+  results guide, pilot theory/results, bibliography, prior-art/search audit,
+  research decisions and provenance. Bulk checkpoints, raw data, superseded
+  sweeps and process logs remain in the archive. No unfavorable result removed.
+- Saved-evidence verification passed: all 3932 protected historical files,
+  E1's 2148-entry root manifest and both snapshots, all thirty input checkpoint
+  hashes, E2/E2b source freezes, all 2240 original observation rows aggregated
+  back to their seed summaries, copied-file hashes, primary contrast counts,
+  validation-selected plotting table and local document links. Audit script:
+  `../CS-670/reproducibility/verify_bundle.py --archive --write-audit`.
+  This is separate from E1's historical 203-test suite result; no new full
+  baseline suite or held-out model scoring was run in this continuation.
+- New findings support a careful measurement audit and modest local-state
+  persistence, not an improved recommender or confirmed paper novelty.
+  Independent data, alternative couplings/optimizers, actionable prediction,
+  published private ALS and equal-total-communication comparisons remain
+  outstanding. Direction can change if the candidate fails these gates.
+- Updated `handoff.md` to point to the latest continuation handoff and report
+  folder. No commit, push, external message or publication made.
+- Final new artifact manifests verify: E2 126 entries, E2b 46 entries,
+  curated CS-670 bundle 84 entries (about 2.63 MB before its manifest).
+  The final bundle audit verifies 47 local document links and 18 figure exports.
+
+### 2026-10-03 — E3 replication, E4 tail screen and baseline audit
+
+- Continued under the user's authorization to seek a defensible paper
+  contribution independently, with no fixed method direction. No breakthrough
+  or paper-level novelty is claimed. The user's permission question concerned
+  the official ML-1M download: the network sandbox blocked DNS, escalation was
+  approved, and the public archive downloaded successfully. No further research
+  instruction was needed.
+- Declared `docs/extensions/NOISE_REPLICATION_PROTOCOL.md` before E3 outputs.
+  Verified the official archive's MD5 and ZIP CRC; stored raw/split hashes.
+  A first checksum-read attempt expected GNU instead of BSD MD5 formatting,
+  failed before writing a dataset, and was corrected before preparation.
+  The unchanged split functions yield 6035 users, 3706 items and 563206
+  training positives, with 6035 validation/test targets each. Fingerprint:
+  `e68ef765cc661f5db1864f9f8b2843bee70c7ad261c116421d2c7102ec71bd54`.
+  Licensed inputs stay outside CS-670 and are ignored under data/extensions.
+- E3 code/protocol frozen at 17:36:48 UTC. Twelve synthetic cases passed.
+  Thirty Full/FixedB-r8/Two-r8 runs at epsilon1/2 and five seeds completed,
+  transferring E1 settings without tuning. Two hundred probes then completed
+  with 2800 observations, comparing raw/aligned coupling and SVD/no balancing
+  during continuation. No failures or replacement seeds. Maximum alignment
+  product error 3.9126854174e-8. Frozen code:
+  `experiments/run_noise_replication.py`; results: `noise_replication_v1`.
+- E3 Two-r8 shared-reset lag10 disagreement with SVD, raw/aligned:
+  ML-100K epsilon1 18.6641%/.4219%, epsilon2 5.2031%/.0859%; ML-1M epsilon1
+  5.2344%/.0625%, epsilon2 3.3438%/.0078%. Without balancing, raw/aligned
+  churn matches for every seed; means .3438%/.0781% on ML-100K and
+  .0703%/.0156% on ML-1M. These are 128-user observer diagnostics, not
+  percent users affected or accuracy improvements. All users still train.
+  Turning balancing off only during continuation is not training a new
+  optimizer from scratch. The broad intrinsic-memory-instability explanation
+  is rejected; a narrower coupling diagnostic survives. Both datasets are
+  MovieLens, with population overlap unaudited.
+- ML-1M full-population validation means at epsilon1/2: Full
+  .019533/.024624; FixedB .013661/.016482; Two .015254/.015440; DP popularity
+  .026124/.026161. No superiority test or retuning. Validation is exposed;
+  ML-1M test targets have NOT been scored. E3 continuations/diagnostics do
+  not inherit the initial epsilon. See `NOISE_REPLICATION_RESULTS.md`.
+- Declared `RANKING_TAIL_PROTOCOL.md` and independently checked the known
+  product-normal/noncentral-chi-square law. Its mathematics is prior art
+  (Gaunt); generic noisy-score ranking stability also overlaps Urmian et al.
+  Six synthetic cases with 200000 draws each passed moment, sign-probability,
+  invariance and closed-form checks. Frozen at 17:49:38 UTC, E4 inspected
+  50 existing states and 3200 predeclared item pairs, using no held-out labels.
+  No flagged pairs. Maximum absolute matched-Gaussian error 7.66859e-6;
+  linearized error 7.26162e-5. Zero of 1600 primary pairs exceeds .01 in
+  either dataset, so the advancement gate failed. No post-hoc expansion.
+  Code `experiments/probe_ranking_tails.py`; results `ranking_tails_v1`;
+  interpretation `RANKING_TAIL_RESULTS.md`.
+- Saved-evidence follow-up audit independently recomputes E3 summaries from
+  raw probes, 30 validation means from 181050 saved ranks, E4 seed summaries,
+  Gaussian formulas and source/checkpoint hashes. It passed. Archive manifests
+  contain 275 E3 and 59 E4 files, without changing older manifests.
+- CS-670 now selects 65 source files; three new figures bring the total to
+  nine, each in PNG/PDF/SVG and visually inspected. The report, results guide,
+  iteration history, claim assessment and prior-art audit include negative
+  results. Historical raw sweeps, new per-probe/pair records and checkpoints
+  remain in the archive. Added a concise `NOVELTY_STATUS.md`.
+- Read the main DPALS algorithm/practical modifications/privacy section and
+  supplementary privacy proof; DP-CMF algorithm/privacy/evaluation; and
+  Krichene et al. 2023 task-weighted privacy theorem/proof. Added the latter
+  citation, bringing the bibliography to 28. The implementation audit records
+  why public metadata, local reconstruction and item-frequency weighting are
+  established controls. Published ALS and metadata-only personalization are
+  still unimplemented. Noise calibration must cover every sufficient statistic
+  and match the exact adjacency/sampling; no imported guarantee was claimed.
+- Updated both handoffs and report research decisions. The original CS-670
+  manifest/audit were preserved in `results/extensions/report_bundle_snapshots/`
+  before replacing the current draft's audit. No external messages, commit,
+  push or publication. No sub-agent was used.
+- Final verification passed after documentation updates: all 3932 protected
+  historical files; E1 manifests and snapshots; E2/E2b/E3/E4 manifests;
+  frozen source/checkpoint hashes; original E3 endpoint and E4 pair-to-seed
+  reconstruction; 65 copied-source hashes; 65 local links; 28 unique references;
+  27 figure exports. The refreshed CS-670 manifest verifies 116 files
+  (3418001 bytes before the manifest). No full baseline test suite was rerun.

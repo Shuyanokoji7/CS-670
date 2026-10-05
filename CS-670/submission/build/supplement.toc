@@ -1,0 +1,18 @@
+\contentsline {section}{\numberline {S1}How to interpret this supplement}{2}{section.1}%
+\contentsline {paragraph}{Privacy labels.}{2}{section*.2}%
+\contentsline {paragraph}{Means and uncertainty.}{2}{section*.3}%
+\contentsline {paragraph}{Historical names.}{2}{section*.4}%
+\contentsline {paragraph}{Scope of completeness.}{2}{section*.5}%
+\contentsline {section}{\numberline {S2}Historical utility and paired comparisons}{2}{section.2}%
+\contentsline {section}{\numberline {S3}Controlled extension E1: complete utility}{7}{section.3}%
+\contentsline {subsection}{\numberline {S3.1}Primary and secondary E1 comparisons}{9}{subsection.3.1}%
+\contentsline {section}{\numberline {S4}E1 geometry and local personalization}{13}{section.4}%
+\contentsline {subsection}{\numberline {S4.1}Effective matrix and score diagnostics}{13}{subsection.4.1}%
+\contentsline {subsection}{\numberline {S4.2}Activity and cold-target results}{15}{subsection.4.2}%
+\contentsline {subsection}{\numberline {S4.3}Validation personalization ablations}{17}{subsection.4.3}%
+\contentsline {section}{\numberline {S5}Pulse/reset and replication diagnostics}{19}{section.5}%
+\contentsline {subsection}{\numberline {S5.1}E2/E2b endpoints}{19}{subsection.5.1}%
+\contentsline {subsection}{\numberline {S5.2}E3 complete endpoint register}{21}{subsection.5.2}%
+\contentsline {section}{\numberline {S6}Ranking-tail screening}{22}{section.6}%
+\contentsline {section}{\numberline {S7}Calibration, selection, and communication}{22}{section.7}%
+\contentsline {section}{\numberline {S8}Source mapping and verification}{24}{section.8}%

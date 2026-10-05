@@ -1,0 +1,4 @@
+comparison,interpretation,mean_diff,ci_low,ci_high,frac_improved,frac_degraded,frac_tied
+B0-UW - B0,weighting effect (centralised),0.005773,-0.000164,0.011910,0.123142,0.104034,0.772824
+B1 - B0-UW,federation effect (same user weighting),-0.004206,-0.010903,0.002288,0.131635,0.122081,0.746285
+B1 - B0,total B0 -> B1 (previously reported),0.001567,-0.005353,0.008668,0.141189,0.117834,0.740977

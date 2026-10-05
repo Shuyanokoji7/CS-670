@@ -1,0 +1,163 @@
+\documentclass[10pt,a4paper]{article}
+\input{preamble}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thesection}{S\arabic{section}}
+\fancyhead[R]{\small Supplementary results}
+\begin{document}
+\hypersetup{pageanchor=false}
+\begin{titlepage}\centering
+\vspace*{20mm}
+{\Large\textsc{\CourseCode\ Undergraduate Project}\par}
+\vspace{18mm}
+{\huge\bfseries\color{ReportBlue}Supplementary Results\\[4mm]and Experimental Record\par}
+\vspace{15mm}
+{\Large\ReportTitle\par}
+\vspace{15mm}
+\ifx\ReportAuthor\empty\else{\large\ReportAuthor\par}\fi
+\vfill
+{\SubmissionDate\par}
+\vspace{12mm}
+\begin{minipage}{.86\linewidth}\small\centering
+Full retained utility tables, statistical contrasts, geometry diagnostics,
+personalization ablations, and reproducibility information accompanying
+the main CS-670 project report. Tables are generated from frozen saved evidence.
+\end{minipage}
+\end{titlepage}
+\hypersetup{pageanchor=true}
+\tableofcontents
+\clearpage
+\section{How to interpret this supplement}
+The main report develops the research questions, methods, and conclusions.
+This document retains the numerical detail needed to inspect those conclusions
+and the unfavorable results. It is not an additional experiment or an
+independent set of replications. All numbers come from the saved source
+tables identified in the provenance record.
+
+\paragraph{Privacy labels.} Targets 8/4/2/1 refer to a single trained model
+at $\delta=10^{-5}$. ``No DP'' means the matched no-clipping/no-noise control
+where defined; ``Clip only'' retains clipping but adds no Gaussian noise.
+Diagnostic continuation is not covered by the starting checkpoint's epsilon.
+Popularity uses a single full-population release and its own calibration.
+
+\paragraph{Means and uncertainty.} Utility entries show mean $\pm$ seed SD.
+SD is not a confidence interval. Paired bootstrap contrasts average each
+user's metric over five seeds before resampling users 100,000 times. Their
+ordinary and adjusted intervals therefore condition on the retained training
+runs. Primary families contain four B3 contrasts, sixteen B4 contrasts,
+and sixteen E1 FixedB-minus-Two contrasts. Other families are secondary.
+An interval including zero is not an equivalence finding.
+
+\paragraph{Historical names.} ``B4 diag.'' is the historical fixed-setting
+diagnostic at common optimizer settings. It is not the E1 model with a fixed
+public factor. ``Hist. B4'' in E1 comparison rows identifies an archived
+historical comparator. This distinction matters because the naming predates
+the fixed-public-factor extension.
+
+\paragraph{Scope of completeness.} All retained main and secondary comparison
+rows are included. Geometry, activity, and personalization tables retain
+all curated settings. E2/E2b endpoints cover both declared amplitudes and
+all retained intervention branches; full time series, seed medians, and
+raw observations remain in the research archive. E3's table includes all
+20 shared-reset endpoint settings. E4's ten screening cells cover all
+50 states and 3,200 pairs. Bulk per-user records, checkpoints, and abandoned
+search logs are not duplicated in a printable appendix.
+
+\section{Historical utility and paired comparisons}
+\input{tables/sanity_all}
+\input{tables/central_main}
+\input{tables/weighting_all}
+\FloatBarrier
+\input{tables/baseline_all}
+\clearpage
+\input{tables/baseline_contrasts}
+\clearpage
+\section{Controlled extension E1: complete utility}
+\input{tables/e1_all}
+\clearpage
+\subsection{Primary and secondary E1 comparisons}
+The primary family is \texttt{primary\_fixed\_vs\_two}. It contains zero
+positive adjusted intervals, eight negative intervals, and eight including
+zero. The many secondary rows document clipping, noise, popularity,
+historical comparisons, and selected ranks; they must not be pooled into
+a larger set of confirmatory discoveries.
+\input{tables/e1_contrasts}
+\clearpage
+\section{E1 geometry and local personalization}
+\subsection{Effective matrix and score diagnostics}
+Coordinate dimension, Frobenius noise norm, entrywise score RMSE, and clipping
+fraction have different units and meanings. The matrix-noise term is
+conditioned on the signal-updated factors; local scale can amplify score
+disturbance. Large finite values remain included. The expected bilinear
+fraction is not a causal percentage of NDCG loss.
+\input{tables/geometry_all}
+\input{tables/moments_all}
+\clearpage
+\subsection{Activity and cold-target results}
+Activity thresholds are at most 22, 23--61, and at least 62 training positives.
+The test set has only fourteen cold targets. These tables are descriptive,
+with no adjusted subgroup superiority claim. Cold items remain in the
+main evaluation even when no method retrieves them in the top ten.
+\input{tables/subgroups_all}
+\clearpage
+\subsection{Validation personalization ablations}
+``Own'' retains each user's vector. ``Permuted'' assigns vectors to different
+users. ``Mean'' substitutes the mean user vector. These measurements access
+internal states and diagnose personalization; they are not privacy-accounted
+deployment alternatives. Small differences should not be treated as formal
+significance findings.
+\input{tables/personalization_all}
+\clearpage
+\section{Pulse/reset and replication diagnostics}
+\subsection{E2/E2b endpoints}
+Churn is the percentage of top-10 set entries that disagree, not the
+percentage of affected users or NDCG loss. A normalized RMS ratio can be
+large because the numerator grows or because the initial denominator is
+small. Reported means must be read alongside the seed-level and median
+records for unstable Two-factor cases. E2 uses all 942 users as observers;
+E3 below uses a separately selected sample of 128.
+\input{tables/memory_endpoints}
+\clearpage
+\subsection{E3 complete endpoint register}
+\input{tables/e3_validation_main}
+``None'' disables balancing only in the diagnostic continuation from the
+same balanced checkpoint. Raw and aligned couplings change the joint
+comparison; removing balancing changes the continuation algorithm itself.
+Validation differences in this table concern only observer users. They
+are distinct from full-population ML-1M validation in the main report.
+\input{tables/replication_endpoints}
+\clearpage
+\section{Ranking-tail screening}
+The exact conditional law is established mathematics, numerically evaluated
+for the prescribed states. The advancement gate requires matched-Gaussian
+error above 0.01 on at least 5\% of primary pairs in both datasets. No primary
+pair exceeds this threshold. The table also retains the linearized
+approximation as a secondary diagnostic.
+\input{tables/tail_screen}
+\section{Calibration, selection, and communication}
+\input{tables/accounting_all}
+\input{tables/rank_selection}
+\input{tables/communication}
+\clearpage
+\section{Source mapping and verification}
+\begin{longtable}{L{.30\linewidth}L{.61\linewidth}}
+\toprule Printed table family & Retained source under the submission's \texttt{data/} directory \\
+\midrule\endhead
+Historical utility & \artifact{baselines/final_5seed_means.csv} \\
+Historical contrasts & \artifact{baselines/paired_contrasts.csv} \\
+E1 utility / comparisons & \artifact{effective_noise/test_means.csv}; \artifact{effective_noise/contrasts.csv} \\
+Geometry & \artifact{effective_noise/geometry_means.csv} \\
+Groups / local-vector ablations & \artifact{effective_noise/subgroups_test.csv}; \artifact{effective_noise/personalization_validation.csv} \\
+E2 / E2b & \artifact{noise_memory/summary.csv}; \artifact{noise_memory_aligned/summary.csv} \\
+E3 endpoints / validation & \artifact{noise_replication/endpoint_summary.csv}; \artifact{noise_replication/validation_summary.csv} \\
+E4 screen & \artifact{ranking_tails/screen_summary.csv} \\
+Calibration / E1 rank selection & \artifact{effective_noise/accounting.csv}; \artifact{effective_noise/rank_selection.csv} \\
+Communication & \artifact{baselines/communication.csv} \\
+\bottomrule\end{longtable}
+The script \artifact{scripts/generate_tables.py} formats these inputs and
+records their SHA-256 hashes in \artifact{quality/table_provenance.json}.
+The surrounding CS-670 bundle contains seed tables, freeze records, protocols,
+the bibliography, and the original source-copy provenance. The archive
+verification script checks original evidence without running models.
+Tables may be rebuilt from the copied CSVs; editing generated numerical
+cells by hand would break their provenance relationship.
+\end{document}

@@ -1,0 +1,19 @@
+{
+  "all_freeze_manifests_verified": true,
+  "all_metric_rows_recomputed_from_saved_ranks": true,
+  "all_numpy_torch_worker_threads": 1,
+  "checkpoint_states_reloaded_without_rescoring": true,
+  "created_utc": "2026-10-02T15:53:49.412955+00:00",
+  "final_finite_training_states": 270,
+  "final_test_suite": "203 passed, 26 warnings",
+  "local_document_links_valid": true,
+  "primary_negative_adjusted": 8,
+  "primary_positive_adjusted": 0,
+  "protected_files_unchanged": 3932,
+  "search_failures": 11,
+  "search_jobs": 648,
+  "split_fingerprint": "6faed6fc3d47b5b6fa638adfeea83cd7409d50c39fa01f85c10379d0daef6989",
+  "test_models": 291,
+  "test_users_per_model": 942,
+  "unique_training_records": 756
+}

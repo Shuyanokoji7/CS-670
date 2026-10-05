@@ -1,0 +1,208 @@
+\begin{thebibliography}{27}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Rendle et~al.(2009)Rendle, Freudenthaler, Gantner, and
+  Schmidt-Thieme]{rendle2009bpr}
+Steffen Rendle, Christoph Freudenthaler, Zeno Gantner, and Lars Schmidt-Thieme.
+\newblock {BPR}: Bayesian personalized ranking from implicit feedback.
+\newblock In \emph{Proceedings of the Twenty-Fifth Conference on Uncertainty in
+  Artificial Intelligence}, 2009.
+\newblock URL \url{https://arxiv.org/abs/1205.2618}.
+\newblock Author preprint deposited in 2012; original conference paper is from
+  2009.
+
+\bibitem[McMahan et~al.(2017{\natexlab{a}})McMahan, Moore, Ramage, Hampson, and
+  Ag{"u}era~y Arcas]{mcmahan2017fedavg}
+Brendan McMahan, Eider Moore, Daniel Ramage, Seth Hampson, and Blaise
+  Ag{"u}era~y Arcas.
+\newblock Communication-efficient learning of deep networks from decentralized
+  data.
+\newblock In \emph{Proceedings of the 20th International Conference on
+  Artificial Intelligence and Statistics}, volume~54 of \emph{Proceedings of
+  Machine Learning Research}, pages 1273--1282, 2017{\natexlab{a}}.
+\newblock URL \url{https://proceedings.mlr.press/v54/mcmahan17a.html}.
+
+\bibitem[Abadi et~al.(2016)Abadi, Chu, Goodfellow, McMahan, Mironov, Talwar,
+  and Zhang]{abadi2016dp}
+Martin Abadi, Andy Chu, Ian Goodfellow, H.~Brendan McMahan, Ilya Mironov, Kunal
+  Talwar, and Li~Zhang.
+\newblock Deep learning with differential privacy.
+\newblock In \emph{Proceedings of the ACM SIGSAC Conference on Computer and
+  Communications Security}, 2016.
+\newblock URL \url{https://arxiv.org/abs/1607.00133}.
+
+\bibitem[McMahan et~al.(2017{\natexlab{b}})McMahan, Ramage, Talwar, and
+  Zhang]{mcmahan2017userdp}
+H.~Brendan McMahan, Daniel Ramage, Kunal Talwar, and Li~Zhang.
+\newblock Learning differentially private recurrent language models,
+  2017{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/1710.06963}.
+
+\bibitem[Gopi et~al.(2021)Gopi, Lee, and Wutschitz]{gopi2021composition}
+Sivakanth Gopi, Yin~Tat Lee, and Lukas Wutschitz.
+\newblock Numerical composition of differential privacy, 2021.
+\newblock URL \url{https://arxiv.org/abs/2106.02848}.
+
+\bibitem[Mironov(2017)]{mironov2017rdp}
+Ilya Mironov.
+\newblock R{\'e}nyi differential privacy, 2017.
+\newblock URL \url{https://arxiv.org/abs/1702.07476}.
+
+\bibitem[Mironov et~al.(2019)Mironov, Talwar, and Zhang]{mironov2019sampled}
+Ilya Mironov, Kunal Talwar, and Li~Zhang.
+\newblock R{\'e}nyi differential privacy of the sampled gaussian mechanism,
+  2019.
+\newblock URL \url{https://arxiv.org/abs/1908.10530}.
+
+\bibitem[Balle and Wang(2018)]{balle2018gaussian}
+Borja Balle and Yu-Xiang Wang.
+\newblock Improving the gaussian mechanism for differential privacy: Analytical
+  calibration and optimal denoising, 2018.
+\newblock URL \url{https://arxiv.org/abs/1805.06530}.
+
+\bibitem[Zhang et~al.(2022)Zhang, Chen, Hong, Wu, and Yi]{zhang2022clipping}
+Xinwei Zhang, Xiangyi Chen, Mingyi Hong, Steven Wu, and Jinfeng Yi.
+\newblock Understanding clipping for federated learning: Convergence and
+  client-level differential privacy.
+\newblock In \emph{Proceedings of the 39th International Conference on Machine
+  Learning}, volume 162 of \emph{Proceedings of Machine Learning Research},
+  pages 26048--26067, 2022.
+\newblock URL \url{https://proceedings.mlr.press/v162/zhang22b.html}.
+
+\bibitem[Chien et~al.(2021)Chien, Jain, Krichene, Rendle, Song, Thakurta, and
+  Zhang]{chien2021privateals}
+Steve Chien, Prateek Jain, Walid Krichene, Steffen Rendle, Shuang Song,
+  Abhradeep Thakurta, and Li~Zhang.
+\newblock Private alternating least squares: Practical private matrix
+  completion with tighter rates.
+\newblock In \emph{Proceedings of the 38th International Conference on Machine
+  Learning}, volume 139 of \emph{Proceedings of Machine Learning Research},
+  pages 1877--1887, 2021.
+\newblock URL \url{https://proceedings.mlr.press/v139/chien21a.html}.
+
+\bibitem[Li et~al.(2022)Li, Ding, Zhang, Li, and Zhou]{li2022federatedmf}
+Zitao Li, Bolin Ding, Ce~Zhang, Ninghui Li, and Jingren Zhou.
+\newblock Federated matrix factorization with privacy guarantee.
+\newblock \emph{Proceedings of the VLDB Endowment}, 15\penalty0 (4):\penalty0
+  900--913, 2022.
+\newblock \doi{10.14778/3503585.3503598}.
+\newblock URL \url{https://www.vldb.org/pvldb/vol15/p900-li.pdf}.
+
+\bibitem[Liu et~al.(2023)Liu, Wang, Cao, Lyu, Pan, Chen, and
+  Chen]{liu2023privaterec}
+Ruixuan Liu, Yanlin Wang, Yang Cao, Lingjuan Lyu, Weike Pan, Yun Chen, and Hong
+  Chen.
+\newblock {PrivateRec}: Differentially private model training and online
+  serving for federated news recommendation.
+\newblock In \emph{Proceedings of the 29th ACM SIGKDD Conference on Knowledge
+  Discovery and Data Mining}, 2023.
+\newblock \doi{10.1145/3580305.3599889}.
+\newblock URL \url{https://arxiv.org/abs/2204.08146}.
+
+\bibitem[Bietti et~al.(2022)Bietti, Wei, Dudik, Langford, and
+  Wu]{bietti2022personalization}
+Alberto Bietti, Chen-Yu Wei, Miroslav Dudik, John Langford, and Steven Wu.
+\newblock Personalization improves privacy-accuracy tradeoffs in federated
+  learning.
+\newblock In \emph{Proceedings of the 39th International Conference on Machine
+  Learning}, volume 162 of \emph{Proceedings of Machine Learning Research},
+  pages 1945--1962, 2022.
+\newblock URL \url{https://proceedings.mlr.press/v162/bietti22a.html}.
+
+\bibitem[Curmei et~al.(2023)Curmei, Krichene, Zhang, and
+  Sundararajan]{curmei2023publicfeatures}
+Mihaela Curmei, Walid Krichene, Li~Zhang, and Mukund Sundararajan.
+\newblock Private matrix factorization with public item features, 2023.
+\newblock URL \url{https://arxiv.org/abs/2309.11516}.
+
+\bibitem[Krichene et~al.(2023)Krichene, Jain, Song, Sundararajan, Thakurta, and
+  Zhang]{krichene2023skew}
+Walid Krichene, Prateek Jain, Shuang Song, Mukund Sundararajan, Abhradeep
+  Thakurta, and Li~Zhang.
+\newblock Multi-task differential privacy under distribution skew, 2023.
+\newblock URL \url{https://arxiv.org/abs/2302.07975}.
+
+\bibitem[Sun et~al.(2024)Sun, Li, Li, and Ding]{sun2024ffalora}
+Youbang Sun, Zitao Li, Yaliang Li, and Bolin Ding.
+\newblock Improving {LoRA} in privacy-preserving federated learning.
+\newblock In \emph{International Conference on Learning Representations}, 2024.
+\newblock URL \url{https://arxiv.org/abs/2403.12313}.
+
+\bibitem[Wen et~al.(2025)Wen, Zhu, Xu, Zhou, and Han]{wen2025fedask}
+Ming Wen, Jiaqi Zhu, Yuedong Xu, Yipeng Zhou, and Dingding Han.
+\newblock Differentially private federated low rank adaptation beyond
+  fixed-matrix, 2025.
+\newblock URL \url{https://arxiv.org/abs/2507.09990}.
+
+\bibitem[Duan et~al.(2025)Duan, Hu, Ye, and Sun]{duan2025geodp}
+Jiawei Duan, Haibo Hu, Qingqing Ye, and Xinyue Sun.
+\newblock Technical report: Full version of analyzing and optimizing
+  perturbation of {DP-SGD} geometrically, 2025.
+\newblock URL \url{https://arxiv.org/abs/2504.05618}.
+
+\bibitem[Wang and Zhang(2026)]{wang2026prism}
+Shihao Wang and Xueru Zhang.
+\newblock {PRISM}: Gauge-invariant tangent-space differentially private {LoRA},
+  2026.
+\newblock URL \url{https://arxiv.org/abs/2606.00944}.
+
+\bibitem[Meng et~al.(2026)Meng, Tang, and Wong]{meng2026florg}
+Chuiyang Meng, Ming Tang, and Vincent W.~S. Wong.
+\newblock {FLoRG}: Federated fine-tuning with low-rank gram matrices and
+  procrustes alignment.
+\newblock In \emph{International Conference on Learning Representations}, 2026.
+\newblock URL \url{https://arxiv.org/abs/2602.17095}.
+
+\bibitem[Zhang et~al.(2026)Zhang, Kim, Cha, and Vikalo]{zhang2026fedrot}
+Haoran Zhang, Dongjun Kim, Seohyeon Cha, and Haris Vikalo.
+\newblock {FedRot-LoRA}: Mitigating rotational misalignment in federated
+  {LoRA}, 2026.
+\newblock URL \url{https://arxiv.org/abs/2602.23638}.
+
+\bibitem[Zheng et~al.(2026)Zheng, Hu, Zhang, Cheng, and Shen]{zheng2026fedgsa}
+Lele Zheng, Ruijie Hu, Tao Zhang, Ke~Cheng, and Yulong Shen.
+\newblock {FedGSA}: Geometry-consistent subspace aggregation for differentially
+  private federated {LoRA}, 2026.
+\newblock URL \url{https://arxiv.org/abs/2608.03267}.
+
+\bibitem[Gu et~al.(2025)Gu, Xiao, He, Bai, Kifer, and Maeng]{gu2025noisecurve}
+Xin Gu, Yingtai Xiao, Guanlin He, Jiamu Bai, Daniel Kifer, and Kiwan Maeng.
+\newblock Correlating cross-iteration noise for {DP-SGD} using model curvature,
+  2025.
+\newblock URL \url{https://arxiv.org/abs/2510.05416}.
+
+\bibitem[Zhang et~al.(2025)Zhang, Bu, Balle, Hong, Razaviyayn, and
+  Mirrokni]{zhang2025disk}
+Xinwei Zhang, Zhiqi Bu, Borja Balle, Mingyi Hong, Meisam Razaviyayn, and Vahab
+  Mirrokni.
+\newblock {DiSK}: Differentially private optimizer with simplified kalman
+  filter for noise reduction.
+\newblock In \emph{International Conference on Learning Representations}, 2025.
+\newblock URL
+  \url{https://proceedings.iclr.cc/paper_files/paper/2025/file/c7793beb7f32b559df55d48370f2b8ae-Paper-Conference.pdf}.
+
+\bibitem[Urmian et~al.(2026)Urmian, Liu, and Khalil]{urmian2026slate}
+Sam Urmian, Qinyi Liu, and Mohammad Khalil.
+\newblock Decoupled learning and selection in slate recommendation for privacy
+  and stability under noisy scores, 2026.
+\newblock URL \url{https://arxiv.org/abs/2609.29453}.
+\newblock Technical comparison uses the September 2026 author preprint.
+
+\bibitem[Gaunt(2024)]{gaunt2024product}
+Robert~E. Gaunt.
+\newblock On the product of correlated normal random variables and the
+  noncentral chi-square difference distribution, 2024.
+\newblock URL \url{https://arxiv.org/abs/2408.04101}.
+\newblock Version 2 revised September 2025.
+
+\bibitem[Harper and Konstan(2015)]{harper2015movielens}
+F.~Maxwell Harper and Joseph~A. Konstan.
+\newblock The movielens datasets: History and context.
+\newblock \emph{ACM Transactions on Interactive Intelligent Systems}, 2015.
+\newblock URL \url{https://files.grouplens.org/papers/harper-tiis2015.pdf}.
+
+\end{thebibliography}

@@ -1,0 +1,149 @@
+\section{Discussion, limitations, and conclusions}
+\label{sec:discussion}
+\subsection{Answers to the research questions}
+\textbf{RQ1: representation and utility.} Low rank reduces shared payload and
+can outperform the full private baseline in selected strong-privacy settings.
+The four positive adjusted historical comparisons support that qualified
+statement. Every nonprivate low-rank variant, however, underperforms the
+converged full model, and low rank does not dominate across privacy targets.
+The observed crossover combines capacity, optimization, clipping, and noise;
+it is not an isolated dimensional effect.
+
+\textbf{RQ2: fixed-factor effective noise.} FixedB supplies a useful linear
+reference and smaller immediate perturbations in several diagnostics, but
+obtains no positive adjusted primary comparison against Two. The simple
+private popularity baseline exceeds all E1 collaborative point means at
+targets at most four. Smaller coordinate or effective-matrix noise alone is
+therefore an inadequate method-selection criterion in this benchmark.
+
+\textbf{RQ3: persistent local state.} A perturbation to shared parameters can
+leave local user vectors changed even after the shared state is reset. The
+Full and FixedB probes show modest nonzero effects, as expected for coupled
+local/global dynamics. The evidence does not establish a large general
+relevance loss caused by this pathway.
+
+\textbf{RQ4: validity of trajectory attribution.} In rebalanced two-factor
+models, raw-coordinate common random numbers can produce much larger paired
+distances than an aligned coupling. The continuation-without-balancing
+control and ML-1M replication support a dependence on factor-basis changes.
+This finding changes the interpretation of E2: the raw trajectory distance
+cannot be read as a representation-invariant measure of an individual
+noise draw's effect. It does not identify a unique causal coupling or a
+new private optimizer.
+
+\textbf{RQ5: ranking tails.} The exact conditional margin law can differ
+substantially from a Gaussian in constructed regimes, but approximation
+error is negligible in the preselected real checkpoint screen. The
+non-Gaussian-tail candidate fails its practical advancement gate. The
+result narrows the explanation of these experiments without claiming
+Gaussianity throughout training.
+
+\subsection{What the combined evidence explains}
+The project demonstrates why an apparently intuitive story about private
+recommendation can fail. Reducing shared dimension lowers a coordinate-noise
+norm and payload, but also changes the learning geometry. Fixing a factor
+removes a bilinear term, yet that term's measured energy can be small while
+the method still loses utility. Large personalized score disturbances can
+come from user scale, and large paired trajectory distances can arise from
+coordinate coupling rather than a comparably large marginal ranking effect.
+
+The relevant sequence of measurements is therefore: the bounded client
+contribution, the effective shared signal and perturbation, the local user
+state, score margins, candidate rankings, and relevance. Communication
+should be measured both per exchange and over the full training schedule.
+These measurements complement the accountant, which constrains information
+release but does not predict usefulness. None is a substitute for a strong
+simple comparator such as properly private popularity.
+
+The most distinctive completed empirical observation is the sensitivity of
+the personalized trajectory diagnostic to factor-basis coupling, supported
+by the larger-data and balancing controls. Its components overlap existing
+alignment and gauge methods. This report therefore treats it as a supported
+diagnostic result whose paper-level novelty remains unconfirmed, not as an
+established breakthrough or a new privacy theorem.
+
+\subsection{Threats to validity}
+\paragraph{Selection and benchmark exposure.}
+ML-100K has repeated historical exposure, including the disclosed accidental
+regression-test evaluations. Later freezes improve local experiment discipline
+but do not undo accumulated development knowledge. E2b is an adaptive
+follow-up, and E3/E4 questions were informed by earlier results. ML-1M
+validation is now exposed; its test remains available for a future genuinely
+frozen comparison.
+
+\paragraph{Optimization and tuning.}
+Historical B4 has more tuning than B2. E1 equalizes a finite candidate count,
+not the attainable optimum of every method, and some selected rates are at
+the boundary. Nonprivate convergence experiments and 50-round private runs
+have different budgets. ML-1M transfer uses no retuning. These choices make
+the recorded comparisons reproducible but do not prove method-independent
+limits on privacy or rank.
+
+\paragraph{Statistical interpretation.}
+User-bootstrap intervals condition on retained training runs. Five seeds
+provide limited information about rare training instabilities. E2/E3 probes
+are correlated within checkpoints and are summarized descriptively. The
+small observer subset in E3 limits resolution of validation differences.
+Activity, cold-item, and personalization ablations are exploratory rather
+than multiplicity-adjusted subgroup discoveries.
+
+\paragraph{Privacy and systems scope.}
+The simulator assumes only noised aggregate visibility and implements no
+secure aggregation. Public population/catalog assumptions, nonprivate
+selection, internal checkpoints, and diagnostic releases fall outside the
+per-run guarantee. The modeled communication excludes protocol overhead
+and client availability costs. It does not evaluate a deployed mobile system.
+
+\paragraph{Generalization and numerical scope.}
+Both benchmarks are MovieLens variants, not independent services. Per-user
+chronological splitting is not a global future-data prediction experiment.
+There are very few cold targets. Effective-noise formulas condition on a
+single state, while E4 samples a finite collection of round-50 margins.
+Large finite local vectors and float32 update arithmetic require careful
+numerical interpretation. The report makes no claim of universal bitwise
+reproducibility across environments.
+
+\subsection{Future work justified by the evidence}
+The first priority is a faithful published private ALS or federated-MF
+comparator. Such a comparison requires matching the privacy unit, adjacency,
+trust model, feedback objective, candidate filter, and communication
+definition. Perturbing sufficient statistics rather than BPR updates may
+change the relevant signal-to-noise regime. The literature/implementation
+audit is complete enough to specify this next comparison, but no such
+baseline result is included as completed work.
+
+The second priority is metadata-only local personalization, followed by a
+small private collaborative residual. Public genres or other permitted
+item features could supply useful structure before any private collaborative
+update is spent. A meaningful extension would test incremental residual
+value against that public-only control and private popularity under an
+explicit total communication cap. Cold items and low-activity users are
+natural targets, provided the dataset supplies enough examples for reliable
+analysis. The underlying public-feature idea already has prior work.
+
+A third possibility is to test whether coupling-aware diagnostics change
+a consequential scientific conclusion outside the present pilot. The
+target conclusion and decision criterion should be frozen before running
+more probes. Merely repeating the same alignment contrast at additional
+amplitudes would add volume without necessarily establishing novelty.
+A useful method would also need to avoid counterfactual access to private
+reference states and receive fresh privacy accounting.
+
+\subsection{Conclusion}
+This project began with low-dimensional sharing as a possible route to
+better private federated recommendation and developed into a systematic
+study of how parameter noise becomes prediction disturbance. The final
+record includes a reproducible benchmark, controlled fixed-factor and
+private-popularity comparisons, conditional noise analysis, pulse/reset
+experiments, a larger-data replication, and a rejected ranking-tail
+explanation. The evidence supports conditional low-rank gains and a
+specific limitation of factor-coordinate trajectory measurements, while
+rejecting broader claims that fixed factors, smaller coordinate norms,
+or bilinear tails alone solve the observed utility problem.
+
+The principal outcome is a more precise experimental foundation for the
+next research decision. It preserves both favorable and unfavorable
+results, defines the scope of privacy and uncertainty, and identifies
+stronger comparators and public-information controls needed before claiming
+a new recommendation method. That foundation, rather than an unsupported
+novelty claim, is the completed contribution of this undergraduate project.

@@ -1,0 +1,15 @@
+{
+  "compiler": "Tectonic 0.17.0 (XeTeX/BibTeX/xdvipdfmx)",
+  "bundle": "default_bundle_v33",
+  "main_entry_point": "main.tex",
+  "supplement_entry_point": "supplement.tex",
+  "main_pdf": "CS670_Report.pdf",
+  "supplement_pdf": "CS670_Supplement.pdf",
+  "main_pages": 49,
+  "supplement_pages": 25,
+  "compile_errors": 0,
+  "unresolved_references": 0,
+  "duplicate_labels": 0,
+  "overfull_boxes": 0,
+  "pdftex_compatibility": "Conventional packages and BibTeX; local build verified with Tectonic/XeTeX. pdfLaTeX instructions supplied, but that engine was not locally available."
+}

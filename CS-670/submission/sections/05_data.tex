@@ -1,0 +1,109 @@
+\section{Datasets and evaluation protocol}
+\label{sec:data}
+\subsection{MovieLens-100K and implicit conversion}
+The initial benchmark uses the official MovieLens-100K release
+\citep{harper2015movielens}. Ratings of four or five are treated as positive
+implicit feedback. Ratings below four are not positive training events, but
+they remain part of the observed history used for candidate filtering. No
+rating-regression target is optimized. Users require at least three positives
+so that one training positive and two held-out positives can remain. One user
+with no positives is removed. Items are not removed for having few or no
+training positives.
+
+\begin{table}[tbp]\centering
+\caption{Dataset sizes under the frozen chronological implicit-feedback protocol.}
+\label{tab:data}
+\begin{tabular}{lrr}\toprule
+Quantity & MovieLens-100K & MovieLens-1M \\\midrule
+Eligible users & 942 & 6,035 \\
+Catalog items appearing in ratings & 1,682 & 3,706 \\
+Training positives & 53,491 & 563,206 \\
+Validation targets & 942 & 6,035 \\
+Test targets & 942 & 6,035 \\
+Test targets scored in this project & 942 & 0 \\
+\bottomrule\end{tabular}
+\tabnote{The ML-100K raw release contains 943 users and 100,000 ratings;
+55,375 ratings are positive. ML-1M has 575,281 positives before eligible-user
+filtering; five users are removed. The ML-1M catalog is the set represented
+in the ratings file, not every row of a metadata catalog.}
+\source{Frozen dataset report and E3 dataset provenance JSON.}
+\end{table}
+
+Each user's positives are ordered by timestamp. The last positive becomes
+the test target, the penultimate positive the validation target, and the rest
+training observations. Equal timestamps use a deterministic SHA-256 tie breaker
+based on user ID, item ID, and split seed 2026. This is a per-user chronology,
+not a global temporal split across all users. Ties cannot recover the actual
+order of simultaneous events. On ML-100K, 316 users have a validation timestamp
+equal to their final training timestamp, and 305 have equal validation and test
+timestamps; the fixed convention is therefore consequential and documented.
+
+The retained ML-100K users have a mean of 56.7845 and median of 37.5 training
+positives, with a range of 1--376. Activity groups are defined solely from these
+counts: low activity has at most 22 positives (319 users), medium activity
+23--61 (310 users), and high activity at least 62 (313 users). Six validation
+and fourteen test targets are cold items with no training-positive observation
+across the population. They remain in the principal evaluation.
+
+\subsection{Negative sampling and candidate filtering}
+For training, a negative is sampled uniformly from items outside that user's
+training-positive set. The sampler does not consult validation or test labels.
+Consequently a future positive can occasionally be sampled as unobserved; filtering
+it out would use held-out information. Low-rated items can also be sampled as
+ordinary nonpositives. This convention is distinct from the evaluation filter.
+
+For each held-out event, evaluation ranks the complete catalog after removing
+all items the user rated before that event, including low-rated items. The
+target is retained. Later ratings never filter an earlier event's candidate
+set. Validation and test therefore have different historical filters, and
+the test history includes the validation event. On ML-100K the mean candidate
+counts are 1,581.5658 and 1,579.0658 respectively. There is no sampled-negative
+evaluation that could make ranking artificially easy or alter comparability
+between methods.
+
+Metric ties are resolved pessimistically for the relevant target. Diagnostic
+top-10 sets in E2--E4 instead use a deterministic item-index tie rule and exclude
+training positives only. Those label-free diagnostic candidate sets are not
+interchangeable with the historical held-out evaluator.
+
+\subsection{Ranking metrics}
+With one relevant held-out item per user and its one-based rank $R_u$,
+\begin{align}
+ \mathrm{HR@10}_u&=\mathbb{1}\{R_u\leq10\},\nonumber\\
+ \mathrm{NDCG@10}_u&=\frac{\mathbb{1}\{R_u\leq10\}}{\log_2(R_u+1)},\qquad
+ \mathrm{MRR@10}_u=\frac{\mathbb{1}\{R_u\leq10\}}{R_u}.
+ \label{eq:metrics}
+\end{align}
+Metrics are averaged equally over eligible users. Recall@10 equals HR@10 in
+this one-target design, so it does not add an independent outcome. NDCG@10 is
+the declared primary measure. HR@10 and MRR@10 are retained to expose changes
+in hit rate and rank position; they are secondary, without an additional
+family of confirmatory significance claims.
+
+\subsection{MovieLens-1M replication}
+E3 obtains MovieLens-1M from the official GroupLens distribution and applies
+the unchanged conversion and splitting functions. The archive passes its
+published MD5 and ZIP integrity checks, and raw and processed SHA-256 hashes
+are recorded. \Cref{tab:data} gives the resulting sizes. E3 observes a fixed
+sample of 128 users for trajectory diagnostics while allowing every eligible
+user to participate in training. Full-population validation is scored for
+the 30 trained models; the test set is not scored.
+
+Both datasets originate from MovieLens. Their user or catalog overlap has
+not been audited. Replication on the larger dataset is evidence that the
+diagnostic is not confined to one saved small-data training run; it is not
+proof of independent populations or cross-domain generalization.
+
+\subsection{Holdout exposure and dataset limitations}
+The ML-100K test results have been used repeatedly across historical stages.
+An earlier regression-test incident also performed nine two-round real-data
+B2 test evaluations. Those accidental outputs were not inspected for selection,
+but their existence means the benchmark cannot be called a pristine holdout.
+Later stages freeze their own choices before scoring, preserving a meaningful
+local separation of selection and evaluation without erasing this history.
+
+MovieLens is a public research dataset rather than a deployment privacy
+population. Positive-threshold conversion, per-user holdout, missing-not-at-random
+exposure, and very few cold targets all constrain interpretation. The report
+does not infer a reliable cold-start improvement from fourteen examples, nor
+does it treat offline rank utility as user satisfaction in a live service.

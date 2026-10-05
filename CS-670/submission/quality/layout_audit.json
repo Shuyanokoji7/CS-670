@@ -1,0 +1,40 @@
+{
+  "main": {
+    "pages": 49,
+    "min_words_per_page": 55,
+    "words_outside_horizontal_allowance": []
+  },
+  "supplement": {
+    "pages": 25,
+    "min_words_per_page": 45,
+    "words_outside_horizontal_allowance": []
+  },
+  "visual_review": {
+    "front_matter_pages_inspected": 8,
+    "additional_main_pages_inspected": [
+      21,
+      24,
+      25,
+      28,
+      32,
+      38,
+      41,
+      44,
+      46,
+      49
+    ],
+    "supplement_pages_inspected": [
+      3,
+      6,
+      8,
+      10,
+      14,
+      16,
+      18,
+      20,
+      22,
+      25
+    ],
+    "result": "Title, contents, notation, figures, equations, references, long tables and appendix layouts inspected; no clipping observed."
+  }
+}

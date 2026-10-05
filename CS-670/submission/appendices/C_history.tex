@@ -1,0 +1,95 @@
+\section{Material revisions and hypothesis decisions}
+\label{app:history}
+\subsection{Why the project history belongs in the report}
+The final tables are not the first outputs produced by the project.
+Stopping rules, stability gates, and proposed explanations were revised as
+new evidence became available. The purpose of this appendix is to disclose
+the revisions that affect interpretation, without presenting every abandoned
+grid cell as another independent result. Complete chronological commands,
+logs, superseded outputs, and freezes remain in the research archive.
+
+\begin{longtable}{L{.17\linewidth}L{.36\linewidth}L{.36\linewidth}}
+\caption{Material research iterations and their consequences.}\label{tab:history}\\
+\toprule Stage & What changed or was learned & Consequence for interpretation \\
+\midrule\endfirsthead
+\multicolumn{3}{l}{\small\itshape Table \thetable\ (continued)}\\
+\toprule Stage & What changed or was learned & Consequence for interpretation \\
+\midrule\endhead
+Phase 0, 28 Sep. & Positive threshold, per-user chronology, hashed timestamp
+ties, candidate filtering, and raw/split hashes were fixed. & A common
+full-ranking protocol replaces inconsistent or sampled-candidate comparisons. \\
+B0, 28--29 Sep. & Short patience and epoch caps could stop a still-improving
+configuration; validation-only convergence checks revised selection. & Earlier
+B0 numbers remain historical, not the final common-protocol reference. \\
+B0/B1, 2 Oct. & A common longer stopping protocol and centralized B0-UW control
+were added. & User weighting partly explains the apparent federation difference;
+overall paired intervals include zero. \\
+B2, 2 Oct. & T1000/C1.5/server2 was replaced after validation studies by
+T50/C1/server1. & Three design choices changed; a single-factor causal story
+about horizon is not supported. \\
+Test-path audit & Nine accidental two-round B2 real-data test evaluations
+occurred in regression checks; a cache-key issue was corrected. & No selection
+used those outputs, but ML-100K is not pristine. The incident is retained. \\
+B3 & Initial rates caused divergence; a rank-32 convergence/stability gate
+required bounded correction before test scoring. & Report final rates and the
+one declared 16,000-round diagnostic ceiling. Do not silently drop failed attempts. \\
+B4 & Inherited long-horizon rates undertrained at 50 rounds; expanded searches
+and a bounded fallback selected finite settings. & Historical B4 has a larger
+tuning budget than B2, limiting a dimension-only comparison. \\
+E1, 2 Oct. & A new equal-four-candidate extension matched factorized
+initializations and added DP popularity and clipping controls. & E1 is separately
+named and frozen; it does not overwrite B4. Eleven search failures remain counted. \\
+E1 diagnostics & Float32 local norm summaries overflowed for a finite
+trajectory; float64 analysis corrected the summary. & Training, checkpoint
+contents, and test ranks are unchanged. Extreme finite results stay visible. \\
+E1 verification & Live test stdout written under a guarded results tree
+interfered with integrity fixtures. A rerun wrote to a temporary location. & The
+recorded passing run has 203 tests and 26 warnings; both logs are retained.
+The failure was a harness/output-location issue. \\
+E2, 3 Oct. & 120 declared pulse/reset probes suggested local memory and large
+Two-r8 distances. & Exploratory diagnosis, no relevance scoring or new DP claim. \\
+E2b, 3 Oct. & An alignment control was declared after E2's large two-factor
+distances. & Adaptive follow-up sharply narrows the original interpretation. \\
+E3, 3 Oct. & 30 ML-1M training runs and 200 raw/aligned, balanced/unbalanced
+probes completed. & The large coupling effect depends on balancing; ML-1M
+validation is exposed, while its test is unscored. \\
+E4, 3 Oct. & 50 states and 3,200 prescribed pairs tested a known
+non-Gaussian margin law. & The practical-error gate failed. No post hoc
+expansion was used to rescue the candidate. \\
+Report, 5 Oct. & Saved evidence was organized into LaTeX narrative, vector
+figures, generated tables, and supplementary material. & No new training,
+model selection, or test scoring was needed for report preparation. \\
+\bottomrule
+\end{longtable}
+
+\subsection{Final hypothesis ledger}
+\begin{description}[style=nextline]
+\item[Fewer shared noisy coordinates reliably improve recommendation.]
+Rejected as a general statement. Four favorable historical private contrasts
+coexist with weak-privacy losses, nonprivate losses, and a strong private
+popularity comparator.
+\item[Fixing one public factor is a sufficient new solution.]
+Unsupported by E1 utility, and already preceded by fixed-factor literature.
+The implemented method is a controlled baseline.
+\item[The factor-noise product dominates the observed failures.]
+Not supported by its small measured matrix-energy share. E4 additionally
+rejects large Gaussian tail-risk approximation error in the prescribed states.
+\item[Noise causes a large general persistent-personalization failure.]
+The broad reading of raw Two-r8 distances is rejected by alignment and
+no-balancing controls. Modest local-state effects remain.
+\item[Factor-basis changes can dominate a paired noise-attribution measurement.]
+Supported within the declared simulator, counterfactual, datasets, and
+observation rules. Its external consequence and paper novelty remain open.
+\item[Public metadata or private ALS has already solved the remaining problem here.]
+Not tested. Literature review and comparator planning must not be presented
+as completed method implementations or experimental results.
+\end{description}
+
+\subsection{What was deliberately excluded from the submission tables}
+Superseded sweeps, bulk checkpoints, raw user records, and every intermediate
+log are not copied into the submission package. Their omission serves
+traceability: the formal tables should have one unambiguous retained source.
+Failures and revisions that influence conclusions are summarized above and
+in the source inventory. Unfavorable final results, all declared primary
+contrasts, and secondary diagnostic families are retained in the supplement.
+The source archive remains the complete record of the research process.

@@ -1,0 +1,54 @@
+{
+  "created_utc": "2026-10-02T22:44:18.972717+00:00",
+  "copied_files_verified": 45,
+  "held_out_scoring": false,
+  "training_executed": false,
+  "scope": "Saved-evidence integrity and summary checks",
+  "e2": {
+    "probes": 120,
+    "failures": 0,
+    "seed_rows": 840,
+    "summary_rows": 168,
+    "synthetic_cases_passed": 6,
+    "summaries_recomputed_from_seed_tables": true,
+    "reset_and_energy_identities": true
+  },
+  "e2b": {
+    "probes": 40,
+    "failures": 0,
+    "seed_rows": 280,
+    "summary_rows": 56,
+    "synthetic_cases_passed": 2,
+    "summaries_recomputed_from_seed_tables": true,
+    "reset_and_energy_identities": true
+  },
+  "primary_contrast_counts_and_selected_table_verified": true,
+  "all_collaborative_e1_means_below_dp_popularity_eps_le_4": true,
+  "synthetic_null_identity_verified": true,
+  "local_document_links_verified": 47,
+  "unique_bibliography_entries": 25,
+  "figure_exports_present": 18,
+  "archive": {
+    "historical_files_unchanged": 3932,
+    "e1_manifests_verified": {
+      "results/extensions/effective_noise_v1/MANIFEST.sha256": 2148,
+      "results/extensions/effective_noise_v1/snapshots/analysis_before_test/MANIFEST.sha256": 5,
+      "results/extensions/effective_noise_v1/snapshots/freeze_20261002T153741Z/MANIFEST.sha256": 11
+    },
+    "new_manifests_verified": {
+      "noise_memory_v1": 126,
+      "noise_memory_aligned_v1": 46
+    },
+    "probes_verified": {
+      "noise_memory_v1": 120,
+      "noise_memory_aligned_v1": 40
+    },
+    "original_observations": 2240,
+    "checkpoint_hashes_verified": 30,
+    "frozen_sources_unchanged": true,
+    "source_copies_match": true,
+    "seed_averages_recomputed_from_original_probes": true,
+    "alignment_product_relative_error_max": 3.913264641762453e-08
+  },
+  "all_requested_checks_passed": true
+}

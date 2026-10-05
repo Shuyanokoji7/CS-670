@@ -1,0 +1,114 @@
+\section{E2/E2b: local-state memory and noise coupling}
+\label{sec:e2}
+\subsection{Question and intervention design}
+Immediate noise moments hold the local user matrix fixed. During training,
+however, users adapt to the shared item state. A shared perturbation can
+therefore change local vectors, which later influence the shared model again.
+E2 asks whether that local-state pathway has measurable prediction consequences
+after the shared state is restored. It is a mechanism probe, not a proposed
+private denoising algorithm.
+
+The study starts from 30 E1 round-50 checkpoints: Full, FixedB-r8, and Two-r8,
+at targets one and two, across five seeds. Each receives two independently
+seeded Gaussian pulses at amplitudes $\alpha\in\{0.25,1\}$ times its own
+per-round coordinate noise SD. This gives 120 probes. The pulse is a fresh
+perturbation of a saved state, not the replay or removal of an actual earlier
+training draw. One ordinary exposure round allows selected local vectors
+to respond before reset branches are constructed.
+
+The unpulsed reference, retained-pulse branch, shared-reset branch, and
+local-reset branch then continue for ten rounds. A shared reset copies the
+reference shared state while retaining the pulsed branch's local vectors.
+A local reset copies the reference local vectors while retaining perturbed
+shared parameters. A both-reset construction is an identity control.
+Branches share future client, negative-sampling, and coordinate-noise streams.
+Observations occur immediately after the pulse, after exposure, and at
+post-reset lags 0, 1, 4, and 10. All declared probes are retained.
+
+\subsection{Score decomposition and measurement}
+For reference $(P,Q)$ and branch $(P+\Delta P,Q+\Delta Q)$,
+\begin{equation}
+ \Delta S=P\Delta Q^T+\Delta P Q^T+\Delta P\Delta Q^T.
+ \label{eq:decompose}
+\end{equation}
+At a shared reset, $\Delta Q=0$, so the remaining score difference is exactly
+$\Delta P Q^T$. Later differences may involve both states again. Squared
+norms of the three terms do not add to total squared norm without cross
+inner products; they are not additive causal percentages. The implementation
+records all terms and checks numerical closure in float64.
+
+Measurements include score RMS across users and items, effective-matrix
+distance, top-10 disagreement on training-unseen candidates, and margin
+sign changes on 256 seeded random item pairs. The 942-user diagnostics do
+not use validation or test labels. ``Exposed'' users are those selected
+in the single exposure round; their identity is held fixed when reporting
+later outcomes. The normalized score ratio divides a probe's delayed RMS
+by its own initial pulse RMS and is accompanied by the absolute value.
+
+\subsection{Initial findings and why a control was needed}
+At full pulse amplitude and lag ten after shared reset, Full has mean
+top-10 disagreement of $0.5212$\% at target one and $0.3206$\% at target
+two. FixedB-r8 has $0.3747$\% and $0.2038$\%. These modest effects show
+that restoring the shared item state does not automatically restore every
+local prediction. They do not establish an important relevance loss.
+
+Raw-coordinate Two-r8 has much larger mean disagreement: $17.8546$\% and
+$9.3960$\%. Its target-one score-RMS/pulse ratio has mean approximately
+$911.2$ but median only $1.065$, indicating strong sensitivity to exceptional
+seeds. Treating this as typical persistent personalization damage would
+ignore both unstable scale and a deeper issue: the meaning of ``the same
+noise'' changes when factor coordinates are rebalanced.
+
+\subsection{Orthogonal alignment control}
+Equivalent factors can be rotated as $(A,B)\mapsto(AR,R^TB)$ for orthogonal
+$R$ without changing $Q$. E2b aligns a branch to the current reference before
+each continuation round. It solves the orthogonal Procrustes problem using
+the SVD of
+\begin{equation}
+ A_{\mathrm{branch}}^TA_{\mathrm{ref}}+
+ B_{\mathrm{branch}}B_{\mathrm{ref}}^T=U\Sigma V^T,
+ \qquad R=UV^T.
+ \label{eq:alignment}
+\end{equation}
+The transformed branch uses the same future coordinate draws in this aligned
+basis. Orthogonal transformations preserve isotropic Gaussian marginal laws
+in exact arithmetic, but alter the joint coupling between branches.
+Consequently a smaller paired distance does not imply an improved marginal
+training algorithm. Alignment here needs a counterfactual reference and is
+an oracle control, not a deployable intervention.
+
+E2b completes 40 declared Two-r8 probes. Maximum measured relative product
+error from alignment is $3.9133\times10^{-8}$. At full amplitude, the lag-ten
+shared-reset disagreement falls to $0.4204$\% and $0.1083$\% at targets
+one and two. The large raw-coordinate distances are therefore highly
+coupling-sensitive. This does not identify alignment as a uniquely correct
+causal coupling: it demonstrates that the original interpretation was not
+invariant to a product-preserving representation choice.
+
+\reportfigure{05_local_state_memory.pdf}{Pulse/reset trajectories}
+{E2/E2b top-10 disagreement for retained pulse, shared reset, and local reset
+at starting target epsilon one and pulse amplitude one. Means and SDs use
+five checkpoint seeds after averaging two draws within seed. Candidate sets
+exclude training positives. The interventions access private states and
+measure prediction disagreement, not relevance or accuracy gains.}{fig:memory}
+\reportfigure{06_coupling_control.pdf}{The factor-coordinate coupling control}
+{Two-r8 shared-reset disagreement at lag ten under raw and aligned coupling.
+Diamonds show means, whiskers seed SD, and circles all five seed values.
+The logarithmic axis reports percent top-10 set disagreement. Differences
+of 17.8546 versus 0.4204 percent at target one, and 9.3960 versus 0.1083
+percent at target two, concern joint diagnostic coupling.}{fig:coupling}
+
+\subsection{Verification and limits}
+Six E2 and two E2b synthetic cases check zero-pulse equality, both-reset
+equality, RNG matching, reset identities, score closure, and product
+preservation. In real probes, both-reset states are constructed and checked
+at reset; the ten-round both-reset equality test belongs to the synthetic
+checks. This distinction avoids overstating the real experiment's controls.
+
+The aligned results leave modest local-state effects and an important
+measurement concern. E2b is an adaptive follow-up prompted by E2, disclosed
+as such. No held-out relevance evaluation or new privacy claim accompanies
+it. Continued releases would need additional composition beyond the starting
+epsilon. E3 tests whether the coupling phenomenon persists on a larger
+dataset and whether the balancing operation explains its size.
+\FloatBarrier

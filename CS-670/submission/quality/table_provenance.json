@@ -1,0 +1,97 @@
+{
+  "inputs": [
+    {
+      "source": "data/baselines/final_5seed_means.csv",
+      "sha256": "b6ca27433ccc4857aba79bc6d34e34241cc4b8f3d37126c718872d2c2cbbba5d"
+    },
+    {
+      "source": "data/baselines/centralized_federated_3seeds.csv",
+      "sha256": "714dfbb5aa9f354cbf67aac5918d22738951c10438764deb295f46c2cf45380b"
+    },
+    {
+      "source": "data/baselines/random_reference.csv",
+      "sha256": "cf79ec6a2a144d25c7873944af1c014548ddf010e4a90c2b499636bd3722bda8"
+    },
+    {
+      "source": "data/baselines/nonprivate_popularity.csv",
+      "sha256": "6cbb03589b97055ef060138c5ea046e4a11729f81bce4adb66fa75f7f7834be6"
+    },
+    {
+      "source": "data/baselines/weighting_paired.csv",
+      "sha256": "05b36ae4fb7f3d0f57f117fa91cf37cf000a58f6fbacf33f3476cc0f8e5c11c5"
+    },
+    {
+      "source": "data/baselines/privacy_accounting.csv",
+      "sha256": "e434978ff3d20ca41acd47eebaccbd19f325a2be697fb7485f831a1e4133b462"
+    },
+    {
+      "source": "data/baselines/paired_contrasts.csv",
+      "sha256": "267cb6c7c47f08d0bd934572af6de29ef7accc4fada54493911a6779273214d4"
+    },
+    {
+      "source": "data/effective_noise/test_means.csv",
+      "sha256": "d5aec83784ff93b96212b68bc4f1fdb55cec6629f3db21e7147479fa2d898aa4"
+    },
+    {
+      "source": "data/effective_noise/rank_selection.csv",
+      "sha256": "765c5b889695d6141f95b0b60a03721b213fb34eeef9eafee48d4cdf6b1a65ee"
+    },
+    {
+      "source": "data/noise_replication/validation_summary.csv",
+      "sha256": "28d28a05a53f1677629d17b6ba42d002cdec16dd7296d5a77cc8b7bcf769c43a"
+    },
+    {
+      "source": "data/noise_replication/endpoint_summary.csv",
+      "sha256": "5d98cefb306f6a227bc99407fb4d2d388a69ce6021abf401662407faeea7c3fd"
+    },
+    {
+      "source": "data/baselines/communication.csv",
+      "sha256": "1f319a3a53e95f1b233bc5dc4fda2de7fe77d585a315e313036cc98038283ef3"
+    },
+    {
+      "source": "data/effective_noise/contrasts.csv",
+      "sha256": "6ca6f2daa44b698f55f1dead0c9114fa39a1c7e0279d62b8c8aa03a216fdc0b1"
+    },
+    {
+      "source": "data/effective_noise/geometry_means.csv",
+      "sha256": "2ad76d640e31a869c7a117e5d6b8a01f6a0cd63efd67405ba366db1bf477cdf1"
+    },
+    {
+      "source": "data/effective_noise/subgroups_test.csv",
+      "sha256": "937f9909fd6b6426ee997ccd4b48e90578cc20215f292557a796adc2e0c70367"
+    },
+    {
+      "source": "data/effective_noise/personalization_validation.csv",
+      "sha256": "06685df933eca3c79719d42ed6146478e555fe47dc6eb4516e69dc070a22e4ca"
+    },
+    {
+      "source": "data/noise_memory/summary.csv",
+      "sha256": "72b5a5fddb8daa19301d4d5ff0808be7971899874c058259f3c9adc91e43efee"
+    },
+    {
+      "source": "data/noise_memory_aligned/summary.csv",
+      "sha256": "02fce75c3da330936179f5829aaa395a50cf62a285c67778bfc6f7e4b94945f6"
+    },
+    {
+      "source": "data/ranking_tails/screen_summary.csv",
+      "sha256": "f783cc2c8764969a7b4517d3d7893a5f10d4931d5536ed985422977a16c65ded"
+    },
+    {
+      "source": "data/effective_noise/accounting.csv",
+      "sha256": "358576cef68006318bdd3b5b210fc304ea57df7ccace9d7fcf3c41e0f1c393ff"
+    },
+    {
+      "source": "data/effective_noise/synthetic_monte_carlo.csv",
+      "sha256": "8079d8fc86d2cc2b63c0eda1e7efad2f9574405c432266b910f5cc6773cac705"
+    }
+  ],
+  "generated_tables": 23,
+  "baseline_utility_rows": 34,
+  "e1_utility_rows": 59,
+  "historical_contrasts": 53,
+  "e1_contrasts": 117,
+  "activity_rows": 395,
+  "personalization_rows": 810,
+  "training_executed": false,
+  "additional_test_scoring": false
+}

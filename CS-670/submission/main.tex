@@ -1,0 +1,66 @@
+\documentclass[11pt,a4paper]{article}
+\input{preamble}
+\begin{document}
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+\centering
+\vspace*{15mm}
+{\Large\textsc{\CourseCode\ Undergraduate Project Report}\par}
+\vspace{18mm}
+{\huge\bfseries\color{ReportBlue}\ReportTitle\par}
+\vspace{9mm}
+{\large\ReportSubtitle\par}
+\vspace{20mm}
+\ifx\ReportAuthor\empty\else{\Large\ReportAuthor\par}\vspace{4mm}\fi
+\ifx\StudentID\empty\else{Student ID: \StudentID\par}\fi
+\ifx\Supervisor\empty\else{Supervisor: \Supervisor\par}\fi
+\ifx\Department\empty\else{\Department\par}\fi
+\ifx\Institution\empty\else{\Institution\par}\fi
+\vfill
+{\large Final project report\par}
+\vspace{4mm}
+{\SubmissionDate\par}
+\vspace{12mm}
+\begin{minipage}{.86\linewidth}\small\centering
+Evidence coverage: Phase 0; baselines B0--B4; controlled extension E1;
+noise-memory studies E2/E2b; MovieLens-1M replication E3; and ranking-tail screen E4.
+Experiments completed through 3 October 2026.
+\end{minipage}
+\end{titlepage}
+\pagenumbering{roman}
+\hypersetup{pageanchor=true}
+\input{sections/00_abstract}
+\clearpage
+\tableofcontents
+\clearpage
+\listoffigures
+\listoftables
+\clearpage
+\input{sections/01_notation}
+\clearpage
+\pagenumbering{arabic}
+\setcounter{table}{0}
+\input{sections/02_introduction}
+\input{sections/03_related_work}
+\input{sections/04_formulation_privacy}
+\input{sections/05_data}
+\input{sections/06_methods}
+\input{sections/07_design}
+\input{sections/08_baseline_results}
+\input{sections/09_effective_noise}
+\input{sections/10_memory}
+\input{sections/11_replication}
+\input{sections/12_tails}
+\input{sections/13_discussion}
+\FloatBarrier
+\clearpage
+\phantomsection\addcontentsline{toc}{section}{References}
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+\clearpage
+\appendix
+\input{appendices/A_derivations}
+\input{appendices/B_algorithms}
+\input{appendices/C_history}
+\input{appendices/D_reproducibility}
+\end{document}

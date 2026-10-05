@@ -1,0 +1,100 @@
+\contentsline {section}{Abstract}{i}{section*.1}%
+\contentsline {section}{Notation and reading conventions}{vi}{section*.6}%
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Problem and motivation}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Research questions}{1}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Completed contributions}{2}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Organization}{2}{subsection.1.4}%
+\contentsline {section}{\numberline {2}Related work and contribution boundaries}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Ranking, federation, and private collaborative learning}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Personalization and public information}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Low-rank geometry and fixed-factor methods}{3}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Noise propagation and ranking stability}{4}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}How the literature was used}{4}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Problem formulation and privacy model}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Personalized implicit-feedback ranking}{4}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Protected information and adjacency}{5}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Private aggregation mechanism}{5}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Release scope and local personalization}{6}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Datasets and evaluation protocol}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}MovieLens-100K and implicit conversion}{6}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Negative sampling and candidate filtering}{7}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Ranking metrics}{8}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}MovieLens-1M replication}{8}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Holdout exposure and dataset limitations}{8}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Models and implementation}{8}{section.5}%
+\contentsline {subsection}{\numberline {5.1}B0 and B0-UW: centralized controls}{8}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}B1: federated full matrix without DP}{9}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}B2: private full matrix}{9}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}B3 and B4: jointly trained item factors}{9}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}E1: a separately controlled comparison}{10}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}User-level private popularity}{10}{subsection.5.6}%
+\contentsline {subsection}{\numberline {5.7}Communication accounting}{11}{subsection.5.7}%
+\contentsline {section}{\numberline {6}Experimental design and statistical analysis}{11}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Sequential controls and preserved stages}{11}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Seeds and paired uncertainty}{12}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Rank selection, groups, and personalization diagnostics}{12}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Diagnostic replication and advancement criteria}{12}{subsection.6.4}%
+\contentsline {section}{\numberline {7}Results of the historical baselines}{13}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Sanity references and centralized learning}{13}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Nonprivate low rank}{14}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Private full matrix and low rank}{14}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Communication and the original hypothesis}{15}{subsection.7.4}%
+\contentsline {section}{\numberline {8}E1: effective noise and fixed-factor training}{16}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Why the effective matrix matters}{16}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Controlled utility comparison}{16}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}The private popularity baseline changes the reference point}{17}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Measured geometry, clipping, and numerical behavior}{18}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.5}Activity groups and personalization ablations}{19}{subsection.8.5}%
+\contentsline {subsection}{\numberline {8.6}Recommendation-specific implications}{19}{subsection.8.6}%
+\contentsline {section}{\numberline {9}E2/E2b: local-state memory and noise coupling}{19}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Question and intervention design}{19}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Score decomposition and measurement}{20}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Initial findings and why a control was needed}{20}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}Orthogonal alignment control}{20}{subsection.9.4}%
+\contentsline {subsection}{\numberline {9.5}Verification and limits}{21}{subsection.9.5}%
+\contentsline {section}{\numberline {10}E3: larger-data replication and balancing controls}{22}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Transferred training and factorial diagnostic}{22}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Validation utility}{23}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}Main diagnostic result}{23}{subsection.10.3}%
+\contentsline {subsection}{\numberline {10.4}Checks and research decision}{24}{subsection.10.4}%
+\contentsline {section}{\numberline {11}E4: a conditional ranking-tail screen}{26}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Candidate explanation and established mathematics}{26}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Synthetic checks and real-state selection}{26}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.3}Outcome and numerical scope}{26}{subsection.11.3}%
+\contentsline {section}{\numberline {12}Discussion, limitations, and conclusions}{27}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Answers to the research questions}{27}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}What the combined evidence explains}{28}{subsection.12.2}%
+\contentsline {subsection}{\numberline {12.3}Threats to validity}{28}{subsection.12.3}%
+\contentsline {paragraph}{Selection and benchmark exposure.}{28}{section*.25}%
+\contentsline {paragraph}{Optimization and tuning.}{28}{section*.26}%
+\contentsline {paragraph}{Statistical interpretation.}{29}{section*.27}%
+\contentsline {paragraph}{Privacy and systems scope.}{29}{section*.28}%
+\contentsline {paragraph}{Generalization and numerical scope.}{29}{section*.29}%
+\contentsline {subsection}{\numberline {12.4}Future work justified by the evidence}{29}{subsection.12.4}%
+\contentsline {subsection}{\numberline {12.5}Conclusion}{29}{subsection.12.5}%
+\contentsline {section}{References}{31}{section*.30}%
+\contentsline {section}{\numberline {A}Mathematical derivations and diagnostic identities}{34}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Conditional effective-matrix moments}{34}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}Score moments and pairwise margins}{34}{subsection.A.2}%
+\contentsline {subsection}{\numberline {A.3}Scale changes, balancing, and clipping}{34}{subsection.A.3}%
+\contentsline {subsection}{\numberline {A.4}FixedB score capacity and regularization}{35}{subsection.A.4}%
+\contentsline {subsection}{\numberline {A.5}A product-preserving coupling null example}{35}{subsection.A.5}%
+\contentsline {subsection}{\numberline {A.6}Exact conditional margin law and numerical evaluation}{35}{subsection.A.6}%
+\contentsline {subsection}{\numberline {A.7}Analytic Gaussian calibration for popularity}{36}{subsection.A.7}%
+\contentsline {section}{\numberline {B}Implementation details and algorithm record}{36}{appendix.B}%
+\contentsline {subsection}{\numberline {B.1}Client update and shared aggregation}{36}{subsection.B.1}%
+\contentsline {subsection}{\numberline {B.2}Final parameter register}{37}{subsection.B.2}%
+\contentsline {subsection}{\numberline {B.3}Diagnostic random streams and identity checks}{37}{subsection.B.3}%
+\contentsline {subsection}{\numberline {B.4}Numerical environment and reproducibility precision}{38}{subsection.B.4}%
+\contentsline {subsection}{\numberline {B.5}Communication ledger}{38}{subsection.B.5}%
+\contentsline {section}{\numberline {C}Material revisions and hypothesis decisions}{39}{appendix.C}%
+\contentsline {subsection}{\numberline {C.1}Why the project history belongs in the report}{39}{subsection.C.1}%
+\contentsline {subsection}{\numberline {C.2}Final hypothesis ledger}{40}{subsection.C.2}%
+\contentsline {subsection}{\numberline {C.3}What was deliberately excluded from the submission tables}{41}{subsection.C.3}%
+\contentsline {section}{\numberline {D}Artifact provenance and reproduction guide}{41}{appendix.D}%
+\contentsline {subsection}{\numberline {D.1}Separation of evidence, report source, and generated output}{41}{subsection.D.1}%
+\contentsline {subsection}{\numberline {D.2}Data fingerprints}{41}{subsection.D.2}%
+\contentsline {subsection}{\numberline {D.3}Evidence checks}{42}{subsection.D.3}%
+\contentsline {subsection}{\numberline {D.4}Rebuilding the submission}{42}{subsection.D.4}%
+\contentsline {subsection}{\numberline {D.5}Supplementary material and source map}{42}{subsection.D.5}%
